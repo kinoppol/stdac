@@ -1,12 +1,12 @@
 <?php
-$rms = new pSql(NULL,'http://rms.bncc.ac.th/api/psql.php');
+$rms = 'http://rms.bncc.ac.th';
 
-$query='select student_id,perfix_id,stu_fname,stu_lname,group_id  from student where status=0';
-$student_data=$rms->query($query);
+$student_data=rms_get_data($rms,'nutty','student');
 //print_r($student_data);
 sDeleteTb($systemDb,"std");
 $import_student=0;
-foreach($student_data['result'] as $student){
+foreach($student_data as $student){
+    if($student['status']==0){//0=คือสถานะที่นักเรียนกำลังเรียนอยู่
     $data=array(
         "student_id"=>sQ($student['student_id']),
         "prefix_id"=>sQ($student['perfix_id']),
@@ -21,14 +21,12 @@ foreach($student_data['result'] as $student){
         //print "1";
     }
 }
+}
 
-$query='SELECT * FROM `student_group` WHERE student_group_id in (
-    select distinct group_id from student where status=0
-    )';
-$group_data=$rms->query($query);
+$group_data=rms_get_data($rms,'nutty','student_group%20where%20student_group_id%20in%20(select%20distinct%20group_id%20from%20student%20where%20status=0)');
 sDeleteTb($systemDb,"group");
 $import_group=0;
-foreach($group_data['result'] as $group){
+foreach($group_data as $group){
     $data=array(
         "group_id"=>sQ($group['student_group_id']),
         "group_short_name"=>sQ($group['student_group_short_name']),

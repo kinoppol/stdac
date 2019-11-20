@@ -10,8 +10,8 @@ $i=0;
 foreach($ac_data as $row){
     $i++;
     $table_data[]=array(
-        'no'=>$i,
-        'name'=>$row['name'],
+        'student_id'=>$i,
+        'prefix_id'=>$row['name'],
         'start_time'=>$row['start_time'],
         'end_time'=>$row['end_time'],
         'semester'=>$row['semester'],
