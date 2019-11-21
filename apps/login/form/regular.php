@@ -1,11 +1,11 @@
 <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Print<b>Station</b></a>
+            <a href="javascript:void(0);">Student<b>Activity</b></a>
         </div>
         <div class="card">
             <div class="body">
                 <form id="sign_in" action ="<?php print site_url('authen/login/check/login'); ?>" method="POST">
-                    <div class="msg">ลงชื่อเข้าใช้</div>
+                    <div class="msg"><b>ลงชื่อเข้าใช้</b></div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
@@ -31,13 +31,7 @@
                             <button class="btn btn-block bg-pink waves-effect" type="submit">ลงชื่อเข้าใช้</button>
                         </div>
                     </div>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
-                            <a href="<?php print site_url('authen/login/form/register'); ?>">สมัครสมาชิก</a>
-                        </div>
-                        <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">ลืมรหัสผ่าน?</a>
-                        </div>
+                
                     </div>
                 </form>
         

@@ -23,10 +23,11 @@ foreach($student_data as $student){
 }
 }
 
-$group_data=rms_get_data($rms,'nutty','student_group%20where%20student_group_id%20in%20(select%20distinct%20group_id%20from%20student%20where%20status=0)');
+$group_data=rms_get_data($rms,'nutty','student_group');
 sDeleteTb($systemDb,"group");
 $import_group=0;
 foreach($group_data as $group){
+    if($group['student_group_hidden']==0){//0=คือสถานะที่นักเรียนกำลังเรียนอยู่
     $data=array(
         "group_id"=>sQ($group['student_group_id']),
         "group_short_name"=>sQ($group['student_group_short_name']),
@@ -38,6 +39,7 @@ foreach($group_data as $group){
     if($result){
         $import_group++;
     }
+}
 }
 ?>
 <div class="row clearfix">

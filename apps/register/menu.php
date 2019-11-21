@@ -1,11 +1,11 @@
 <?php
 $menu['register']= array(
-    'class' => "header",
-    'title' => 'ลงทะเบียนกิจกรรม',
-    'cond' => true,
-    'bullet' => 'nature_people',
-    'color' => 'col-green',
-    'url' => 'main/register/form/general',
+    //'class' => "header",
+    //'title' => 'ลงทะเบียนกิจกรรม',
+    //'cond' => true,
+    //'bullet' => 'nature_people',
+   // 'color' => 'col-green',
+    //'url' => 'main/register/form/general',
     /*'item' => array(
         'billing' => array('bullet' => '',
             'title' => 'ค่าบริการ',
