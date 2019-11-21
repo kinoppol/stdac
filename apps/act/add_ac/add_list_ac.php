@@ -55,7 +55,14 @@ $data=array(
     'year'=>sQ($_POST['year']),
 );
 
+$acId=$hGET['id'];
+if($acId!=""){
+    
+$result=sUpdateTb($systemDb,'activity',$data,'id='.$acId);
+}else{
 $result=sInsertTb($systemDb,'activity',$data);
+}
+
 if($result){
     $data['icon']='save';
     $data['color']='alert-success';
@@ -67,10 +74,13 @@ if($result){
         var myInt;
             $(function(){
                 myInt=setInterval(hideModal,2000);
+                load_ac();
             });
 
             function hideModal(){
                 $("#addAc").modal("hide");
+                $("#editAc").modal("hide");
+                
                 clearInterval(myInt);
             }
         </script>

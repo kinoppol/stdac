@@ -7,7 +7,7 @@
 ?>
  <div class="row clearfix">
                 <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="header">
                             <h2>กิจกรรม</h2>
@@ -48,6 +48,20 @@ $data_link=array(
 $data_modal=array(
     'id'=>'addAc',
     'title'=>'เพิ่มกิจกรรม',
+);
+
+print gen_modal($data_modal);
+
+$data_modal=array(
+    'id'=>'editAc',
+    'title'=>'แก้ไขกิจกรรม',
+);
+
+print gen_modal($data_modal);
+
+$data_modal=array(
+    'id'=>'checkAc',
+    'title'=>'เช็คชื่อเข้าร่วมกิจกรรม',
 );
 
 print gen_modal($data_modal);

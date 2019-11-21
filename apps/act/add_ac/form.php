@@ -3,6 +3,14 @@
 <?php
 
 load_fun('form');
+$acId=$hGET['id'];
+if($acId!=""){
+    $ac_data=sSelectTb($systemDb,'activity','*','id='.$acId);
+    $ac_data=$ac_data[0];
+    $saveURL=site_url('ajax/act/add_ac/add_list_ac/id/'.$acId);
+}else{
+    $saveURL=site_url('ajax/act/add_ac/add_list_ac');
+}
 
 $inputDetail = array(
     'name' => array(
@@ -10,27 +18,31 @@ $inputDetail = array(
         'type' => 'text',
         'placeholder' => 'ระบุชื่อกิจกรรม',
         'icon' => 'settings_overscan',
-        //'value' => $docData['doc_code']
+        'value' => $ac_data['name']
     ),
     'start_day' => array(
         'label' => 'วันเริ่มกิจกรรม',
         'type' => 'date',
         'icon' => 'settings_overscan',
+        'value' => mb_substr($ac_data['start_time'],0,10)
     ),
     'start_time' => array(
         'label' => 'เวลา',
         'type' => 'time',
         'icon' => 'settings_overscan',
+        'value' => mb_substr($ac_data['start_time'],11,5)
     ),
     'end_day' => array(
         'label' => 'วันสิ้นสุดกิจกรรม',
         'type' => 'date',
         'icon' => 'settings_overscan',
+        'value' => mb_substr($ac_data['end_time'],0,10)
     ),
     'end_time' => array(
         'label' => 'เวลา',
         'type' => 'time',
         'icon' => 'settings_overscan',
+        'value' => mb_substr($ac_data['end_time'],11,5)
     ),
     
     'semester' => array(
@@ -39,6 +51,7 @@ $inputDetail = array(
         'item' => array(
             1=>'1',2=>'2',3=>'3',4=>'4'
         ),
+        'def'=>$ac_data['semester']
     ),
     'year' => array(
         'label' => 'ปีการศึกษา',
@@ -61,7 +74,7 @@ $onSubmit .= '
 ';
 $inputForm = genInput($inputDetail, 4, 12);
 
-$saveURL=site_url('ajax/act/add_ac/add_list_ac');
+
 print genForm(array(
     'id' => 'bookForm',
     'action' => $saveURL,

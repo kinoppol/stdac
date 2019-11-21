@@ -9,13 +9,36 @@ $table_data=array();
 $i=0;
 foreach($ac_data as $row){
     $i++;
+
+
+    $edit_btn=array(
+        'id'=>'editAc',
+        'onlyClickClose'=>true,
+        'src'=>site_url('ajax/act/add_ac/form/id/'.$row['id']),
+    );
+
+    $scan_btn=array(
+        'id'=>'checkAc',
+        'onlyClickClose'=>true,
+        'src'=>site_url('ajax/act/check/form_scaner/id/'.$row['id']),
+    );
+
+    $check_btn=array(
+        'id'=>'checkAc',
+        'onlyClickClose'=>true,
+        'src'=>site_url('ajax/act/check/form_manual/id/'.$row['id']),
+    );
+    
+
     $table_data[]=array(
         'no'=>$i,
         'name'=>$row['name'],
         'start_time'=>$row['start_time'],
         'end_time'=>$row['end_time'],
-        'semester'=>$row['semester'],
-        'year'=>$row['year'],
+        'semester'=>$row['semester'].'/'.$row['year'],
+        '<a '.gen_modal_link($scan_btn).' class="btn btn-success" title="สแกนบัตร"><i class="material-icons">camera</i></a> '.
+        '<a '.gen_modal_link($check_btn).' class="btn btn-primary" title="เช็คชื่อ"><i class="material-icons">check_circle</i></a> '.
+        '<a '.gen_modal_link($edit_btn).' class="btn btn-warning" title="แก้ไข"><i class="material-icons">build</i></a>',
         '<a href="'.site_url('main/act/view/list/action/delete/id/'.$row['id']).'" onClick="return confirm(\'ลบ?\')"><i class="material-icons col-red">delete</i></a>'
     );
     
@@ -26,7 +49,7 @@ $data=array("head"=>array(
     'เริ่ม',
     'สิ้นสุด',
     'ภาคเรียน',
-    'ปีการศึกษา',
+    'จัดการ',
     'ลบ',
     ),
     'id'=>'activity_table',
