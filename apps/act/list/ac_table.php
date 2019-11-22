@@ -56,7 +56,7 @@ $data=array("head"=>array(
     'เริ่ม',
     'สิ้นสุด',
     'ภาคเรียน',
-    'จัดการ',
+    '<center>จัดการ</center>',
     'ลบ',
     ),
     'id'=>'activity_table',
