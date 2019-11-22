@@ -499,7 +499,7 @@
     </section>
 
     <!-- Jquery Core Js -->
-    <script src="<?php print $componentURL; ?>plugins/jquery/jquery.min.js"></script>
+    <script src="<?php print site_url('system/jquery/jquery-2.2.4.min.js',true); ?>"></script>
 
     <!-- Bootstrap Core Js -->
     <script src="<?php print $componentURL; ?>plugins/bootstrap/js/bootstrap.js"></script>
