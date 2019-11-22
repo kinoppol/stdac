@@ -60,6 +60,13 @@ $data_modal=array(
 print gen_modal($data_modal);
 
 $data_modal=array(
+    'id'=>'groupAc',
+    'title'=>'เลือกกลุ่มผู้เรียน',
+);
+
+print gen_modal($data_modal);
+
+$data_modal=array(
     'id'=>'checkAc',
     'title'=>'เช็คชื่อเข้าร่วมกิจกรรม',
 );
