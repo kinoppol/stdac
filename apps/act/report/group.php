@@ -8,6 +8,8 @@ $ac_data=$ac_data[0];
 
 $student_data=sSelectTb($systemDb,'std','*','group_id = '.$group_id);
 
+print_r($student_data);
+
 $group_data=sSelectTb($systemDb,'group','*','group_id = '.$group_id);
 $group_data=$group_data[0];
 
