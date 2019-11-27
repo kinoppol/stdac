@@ -6,7 +6,7 @@ $group_id=$hGET['grp_id'];
 $ac_data=sSelectTb($systemDb,'activity','*','id='.$act_id);
 $ac_data=$ac_data[0];
 
-$student_data=sSelectTb($systemDb,'std','*','group_id = '.$group_id);
+$student_data=sSelectTb($systemDb,'std','*','group_id = '.$group_id,true);
 
 print_r($student_data);
 
