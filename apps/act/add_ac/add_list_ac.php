@@ -88,7 +88,7 @@ if($result){
 }else{
     $data['icon']='warning';
     $data['color']='alert-danger';
-    $data['text']='&nbsp;บันทึกไม่ได้';
+    $data['text']='&nbsp;บันทึกไม่ได้ '.$systemDb['db']->error;
     print genAlert($data);
 
 }
