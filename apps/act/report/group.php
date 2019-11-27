@@ -6,9 +6,7 @@ $group_id=$hGET['grp_id'];
 $ac_data=sSelectTb($systemDb,'activity','*','id='.$act_id);
 $ac_data=$ac_data[0];
 
-$student_data=sSelectTb($systemDb,'std','*','group_id = '.$group_id,true);
-
-print_r($student_data);
+$student_data=sSelectTb($systemDb,'std','*','group_id = '.$group_id);
 
 $group_data=sSelectTb($systemDb,'group','*','group_id = '.$group_id);
 $group_data=$group_data[0];
@@ -109,5 +107,5 @@ $pdf_data=array(
         			   'footer'=>'This document was created by SAS system of information centre at bangna commercial college. ',
                        //'header'=>'<div style="text-align: right; font-weight: normal;">หน้า {PAGENO}/{nbpg}</div>'
                     );
-print $html;       			   
-//genPdf($pdf_data,$pageNo=NULL,$location=$dir,$f_name);
+//print $html;       			   
+genPdf($pdf_data,$pageNo=NULL,$location=$dir,$f_name);
