@@ -109,5 +109,5 @@ $pdf_data=array(
         			   'footer'=>'This document was created by SAS system of information centre at bangna commercial college. ',
                        //'header'=>'<div style="text-align: right; font-weight: normal;">หน้า {PAGENO}/{nbpg}</div>'
                     );
-//print $html;       			   
-genPdf($pdf_data,$pageNo=NULL,$location=$dir,$f_name);
+print $html;       			   
+//genPdf($pdf_data,$pageNo=NULL,$location=$dir,$f_name);
