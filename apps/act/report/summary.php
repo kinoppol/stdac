@@ -24,7 +24,7 @@ foreach($groups_selected as $grp){
     $reports[]=array(
     'grp_id'=>$grp,
     'grp_name'=>$groups[$grp]['group_short_name'],
-    'btn'=>'<a href="#" class="btn btn-danger"><i class="material-icons">book</i></a>'
+    'btn'=>'<a href="'.site_url('ajax/act/report/group/id/'.$act_id.'/grp_id/'.$grp).'" target="_blank" class="btn btn-danger"><i class="material-icons">book</i></a>'
 );
 }
 $data=array("head"=>array(

@@ -62,6 +62,7 @@ print gen_modal($data_modal);
 $data_modal=array(
     'id'=>'groupAc',
     'title'=>'เลือกกลุ่มผู้เรียน',
+    'onClose'=>'load_ac();',
 );
 
 print gen_modal($data_modal);

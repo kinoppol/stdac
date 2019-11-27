@@ -24,7 +24,7 @@ $inputDetail = array(
         'label' => 'วันเริ่มกิจกรรม',
         'type' => 'date',
         'icon' => 'settings_overscan',
-        'value' => mb_substr($ac_data['start_time'],0,10)
+        'value' => $ac_data['start_time']?mb_substr($ac_data['start_time'],0,10):date('Y-m-d')
     ),
     'start_time' => array(
         'label' => 'เวลา',
@@ -36,7 +36,7 @@ $inputDetail = array(
         'label' => 'วันสิ้นสุดกิจกรรม',
         'type' => 'date',
         'icon' => 'settings_overscan',
-        'value' => mb_substr($ac_data['end_time'],0,10)
+        'value' => $ac_data['end_time']?mb_substr($ac_data['end_time'],0,10):date('Y-m-d')
     ),
     'end_time' => array(
         'label' => 'เวลา',

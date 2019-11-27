@@ -14,10 +14,12 @@ if($act_data['group_id']!=''){
     $groups_selected=array();
 }
 $prefix=array(
-    1=>'เด็กชาย',
-    2=>'เด็กหญิง',
-    3=>'นาย',
-    4=>'นางสาว',
+    '1'=>'นางสาว',
+    '2'=>'นาย',
+    '3'=>'เด็กชาย',
+    '4'=>'เด็กหญิง',
+    '5'=>'นาง',
+
 );
 $student_data=sSelectTb($systemDb,'std','*','group_id in ('.implode(',',$groups_selected).')');
 
