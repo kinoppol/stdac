@@ -73,6 +73,13 @@ $data_modal=array(
 
 print gen_modal($data_modal);
 
+$data_modal=array(
+    'id'=>'reportAc',
+    'title'=>'รายงาน',
+);
+
+print gen_modal($data_modal);
+
 $systemFoot.="<script>
             $(function(){
                 load_ac();
