@@ -1,70 +1,68 @@
 <div id="chk_all">
 <a href="#"
-         onClick="add_all_group()"><i class="material-icons col-black">check_box_outline_blank</i></a> เลือกทุกกลุ่ม
+         onClick="check_all_std()"><i class="material-icons col-black">check_box_outline_blank</i></a> เช็คชื่อให้ทุกคน
         </a>
 </div>
-
-<div id="group_table_respons">
-โปรดรอสักครู่
+<div id="student_Response">
+โปรดรอสักครู่..
 </div>
 <?php
-    $systemFoot.='
-    <script>
-        $(function(){
-            load_table_group();
+$systemFoot.='
+<script>
+    $(function(){
+        load_student();
+    });
+    function load_student(){
+        $("#student_Response").load("'.site_url("ajax/act/check/ajaxList/id/".$hGET['id']).'");
+    }
+    function check_std(std_id){
+        $("#chk_"+std_id).html("<i class=\\"material-icons col-orange\\">cached</i>");
+        $.ajax({url:"'.site_url('ajax/act/check/checkStudent/id/'.$hGET['id'].'/std_id/').'"+std_id+"/type/check", success: function( result ) {
+            if(result=="ok"){
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"unCheck_std("+std_id+")\\"><i class=\\"material-icons col-green\\">check_box</i></a> ");
+            }else{            
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"check_std("+std_id+")\\"><i class=\\"material-icons col-orange\\">error</i></a> ");
+            }
+        }
         });
-
-        function load_table_group(){
-            $("#group_table_respons").load("'.site_url("ajax/act/group/group_table/id/".$hGET['id']).'");
-        }
-
-        function add_group(gid){
-            $("#chk_"+gid).html("<i class=\\"material-icons col-orange\\">cached</i>");
-            $.ajax({url:"'.site_url('ajax/act/group/select_group/id/'.$hGET['id'].'/gid/').'"+gid, success: function( result ) {
-                if(result=="ok"){
-                    $("#chk_"+gid).html("<a href=\\"#\\" onclick=\\"del_group("+gid+")\\"><i class=\\"material-icons col-green\\">check_box</i></a> ");
-                }else{
-                
-                }
+        
+    }
+    function unCheck_std(std_id){
+        $("#chk_"+std_id).html("<i class=\\"material-icons col-orange\\">cached</i>");
+        $.ajax({url:"'.site_url('ajax/act/check/checkStudent/id/'.$hGET['id'].'/std_id/').'"+std_id+"/type/unCheck", success: function( result ) {
+            if(result=="ok"){
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"check_std("+std_id+")\\"><i class=\\"material-icons\\">check_box_outline_blank</i></a> ");
+            }else{
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"unCheck_std("+std_id+")\\"><i class=\\"material-icons col-orange\\">error</i></a> ลองใหม่");
             }
-            });
-            
         }
-
-        function del_group(gid){
-            $("#chk_"+gid).html("<i class=\\"material-icons col-orange\\">cached</i>");
-            $.ajax({url:"'.site_url('ajax/act/group/deselect_group/id/'.$hGET['id'].'/gid/').'"+gid, success: function( result ) {
-                if(result=="ok"){
-                    $("#chk_"+gid).html("<a href=\\"#\\" onclick=\\"add_group("+gid+")\\"><i class=\\"material-icons col-black\\">check_box_outline_blank</i></a> ");
-                }else{
-                
-                }
+        });
+    
+    }
+    
+    function check_all_std(){
+        $("#chk_all").html("<i class=\\"material-icons col-orange\\">cached</i>");
+        $.ajax({url:"'.site_url('ajax/act/check/checkStudentAll/id/'.$hGET['id']).'/type/check", success: function( result ) {
+            if(result=="ok"){
+                $("#chk_all").html("<a href=\\"#\\" onclick=\\"unCheck_all_std()\\"><i class=\\"material-icons col-green\\">check_box</i></a> เช็คชื่อให้ทุกคน");
+                load_student();
+            }else{
+                $("#chk_all").html("<a href=\\"#\\" onclick=\\"check_all_std()\\"><i class=\\"material-icons col-orange\\">error</i></a> ลองใหม่");
             }
-            });
-            
         }
-        function add_all_group(){
-            $("#chk_all").html("<i class=\\"material-icons col-orange\\">cached</i>");
-            $.ajax({url:"'.site_url('ajax/act/group/select_all/id/'.$hGET['id']).'", success: function( result ) {
-                if(result=="ok"){
-                    $("#chk_all").html("<a href=\\"#\\" onclick=\\"del_all_group()\\"><i class=\\"material-icons col-green\\">check_box</i></a> เลือกทุกกลุ่ม");
-                    load_table_group();
-                }else{
-
-                }
+        });
+    }
+    function unCheck_all_std(){
+        $("#chk_all").html("<i class=\\"material-icons col-orange\\">cached</i>");
+        $.ajax({url:"'.site_url('ajax/act/check/checkStudentAll/id/'.$hGET['id']).'/type/unCheck", success: function( result ) {
+            if(result=="ok"){
+                $("#chk_all").html("<a href=\\"#\\" onclick=\\"check_all_std()\\"><i class=\\"material-icons\\">check_box_outline_blank</i></a> เช็คชื่อให้ทุกคน");
+                load_student();
+            }else{
+                $("#chk_all").html("<a href=\\"#\\" onclick=\\"unCheck_all_std()\\"><i class=\\"material-icons col-orange\\">error</i></a> ลองใหม่");
             }
-            });
         }
-        function del_all_group(){
-            $("#chk_all").html("<i class=\\"material-icons col-orange\\">cached</i>");
-            $.ajax({url:"'.site_url('ajax/act/group/deselect_all/id/'.$hGET['id']).'", success: function( result ) {
-                if(result=="ok"){
-                    $("#chk_all").html("<a href=\\"#\\" onclick=\\"add_all_group()\\"><i class=\\"material-icons col-black\\">check_box_outline_blank</i></a> เลือกทุกกลุ่ม");
-                    load_table_group();
-                }else{
-                }
-            }
-            });
-        }
-    </script>
-    ';
+        });
+    }
+</script>
+';
