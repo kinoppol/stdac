@@ -64,7 +64,7 @@ $i=0;
 foreach($student_data as $std){
 
     if($record[$std['student_id']]=='check'){
-        $mark='<img src="'.site_url('images/check-mark.png',true).'" width="10">';
+        $mark='<img src="'.site_url('images/iconmonstr-check-mark-1-240',true).'" width="10">';
     }else{
         $mark='';
     }
