@@ -18,7 +18,7 @@ $prefix=array(
     '5'=>'นาง',
 
 );
-$student_name=$prefix[$student_data['prefix_id']].$student_data['stu_fname']." ".$student_data['stu_lname'];
+$student_name=$student_data['stu_fname']." ".$student_data['stu_lname'];
 
 $cond = ' AND start_time <= '.sQ(date('Y-m-d H:i:s')).' AND end_time >='.sQ(date('Y-m-d H:i:s'));
 $act_data=sSelectTb($systemDb,'activity','*','id='.sQ($act_id).$cond);
