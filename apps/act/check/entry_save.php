@@ -6,7 +6,7 @@ load_fun('system_alert');
 
 $student_id=$_POST['student_id'];
 
-$student_data=sSelectTb($systemDb,'std','*','student_id='.$student_id);
+$student_data=sSelectTb($systemDb,'std','*','student_id='.$student_id.' OR uid='.$student_id);
 if(count($student_data)>0){
 $student_data=$student_data[0];
 
