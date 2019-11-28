@@ -44,7 +44,7 @@ foreach($ac_data as $row){
 
     $table_data[]=array(
         'no'=>$i,
-        'name'=>$row['name'],
+        'name'=>strlim($row['name'],50),
         'start_time'=>$row['start_time'],
         'end_time'=>$row['end_time'],
         'semester'=>$row['semester'].'/'.$row['year'],
