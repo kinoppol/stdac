@@ -10,9 +10,11 @@ foreach($student_data as $student){
     $data=array(
         "student_id"=>sQ($student['student_id']),
         "prefix_id"=>sQ($student['perfix_id']),
+        "gender_id"=>sQ($student['gender_id']),
         "stu_fname"=>sQ($student['stu_fname']),
         "stu_lname"=>sQ($student['stu_lname']),
         "group_id"=>sQ($student['group_id']),
+        "uid"=>sQ($student['std_rf_id']),
     );
     $result=sInsertTb($systemDb,"std",$data);
     //print_r($result);
