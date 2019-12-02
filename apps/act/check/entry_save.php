@@ -6,7 +6,7 @@ load_fun('system_alert');
 
 $student_id=$_POST['student_id'];
 
-$student_data=sSelectTb($systemDb,'std','*','student_id='.$student_id);
+$student_data=sSelectTb($systemDb,'std','*','student_id='.$student_id.' OR uid='.$student_id);
 if(count($student_data)>0){
 $student_data=$student_data[0];
 
@@ -18,6 +18,7 @@ $prefix=array(
     '5'=>'นาง',
 
 );
+$student_name=$student_data['stu_fname']." ".$student_data['stu_lname'];
 
 $cond = ' AND start_time <= '.sQ(date('Y-m-d H:i:s')).' AND end_time >='.sQ(date('Y-m-d H:i:s'));
 $act_data=sSelectTb($systemDb,'activity','*','id='.sQ($act_id).$cond);
@@ -54,7 +55,7 @@ if($check_record[0]['c']>0){
 }
 
 
-$msg="เช็คชื่อให้ ".$prefix[$student_data['prefix_id']].$student_data['stu_fname']." ".$student_data['stu_lname']." เรียบร้อยแล้ว";
+$msg="เช็คชื่อให้ ".$student_name." เรียบร้อยแล้ว";
 
 if($result){
     $data['icon']='save';
@@ -70,7 +71,7 @@ if($result){
 }
 }else{
     
-    $msg="นักศึกษาไม่อยู่ในกลุ่มที่ร่วมกิจกรรม, หรือไม่อยู่ในระยะเวลาที่กำหนดให้เข้าร่วมกิจกรรม";
+    $msg=" บัตรประจำตัวของ ".$student_name." นักศึกษาไม่อยู่ในกลุ่มที่ร่วมกิจกรรม, หรือไม่อยู่ในระยะเวลาที่กำหนดให้เข้าร่วมกิจกรรม";
     
     $data['icon']='save';
     $data['color']='alert-warning';
