@@ -74,7 +74,7 @@ $systemFoot.="
              $(this).val($(this).val()+'1');
            }else if(event.keyCode == 47){
              $(this).val($(this).val()+'2');
-           }else if(event.keyCode == 45){
+           }else if(event.keyCode == 45||event.keyCode == 189){
              $(this).val($(this).val()+'3');
            }else if(event.keyCode == 3616){
              $(this).val($(this).val()+'4');
