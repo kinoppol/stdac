@@ -11,7 +11,7 @@ foreach($ac_data as $row){
     $i++;
     $table_data[]=array(
         'no'=>$i,
-        'name'=>strlim($row['name'],50),
+        'name'=>strlim($row['name'],100),
         'start_time'=>$row['start_time'],
         'end_time'=>$row['end_time'],
     );

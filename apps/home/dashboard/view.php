@@ -13,10 +13,10 @@
                     $activity_amount=$activity_amount[0];
                 ?>
             <div class="row clearfix">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="info-box bg-cyan hover-expand-effect">
                         <div class="icon">
-                            <a href="<?php print site_url("main/wallet/transaction/view"); ?>">
+                            <a href="<?php print site_url("main/act/view/list"); ?>">
                             <i class="material-icons">description</i>
                             </a>
                         </div>
@@ -33,10 +33,10 @@
                     $std_amount=sSelectTb($systemDb,'std','count(*) as c');
                     $std_amount=$std_amount[0];
                 ?>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="info-box bg-green hover-expand-effect">
                         <div class="icon">
-                        <a href="<?php print site_url("main/upload_file/manage/view/type/pic"); ?>">
+                        <a href="<?php print site_url("main/admin/managestudent/list"); ?>">
                             <i class="material-icons">supervisor_account</i>
                         </a>
                         </div>
@@ -52,43 +52,17 @@
                     $docCount=$docCount[0];
                 ?>
                 
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-red hover-expand-effect">
-                        <div class="icon">
-                        <a href="<?php print site_url("main/upload_file/manage/view/type/doc"); ?>">
-                            <i class="material-icons">picture_as_pdf</i>
-                            </a>
-                        </div>
-                        <div class="content">
-                            <div class="text">ไฟล์เอกสาร</div>
-                            <div class="number count-to" data-from="0" data-to="<?php print $docCount['c']; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
-                        <div class="icon">                        
-                        <a href="<?php print site_url("main/upload_file/manage/view"); ?>">
-                            <i class="material-icons">cloud_circle</i>
-                        </a>
-                        </div>
-                        <div class="content">
-                            <div class="text">ไฟล์ทั้งหมด</div>
-                            <div class="number count-to" data-from="0" data-to="<?php print $picCount['c']+$docCount['c']; ?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
+               
 
                 </div>
             </div>
             
             <div class="row clearfix">
                 <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <h2>ธุรกรรมล่าสุด</h2>
+                            <h2>กิจกรรมล่าสุด</h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -118,29 +92,7 @@
                     $totalSize=100*1024*1024;
                     $freeSize=$totalSize-$docSize['c']-$picSize['c'];
                 ?>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="header">
-                            <h2>พื้นที่เก็บข้อมูล <?php print formatSizeUnits($totalSize); ?></h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="<?php print site_url('main/upload_file/manage/view'); ?>">จัดการไฟล์</a></li>
-                                        <li><a href="javascript:void(0);">เพิ่มพื้นที่</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div id="donut_chart" class="dashboard-donut-chart"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- #END# Disk Usage -->
-               
+          
             </div>
             <?php
             $systemFoot.="<script>
