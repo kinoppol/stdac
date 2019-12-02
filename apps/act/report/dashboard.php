@@ -9,8 +9,17 @@
             <?php
 
 
-                    $balance_amount=sSelectTb($systemDb,'wallet','sum(balance) as b','owner_id='.current_user('id'));
-                    $balance_amount=$balance_amount[0];
+                    $act_amount=sSelectTb($systemDb,'activity','count(*) as c');
+                    $act_amount=$act_amount[0];
+
+                    $past_act_amount=sSelectTb($systemDb,'activity','count(*) as c','end_time<NOW()');
+                    $past_act_amount=$past_act_amount[0];                  
+
+                    $now_act_amount=sSelectTb($systemDb,'activity','count(*) as c','start_time<NOW() AND end_time>NOW()');
+                    $now_act_amount=$now_act_amount[0];
+                                 
+                    $future_act_amount=sSelectTb($systemDb,'activity','count(*) as c','start_time>NOW()');
+                    $future_act_amount=$future_act_amount[0];
                 ?>
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -23,7 +32,7 @@
                         
                         <div class="content">
                             <div class="text">จำนวนกิจกรรมทั้งหมด</div>
-                            <div class="number count-to" data-from="0" data-to="<?php print $balance_amount['b'];?>" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php print $act_amount['c'];?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                         
                     </div>
@@ -37,12 +46,12 @@
                     <div class="info-box bg-green hover-expand-effect">
                         <div class="icon">
                         <a href="<?php print site_url("main/upload_file/manage/view/type/pic"); ?>">
-                            <i class="material-icons">supervisor_account</i>
+                            <i class="material-icons">done_all</i>
                         </a>
                         </div>
                         <div class="content">
-                            <div class="text">จำนวนเช็คชื่อทั้งหมด</div>
-                            <div class="number count-to" data-from="0" data-to="<?php print $picCount['c']; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">กิจกรรมที่ดำเนินการแล้ว</div>
+                            <div class="number count-to" data-from="0" data-to="<?php print $past_act_amount['c']; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -56,12 +65,12 @@
                     <div class="info-box bg-red hover-expand-effect">
                         <div class="icon">
                         <a href="<?php print site_url("main/upload_file/manage/view/type/doc"); ?>">
-                            <i class="material-icons">picture_as_pdf</i>
+                            <i class="material-icons">rotate_left</i>
                             </a>
                         </div>
                         <div class="content">
-                            <div class="text">ไฟล์เอกสาร</div>
-                            <div class="number count-to" data-from="0" data-to="<?php print $docCount['c']; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">กิจกรรมที่กำลังดำเนินการ</div>
+                            <div class="number count-to" data-from="0" data-to="<?php print $now_act_amount['c']; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -70,12 +79,12 @@
                     <div class="info-box bg-orange hover-expand-effect">
                         <div class="icon">                        
                         <a href="<?php print site_url("main/upload_file/manage/view"); ?>">
-                            <i class="material-icons">cloud_circle</i>
+                            <i class="material-icons">alarm</i>
                         </a>
                         </div>
                         <div class="content">
-                            <div class="text">ไฟล์ทั้งหมด</div>
-                            <div class="number count-to" data-from="0" data-to="<?php print $picCount['c']+$docCount['c']; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">กิจกรรมที่กำลังมาถึง</div>
+                            <div class="number count-to" data-from="0" data-to="<?php print $future_act_amount['c']; ?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
