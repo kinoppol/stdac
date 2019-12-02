@@ -23,6 +23,12 @@ $menu['atc']= array(
                 'cond' => true,
                 ),
                 
+                'report' => array('bullet' => '',
+                'title' => 'บทสรุป',
+                'url' => 'main/act/report/dashboard',
+                'cond' => true,
+                ),
+                
         
         ),
         
