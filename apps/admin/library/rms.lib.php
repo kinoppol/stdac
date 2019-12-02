@@ -24,6 +24,7 @@ class pSql{
 		if($this->passphres){
 			$result=base64_decode(openssl_decrypt($q, 'AES-128-CBC', $key,0,$this->passphres.date('Ydm')));
 		}else{
-			$result=preg_replace('/\\\\/', 
-'',urldecode($q));
+			$result=preg_replace('/\\\\/', '',urldecode($q));
 		}
+	}
+}

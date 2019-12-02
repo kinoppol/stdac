@@ -9,8 +9,8 @@
             <?php
 
 
-                    $balance_amount=sSelectTb($systemDb,'wallet','sum(balance) as b','owner_id='.current_user('id'));
-                    $balance_amount=$balance_amount[0];
+                    $activity_amount=sSelectTb($systemDb,'activity','count(*) as c');
+                    $activity_amount=$activity_amount[0];
                 ?>
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -23,15 +23,15 @@
                         
                         <div class="content">
                             <div class="text">จำนวนกิจกรรมทั้งหมด</div>
-                            <div class="number count-to" data-from="0" data-to="<?php print $balance_amount['b'];?>" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?php print $activity_amount['c'];?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                         
                     </div>
                 </div>
 
                 <?php
-                    $picCount=sSelectTb($systemDb,'files_doc','count(*) as c','owner_id='.current_user('id').' AND type="pic"');
-                    $picCount=$picCount[0];
+                    $std_amount=sSelectTb($systemDb,'std','count(*) as c');
+                    $std_amount=$std_amount[0];
                 ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-green hover-expand-effect">
@@ -41,8 +41,8 @@
                         </a>
                         </div>
                         <div class="content">
-                            <div class="text">จำนวนเช็คชื่อทั้งหมด</div>
-                            <div class="number count-to" data-from="0" data-to="<?php print $picCount['c']; ?>" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">จำนวนนักเรียนทั้งหมด</div>
+                            <div class="number count-to" data-from="0" data-to="<?php print $std_amount['c'];?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
