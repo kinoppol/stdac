@@ -45,14 +45,6 @@ $inputDetail = array(
         'value' => mb_substr($ac_data['end_time'],11,5)
     ),
     
-    'semester' => array(
-        'label' => 'ภาคเรียน',
-        'type' => 'select',
-        'item' => array(
-            1=>'1',2=>'2',3=>'3',4=>'4'
-        ),
-        'def'=>$ac_data['semester']
-    ),
     'year' => array(
         'label' => 'ปีการศึกษา',
         'type' => 'select',
@@ -62,6 +54,14 @@ $inputDetail = array(
             date('Y')+542=>date('Y')+542,
         ),
         'def'=>date('Y')+543,
+    ),
+    'semester' => array(
+        'label' => 'ภาคเรียน',
+        'type' => 'select',
+        'item' => array(
+            1=>'1',2=>'2',3=>'3',4=>'4'
+        ),
+        'def'=>$ac_data['semester']
     ),
     'submit' => array(
         'label' => '&nbsp;',

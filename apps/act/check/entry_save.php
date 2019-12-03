@@ -39,7 +39,7 @@ $check_record=sSelectTb($systemDb,'entry_record','count(*) as c',$cond);
 
 $data=array(
     'act_id'=>$act_id,
-    'student_id'=>sQ($student_id),
+    'student_id'=>sQ($student_data['student_id']),
     'time_entry'=>sQ($act_data['start_time']),
     'time_record'=>'NOW()',
     'time_update'=>'NOW()',

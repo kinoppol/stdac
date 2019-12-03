@@ -97,7 +97,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <div class="card">
                         <div class="header">
-                            <h2>ธุรกรรมล่าสุด</h2>
+                            <h2>สรุปผลกิจกรรม</h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -110,11 +110,29 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <div id="last_transaction">
+                            <div id="act_summary">
+                            <?php
+                                $genReport_btn=array(
+                                    'id'=>'genReport',
+                                    'onlyClickClose'=>false,
+                                    'src'=>site_url('ajax/act/report/wizard'),
+                                );
+                            ?>
+                                <a <?php print gen_modal_link($genReport_btn); ?> class="btn bg-red"><i class="material-icons">picture_as_pdf</i> สร้างรายงาน</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <?php
+
+                $data_modal=array(
+                    'id'=>'genReport',
+                    'title'=>'สร้างรายงาน',
+                );
+
+                
+                print gen_modal($data_modal);
+                ?>
                 <!-- #END# Task Info -->
                 <!-- Disk Usage -->
                 <?php

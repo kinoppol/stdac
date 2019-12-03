@@ -262,7 +262,7 @@ editor".$k.".setOption(\"theme\", \"midnight\");
         		}else{
         		   $enc='';
         		}
-        		$ret.="<form id='".$data['id']."' action='".$data['action']."' ".$attr." class=\"form-horizontal\" ".$enc."  role=\"form\" method='".$data['method']."'>";
+        		$ret.="<form id='".$data['id']."' action='".$data['action']."' target='".$data['target']."' ".$attr." class=\"form-horizontal\" ".$enc."  role=\"form\" method='".$data['method']."'>";
         		//$ret.="<div class=\"box-body\">";
         		
         			$ret.=$data['item'];
