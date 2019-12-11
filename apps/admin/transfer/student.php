@@ -2,7 +2,7 @@
 $rms = 'http://rms.bncc.ac.th';
 
 $student_data=rms_get_data($rms,'nutty','student');
-print_r($student_data);
+//print_r($student_data);
 sDeleteTb($systemDb,"std");
 $import_student=0;
 foreach($student_data as $student){
@@ -21,6 +21,9 @@ foreach($student_data as $student){
     if($result){
         $import_student++;
         //print "1";
+    }else{
+        print $systemDb['db']->error;
+        exit();
     }
 }
 }
@@ -40,9 +43,6 @@ foreach($group_data as $group){
     $result=sInsertTb($systemDb,"group",$data);
     if($result){
         $import_group++;
-    }else{
-        print $systemDb['db']->error;
-        exit();
     }
 }
 }
