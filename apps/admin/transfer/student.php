@@ -9,7 +9,7 @@ foreach($student_data as $student){
     if($student['status']==0){//0=คือสถานะที่นักเรียนกำลังเรียนอยู่
     $data=array(
         "student_id"=>sQ($student['student_id']),
-        "prefix_id"=>sQ($student['perfix_id']),
+        //"prefix_id"=>sQ($student['perfix_id']),
         "gender_id"=>sQ($student['gender_id']),
         "stu_fname"=>sQ($student['stu_fname']),
         "stu_lname"=>sQ($student['stu_lname']),
