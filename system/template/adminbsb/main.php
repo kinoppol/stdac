@@ -303,7 +303,15 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="<?php print $componentURL; ?>images/user.png" width="48" height="48" alt="User" />
+
+<?php
+    $user_pic_url=$componentURL.'images/user.png';
+    if(current_user('image_uri')){
+        $user_pic_url=$rms.'/files/'.current_user('image_uri');
+    }
+?>
+
+                    <img src="<?php print $user_pic_url; ?>" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php

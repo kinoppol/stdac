@@ -42,30 +42,48 @@ foreach($ac_data as $row){
     );
     
 
-    $table_data[]=array(
-        'no'=>$i,
-        'name'=>strlim($row['name'],50),
-        'start_time'=>$row['start_time'],
-        'end_time'=>$row['end_time'],
-        'semester'=>$row['semester'].'/'.$row['year'],
-        '<a '.gen_modal_link($scan_btn).' class="btn btn-success" title="สแกนบัตร"><i class="material-icons">camera</i></a> '.
-        '<a '.gen_modal_link($check_btn).' class="btn btn-primary" title="เช็คชื่อ"><i class="material-icons">check_circle</i></a> '.
-        '<a '.gen_modal_link($report_btn).' class="btn btn-danger" title="รายงานการเช็คชื่อ"><i class="material-icons">book</i></a> '.
-        '<a '.gen_modal_link($group_btn).' class="btn btn-info" title="เลือกกลุ่มผู้เรียน"><i class="material-icons">group_add</i></a> '.
-        '<a '.gen_modal_link($edit_btn).' class="btn btn-warning" title="แก้ไข"><i class="material-icons">build</i></a> ',
-        '<a href="'.site_url('main/act/view/list/action/delete/id/'.$row['id']).'" onClick="return confirm(\'ลบ?\')"><i class="material-icons col-red">delete</i></a>'
-    );
+    if(current_user('user_type')=='admin'||current_user('user_type')=='staff'){
+        $edit_ac_link='<a '.gen_modal_link($group_btn).' class="btn btn-info" title="เลือกกลุ่มผู้เรียน"><i class="material-icons">group_add</i></a> '.
+        '<a '.gen_modal_link($edit_btn).' class="btn btn-warning" title="แก้ไข"><i class="material-icons">build</i></a> ';
+    }
+
+$ac_row=array(
+    'no'=>$i,
+    'name'=>strlim($row['name'],50),
+    'start_time'=>$row['start_time'],
+    'end_time'=>$row['end_time'],
+    'semester'=>$row['semester'].'/'.$row['year'],
+    '<a '.gen_modal_link($scan_btn).' class="btn btn-success" title="สแกนบัตร"><i class="material-icons">camera</i></a> '.
+    '<a '.gen_modal_link($check_btn).' class="btn btn-primary" title="เช็คชื่อ"><i class="material-icons">check_circle</i></a> '.
+    '<a '.gen_modal_link($report_btn).' class="btn btn-danger" title="รายงานการเช็คชื่อ"><i class="material-icons">book</i></a> '.
+    $edit_ac_link,
+    'del'=>'<a href="'.site_url('main/act/view/list/action/delete/id/'.$row['id']).'" onClick="return confirm(\'ลบ?\')"><i class="material-icons col-red">delete</i></a>'
+);
+
+if(current_user('user_type')!='admin'&&current_user('user_type')!='staff'){
+    unset($ac_row['del']);
+    unset($ac_row['select_group']);
+}
+
+    $table_data[]=$ac_row;
     
 }
-$data=array("head"=>array(
+
+$head_arr=array(
     'ที่',
     'ชื่อกิจกรรม',
     'เริ่ม',
     'สิ้นสุด',
     'ภาคเรียน',
     '<center>จัดการ</center>',
-    'ลบ',
-    ),
+    'del'=>'ลบ',
+);
+
+if(current_user('user_type')!='admin'&&current_user('user_type')!='staff'){
+    unset($head_arr['del']);
+}
+
+$data=array("head"=>$head_arr,
     'id'=>'activity_table',
     'item'=>$table_data,
     'pagelength'=>10,

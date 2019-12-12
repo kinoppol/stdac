@@ -21,6 +21,11 @@ $menu['admin']= array(
                 'url' => 'main/admin/transfer/student',
                 'cond' => true,
                 ),
-        ),
+        'userTransfer' => array('bullet' => '',
+                'title' => 'โอนข้อมูลบุคลากร',
+                'url' => 'main/admin/transfer/people',
+                'cond' => true,
+                ),
+            ),
         
     );

@@ -1,24 +1,31 @@
 <?php
 
-$student_data=rms_get_data($rms,'nutty','student');
-//print_r($student_data);
+$people_data=rms_get_data($rms,'nutty','people');
+//print_r($people_data);
 sDeleteTb($systemDb,"std");
 $import_student=0;
-foreach($student_data as $student){
+foreach($people_data as $people){
     if($student['status']==0){//0=คือสถานะที่นักเรียนกำลังเรียนอยู่
     $data=array(
-        "student_id"=>sQ($student['student_id']),
-        //"prefix_id"=>sQ($student['perfix_id']),
-        "gender_id"=>sQ($student['gender_id']),
-        "stu_fname"=>sQ($student['stu_fname']),
-        "stu_lname"=>sQ($student['stu_lname']),
-        "group_id"=>sQ($student['group_id']),
-        "uid"=>sQ($student['std_rf_id']),
+        "people_id"=>sQ($people['people_id']),
+        "username"=>sQ($people['people_user']),
+        "password"=>sQ($people['people_pass']),
+        "name"=>sQ($people['people_name']),
+        "surname"=>sQ($people['people_surname']),
+        "image_uri"=>sQ($people['people_pic']),
+        "active"=>sQ($people['people_exit']==0?'Y':'N')
     );
-    $result=sInsertTb($systemDb,"std",$data);
+
+    $chk_user=sSelectTb($systemDb,"userdata","count(*) as c",'people_id='.sQ($people['people_id']));
+    $chk_user=$chk_user[0];
+    if($chk_user['c']<1){
+        $result=sInsertTb($systemDb,"userdata",$data);
+    }else{
+        $result=sUpdateTb($systemDb,"userdata",$data,'people_id='.sQ($people['people_id']));
+    }
     //print_r($result);
     if($result){
-        $import_student++;
+        $import_people++;
         //print "1";
     }else{
         print $systemDb['db']->error;
@@ -27,24 +34,6 @@ foreach($student_data as $student){
 }
 }
 
-$group_data=rms_get_data($rms,'nutty','student_group');
-sDeleteTb($systemDb,"group");
-$import_group=0;
-foreach($group_data as $group){
-    if($group['student_group_hidden']==0){//0=คือสถานะที่นักเรียนกำลังเรียนอยู่
-    $data=array(
-        "group_id"=>sQ($group['student_group_id']),
-        "group_short_name"=>sQ($group['student_group_short_name']),
-        "major_name"=>sQ($group['major_name']),
-        "minor_name"=>sQ($group['minor_name']),
-        "level_name"=>sQ($group['level_name']),
-    );
-    $result=sInsertTb($systemDb,"group",$data);
-    if($result){
-        $import_group++;
-    }
-}
-}
 ?>
 <div class="row clearfix">
                 <!-- Task Info -->
@@ -64,7 +53,7 @@ foreach($group_data as $group){
                             </ul>
                         </div>
                         <div class="body">
-                            ข้อมูลผู้เรียนจำนวน <?php print number_format($import_student);?> คน
+                            ข้อมูลบุคลากรจำนวน <?php print number_format($import_people);?> คน
                         </div>
                     </div>
                 </div>

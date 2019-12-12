@@ -23,6 +23,9 @@
                             </ul>
                         </div>
                         <div class="body">
+                        <?php
+                            if(current_user('user_type')=='admin'||current_user('user_type')=='staff'){
+                        ?>
                         <div id="display_btn">
                         <a <?php
 
@@ -36,6 +39,9 @@ $data_link=array(
                             print gen_modal_link($data_link);
                         ?> class="btn btn-primary"><i class="material-icons">library_add</i> เพิ่มกิจกรรม</a>
                             </div>
+                            <?php
+                            }
+                            ?>
                             <div id="actable">
                             </div>
                         </div>
