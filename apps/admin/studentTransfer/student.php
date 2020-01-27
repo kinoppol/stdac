@@ -1,11 +1,26 @@
 <?php
-
-$student_data=rms_get_data($rms,'nutty','student');
-//print_r($student_data);
-sDeleteTb($systemDb,"std");
 $import_student=0;
+sDeleteTb($systemDb,"std");
+//print "Hello";
+$student_count=rms_get_data($rms,'nutty','student',null,$count="yes");
+
+$count_std=$student_count[0]['c'];
+$p=ceil($count_std/1000);
+
+//print $p;
+//exit();
+for($in=0;$in<$p;$in++){
+
+    $limit=($in*1000+0).",1000";
+    //print $limit;
+
+$student_data=rms_get_data($rms,'nutty','student',$limit,null);
+//sleep(1);
+//print_r($student_data);
+
+
 foreach($student_data as $student){
-    if($student['status']==0){//0=คือสถานะที่นักเรียนกำลังเรียนอยู่
+    if($student['status']==0||true){//0=คือสถานะที่นักเรียนกำลังเรียนอยู่
     $data=array(
         "student_id"=>sQ($student['student_id']),
         //"prefix_id"=>sQ($student['perfix_id']),
@@ -27,7 +42,9 @@ foreach($student_data as $student){
 }
 }
 
-$group_data=rms_get_data($rms,'nutty','student_group');
+}
+
+$group_data=rms_get_data($rms,'nutty','student_group',null,null);
 sDeleteTb($systemDb,"group");
 $import_group=0;
 foreach($group_data as $group){

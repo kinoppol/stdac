@@ -2,10 +2,15 @@
 
 $people_data=rms_get_data($rms,'nutty','people');
 //print_r($people_data);
-sDeleteTb($systemDb,"std");
-$import_student=0;
+sDeleteTb($systemDb,"userdata");
+$import_people=0;
 foreach($people_data as $people){
-    if($student['status']==0){//0=คือสถานะที่นักเรียนกำลังเรียนอยู่
+    if($people['useradmin_activity']==1){//1 เฉพาะงานกิจกรรม
+
+        $user_type="admin";
+    }else{
+        $user_type="user";
+    }
     $data=array(
         "people_id"=>sQ($people['people_id']),
         "username"=>sQ($people['people_user']),
@@ -13,6 +18,7 @@ foreach($people_data as $people){
         "name"=>sQ($people['people_name']),
         "surname"=>sQ($people['people_surname']),
         "image_uri"=>sQ($people['people_pic']),
+        "user_type"=>sQ($user_type),
         "active"=>sQ($people['people_exit']==0?'Y':'N')
     );
 
@@ -26,12 +32,12 @@ foreach($people_data as $people){
     //print_r($result);
     if($result){
         $import_people++;
-        //print "1";
+        //print "1".$people['people_user'];
     }else{
         print $systemDb['db']->error;
         exit();
     }
-}
+
 }
 
 ?>
