@@ -66,7 +66,7 @@ foreach($ac_data as $row){
     }
 
     $table_data[$i]['sum']=$signAct.' ครั้ง (ร้อยละ '.number_format($percentage,2).')';
-    $table_data[$i]['grade']=$percentage>=60?'ผ่าน':'<font color="red">ไม่ผ่าน</font>';
+    $table_data[$i]['grade']=$percentage>=get_system_config("pass_score")?'ผ่าน':'<font color="red">ไม่ผ่าน</font>';
 
 }
 
