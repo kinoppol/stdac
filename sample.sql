@@ -68,7 +68,7 @@ CREATE TABLE `ac_userdata` (
   `image_uri` varchar(160) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `email` varchar(100) NULL,
   `personal_id` int(11) DEFAULT NULL COMMENT 'รหัสบุคลากร',
   `active` enum('Y','N','B') NOT NULL DEFAULT 'Y' COMMENT 'เปิดใช้งาน',
   `user_type` enum('admin','advisor','staff','user','guest') NOT NULL DEFAULT 'user' COMMENT 'ประเภทผู้ใช้',
