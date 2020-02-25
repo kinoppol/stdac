@@ -13,7 +13,7 @@ $db_password=$_POST['db_password'];
 $db_name=$_POST['db_name'];
 $tb_prefix=$_POST['tb_prefix'];
 $rms_url=$_POST['rms_url'];
-$site_url=$_POST['rms_url'];
+$site_url=$_POST['site_url'];
 
 $db=new mysqli($db_server,$db_user,$db_password,$db_name);
 if($db->connect_errno){
