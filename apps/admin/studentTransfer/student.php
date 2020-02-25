@@ -2,6 +2,7 @@
 $import_student=0;
 sDeleteTb($systemDb,"std");
 //print "Hello";
+$rms=get_system_config("rms_url");
 $student_count=rms_get_data($rms,'nutty','student',null,$count="yes");
 
 $count_std=$student_count[0]['c'];
@@ -13,7 +14,6 @@ for($in=0;$in<$p;$in++){
 
     $limit=($in*1000+0).",1000";
     //print $limit;
-
 $student_data=rms_get_data($rms,'nutty','student',$limit,null);
 //sleep(1);
 //print_r($student_data);

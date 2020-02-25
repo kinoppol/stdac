@@ -2,7 +2,7 @@
 $menu['user']= array(
     'class' => "header",
     'title' => 'ผู้ใช้',
-    'cond' => true,
+    'cond' => false,
     'bullet' => 'person',
     'color' => 'col-blue',
     'item' => array(

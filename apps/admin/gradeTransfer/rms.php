@@ -25,9 +25,9 @@ $result = file_get_contents($URL);
                                 </li>
                             </ul>
                         </div>
-                        <div class="body">
+                        <div class="body"><!--
                             URL <?php print $URL; ?><br>
-                            Callback URL <?php print $url_callback; ?><br>
+                            Callback URL <?php print $url_callback; ?><br>-->
                             ผลลัพธ์ <?php print $result;?>
                         </div>
                     </div>

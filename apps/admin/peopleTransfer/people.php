@@ -1,5 +1,5 @@
 <?php
-
+$rms=get_system_config("rms_url");
 $people_data=rms_get_data($rms,'nutty','people');
 //print_r($people_data);
 sDeleteTb($systemDb,"userdata");

@@ -69,7 +69,7 @@ include(BASE_PATH."system/include/database.inc.php");
     define('IMG_URL', SITE_URL.'image/');
     */
   }else{
-    
+    redirect('./setup.php',true);
     /*
     print_r($_SESSION);
     print_r($_COOKIE);
