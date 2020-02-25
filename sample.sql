@@ -45,7 +45,7 @@ INSERT INTO `ac_site_config` (`config_name`, `detail`, `lastUpdate`) VALUES
 ('pass_score', '60', '2020-02-25 09:29:44'),
 ('rms_url', 'RMS_URL', '2020-02-25 09:29:37'),
 ('siteName', 'Student Activity', '2019-11-11 09:01:54'),
-('siteURL', '', '2020-02-25 09:29:56'),
+('siteURL', 'SITE_URL', '2020-02-25 09:29:56'),
 ('subName', 'SA', '2019-11-11 09:02:23'),
 ('theme', 'adminbsb', '2019-11-01 16:18:36');
 

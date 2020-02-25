@@ -25,6 +25,7 @@ if(file_exists($setup_file)){
 		<img src="images/check-mark.png"/><br>
  		<h3>การติดตั้งระบบงานกิจกรรม</h3>
 	  <form name="setup_form" method="post" action="install.php">
+		<input type="text" name="site_url" placeholder="Home URL" id="site_url" required>
 		<input type="text" name="db_server" placeholder="Database server" id="db_server" value="localhost" required>
 		<input type="text" name="db_user" placeholder="Database user" id="db_user" value="root" required>
 		<input type="text" name="db_password" placeholder="Database password" id="db_password">
@@ -36,4 +37,9 @@ if(file_exists($setup_file)){
 	</div>
 </div>
 </body>
+<script>
+    var cur_url=window.location.href;
+    document.getElementById("site_url").value =cur_url.substring(0,cur_url.length-9);
+
+    </script>
 </html>

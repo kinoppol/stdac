@@ -13,6 +13,7 @@ $db_password=$_POST['db_password'];
 $db_name=$_POST['db_name'];
 $tb_prefix=$_POST['tb_prefix'];
 $rms_url=$_POST['rms_url'];
+$site_url=$_POST['rms_url'];
 
 $db=new mysqli($db_server,$db_user,$db_password,$db_name);
 if($db->connect_errno){
@@ -38,6 +39,7 @@ fclose($setupFile);
 $SQL=file_get_contents("sample.sql");
 $SQL=str_replace('`ac_','`'.$tb_prefix,$SQL);
 $SQL=str_replace('RMS_URL',$rms_url,$SQL);
+$SQL=str_replace('SITE_URL',$site_url,$SQL);
 //print $SQL;
 $db->multi_query($SQL);
 /*
