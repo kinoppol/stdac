@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
  $setup_file="system/include/setup.cfg.php";
 if(file_exists($setup_file)){
     print "ระบบได้ทำการติดตั้งเรียบร้อยแล้ว";
