@@ -18,7 +18,7 @@
                         <div class="body">
                         <form method="post">
                         <?php
-                            print_r($_POST);
+                            //print_r($_POST);
                         ?>
     ภาคเรียน <select name="semester">
         <?php

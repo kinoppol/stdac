@@ -144,7 +144,7 @@
 
                     $totalSize=100*1024*1024;
                     $freeSize=$totalSize-$docSize['c']-$picSize['c'];
-                ?>
+                ?><!--
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="card">
                         <div class="header">
@@ -165,7 +165,7 @@
                             <div id="donut_chart" class="dashboard-donut-chart"></div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- #END# Disk Usage -->
                
             </div>

@@ -43,6 +43,8 @@
 
     <!-- Animation Css -->
     <link href="<?php print $componentURL; ?>plugins/animate-css/animate.css" rel="stylesheet" />
+    <!-- Animation Css -->
+    <link href="<?php print $componentURL; ?>plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
     <link href="<?php print $componentURL; ?>plugins/morrisjs/morris.css" rel="stylesheet" />
