@@ -23,7 +23,7 @@ if(file_exists($setup_file)){
 <body bgcolor="#AACCFF">
 <div id="content">
 	<div class="login-card">
-		<img src="images/check-mark.png"/><br>
+		<img src="images/logopnut.png"/><br>
  		<h3>การติดตั้งระบบงานกิจกรรม</h3>
 	  <form name="setup_form" method="post" action="install.php">
 		<input type="text" name="site_url" placeholder="Home URL" id="site_url" required>
