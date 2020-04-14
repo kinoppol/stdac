@@ -1,7 +1,6 @@
 <div id="ajaxResponse">
 </div>
 <?php
-
 load_fun('form');
 $acId=$hGET['id'];
 if($acId!=""){

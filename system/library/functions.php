@@ -494,8 +494,8 @@ function gen_modal($data){
     <div class="modal-content">
       <div class="modal-header">
         
-        <h4 class="modal-title" id="myModalLabel">'.$data['title'].'</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h3 id="myModalLabel" class="col-xs-8">'.$data['title'].'</h3>
+      <span aria-hidden="true"><button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button></span>
       </div>
       <div class="modal-body">
         ...
