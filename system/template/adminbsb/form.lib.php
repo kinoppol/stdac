@@ -6,6 +6,7 @@
         		$tab_pane=0; //$tab_pane_nav='';
 				$i=0;
 				$tab_pane_nav='';
+				$input_number=0;
         		foreach($data as $k=>$row){
         			$i++;
 						if($row['type']=='tab-pane') {
@@ -39,7 +40,9 @@
         				}
         			}
         			if($row['type']!="hidden"){
-        			$ret.="<br><h3 class=\"card-inside-title\">".$row['label']."</h3>";
+						if($input_number>0)$ret.='<br>';
+						$input_number++;
+        			$ret.="<h3 class=\"card-inside-title\">".$row['label']."</h3>";
         		$ret.="<div class=\"col-sm-12\"><div class=\"form-group\"><div class=\"form-line\">";
         		//$ret.="<label for=\"".$k."\" class=\"col-md-".($row['btLW']?$row['btLW']:$labelW)." control-label\">".$row['label']."</label>";
         		//$ret.="<div class=\"col-xs-".($row['btIW']?$row['btIW']:$inputW)." col-sm-".($row['btIW']?$row['btIW']:$inputW)." col-md-".($row['btIW']?$row['btIW']:$inputW)."  input-group\">";
