@@ -1,10 +1,16 @@
 <?php
 $rms=get_system_config("rms_url");
 $people_data=rms_get_data($rms,'nutty','people');
+$people_pro_data=rms_get_data($rms,'nutty','people_pro');
+$people_pro=array();
+foreach($people_pro_data as $row){
+    $people_pro[$row['people_id']]=$row['people_stagov_id'];
+}
 //print_r($people_data);
 sDeleteTb($systemDb,"userdata");
 $import_people=0;
 foreach($people_data as $people){
+    if(!isset($people_pro[$people['people_id']])||$people_pro[$people['people_id']]==88)continue;
     if($people['useradmin_activity']==1){//1 เฉพาะงานกิจกรรม
 
         $user_type="admin";

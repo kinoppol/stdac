@@ -309,7 +309,7 @@
 <?php
     $user_pic_url=$componentURL.'images/user.png';
     if(current_user('image_uri')){
-        $user_pic_url=$rms.'/files/'.current_user('image_uri');
+        $user_pic_url=get_system_config('rms_url').'/files/'.current_user('image_uri');
     }
 ?>
 
