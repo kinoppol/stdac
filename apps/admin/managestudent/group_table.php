@@ -9,6 +9,11 @@ $table_data=array();
 $i=0;
 foreach($ac_data as $row){
     $i++;
+    $edit_btn=array(
+        'id'=>'editStdGrp',
+        'onlyClickClose'=>false,
+        'src'=>site_url('ajax/admin/managestudent/form/id/'.$row['group_id']),
+    );
     $table_data[]=array(
         //'no'=>$i,
         'group_id'=>$row['group_id'],
@@ -16,7 +21,8 @@ foreach($ac_data as $row){
         'major_name'=>$row['major_name'],
         'minor_name'=>$row['minor_name'],
         'level_name'=>$row['level_name'],
-        '<a href="'.site_url('main/admin/managestudent/view/group/'.$row['group_id']).'"><i class="material-icons col-red">search</i></a>'
+        '<a href="'.site_url('main/admin/managestudent/view/group/'.$row['group_id']).'" class="btn btn-info"><i class="material-icons">search</i></a> '.
+        '<a '.gen_modal_link($edit_btn).' class="btn btn-warning" title="แก้ไข"><i class="material-icons">build</i></a>'
     );
     
 }

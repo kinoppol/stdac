@@ -195,7 +195,25 @@ editor".$k.".setOption(\"theme\", \"midnight\");
         					</script>
         					';
         					}
-        				}
+						}else if($row['tokenize']){
+								if(!isset($tokenize)){
+									$tokenize='init';
+									$systemTop.='<link rel="stylesheet" href="'.site_url('system/library/ext/tokenize/tokenize2.css',true).'" />';
+									$systemFoot.='<script src="'.site_url('system/library/ext/tokenize/tokenize2.js',true).'"></script>';
+								}
+								
+								$systemFoot.='<script>
+								$("#'.$k.'").tokenize2({
+									searchFromStart:false,
+									searchHighlight:true,
+									sortable:false,
+								});
+								</script>';
+								
+
+						}
+						
+
         				$multiple="";
         				$row['multiple']?$multiple=" multiple":$multiple="";
         				$ret.="<select $multiple id='".$k."' name='".$k."' ".$attr." class='".$row['class']."'>".gen_option($row['item'],$row['def'])."</select>";

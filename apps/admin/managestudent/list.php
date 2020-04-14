@@ -24,7 +24,12 @@
     </div>
 
 <?php
+$data_modal=array(
+    'id'=>'editStdGrp',
+    'title'=>'แก้ไขกลุ่มผู้เรียน',
+);
 
+print gen_modal($data_modal);
 
 $systemFoot.="<script>
             $(function(){
