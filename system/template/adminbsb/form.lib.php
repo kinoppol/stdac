@@ -39,7 +39,7 @@
         				}
         			}
         			if($row['type']!="hidden"){
-        			$ret.="<h2 class=\"card-inside-title\">".$row['label']."</h2>";
+        			$ret.="<h3 class=\"card-inside-title\">".$row['label']."</h2>";
         		$ret.="<div class=\"col-sm-12\"><div class=\"form-group\"><div class=\"form-line\">";
         		//$ret.="<label for=\"".$k."\" class=\"col-md-".($row['btLW']?$row['btLW']:$labelW)." control-label\">".$row['label']."</label>";
         		//$ret.="<div class=\"col-xs-".($row['btIW']?$row['btIW']:$inputW)." col-sm-".($row['btIW']?$row['btIW']:$inputW)." col-md-".($row['btIW']?$row['btIW']:$inputW)."  input-group\">";
