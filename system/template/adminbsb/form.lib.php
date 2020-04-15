@@ -40,7 +40,7 @@
         				}
         			}
         			if($row['type']!="hidden"){
-						if($input_number>0)$ret.='<br>';
+						//if($input_number>0)$ret.='<br>';
 						$input_number++;
         			$ret.="<h3 class=\"card-inside-title\">".$row['label']."</h3>";
         		$ret.="<div class=\"col-sm-12\"><div class=\"form-group\"><div class=\"form-line\">";
