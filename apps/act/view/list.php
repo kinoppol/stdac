@@ -13,12 +13,12 @@
                             <h2>กิจกรรม</h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <!-- <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="material-icons">more_vert</i>
-                                    </a>
+                                    </a> 
                                     <ul class="dropdown-menu pull-right">
                                         <li><a href="<?php print site_url('main/wallet/transaction/view'); ?>">ดูทั้งหมด</a></li>
-                                    </ul>
+                                    </ul>-->
                                 </li>
                             </ul>
                         </div>

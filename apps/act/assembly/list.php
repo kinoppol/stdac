@@ -1,4 +1,4 @@
- <div class="row clearfix">
+<div class="row clearfix">
                 <!-- Task Info -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
@@ -25,8 +25,15 @@
 
 <?php
 $data_modal=array(
-    'id'=>'editStdGrp',
-    'title'=>'แก้ไขกลุ่มผู้เรียน',
+    'id'=>'checkAc',
+    'title'=>'เช็คชื่อเข้าร่วมกิจกรรม',
+);
+
+print gen_modal($data_modal);
+
+$data_modal=array(
+    'id'=>'reportAc',
+    'title'=>'รายงาน',
 );
 
 print gen_modal($data_modal);
@@ -36,6 +43,6 @@ $systemFoot.="<script>
                 load_group();
             });
                 function load_group(){
-                    $('#grouptable').load('".site_url('ajax/admin/managestudent/group_table')."');
+                    $('#grouptable').load('".site_url('ajax/act/assembly/group_table')."');
                 }
                 </script>";

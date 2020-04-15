@@ -5,21 +5,25 @@
 load_fun('system_alert');
 load_fun('form');
 $acId=$hGET['id'];
+$mode=$hGET['mode'];
+    if($acId){
+        $ac_data=sSelectTb($systemDb,'activity','*','id='.$acId);
+        $ac_data=$ac_data[0];
 
-    $ac_data=sSelectTb($systemDb,'activity','*','id='.$acId);
-    $ac_data=$ac_data[0];
-
-    if($ac_data['group_id']==''||$ac_data['group_id']=='[]'){
+        if($ac_data['group_id']==''||$ac_data['group_id']=='[]'){
           
-    $msg=" ยังไม่ได้เลือกกลุ่มผู้เรียนเพื่อเข้าร่วมกิจกรรม";
+          $msg=" ยังไม่ได้เลือกกลุ่มผู้เรียนเพื่อเข้าร่วมกิจกรรม";
     
-    $data['icon']='warning';
-    $data['color']='alert-warning';
-    $data['text']=$msg;
-    print genAlert($data);
-    exit();
+          $data['icon']='warning';
+          $data['color']='alert-warning';
+          $data['text']=$msg;
+          print genAlert($data);
+          exit();
     }
-    $saveURL=site_url('ajax/act/check/entry_save/id/'.$acId);
+      $saveURL=site_url('ajax/act/check/entry_save/id/'.$acId);
+    }else if($mode){
+      $saveURL=site_url('ajax/act/check/entry_save/mode/'.$mode);
+    }
 
 
 $inputDetail = array(

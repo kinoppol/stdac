@@ -1,4 +1,4 @@
- <div class="row clearfix">
+<div class="row clearfix">
                 <!-- Task Info -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
@@ -8,10 +8,10 @@
                                 <li class="dropdown">
                                     <!-- <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="material-icons">more_vert</i>
-                                    </a> 
+                                    </a> -->
                                     <ul class="dropdown-menu pull-right">
                                         <li><a href="<?php print site_url('main/wallet/transaction/view'); ?>">ดูทั้งหมด</a></li>
-                                    </ul>-->
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
@@ -36,6 +36,6 @@ $systemFoot.="<script>
                 load_group();
             });
                 function load_group(){
-                    $('#grouptable').load('".site_url('ajax/admin/managestudent/group_table')."');
+                    $('#grouptable').load('".site_url('ajax/act/morningCeremony/group_table')."');
                 }
                 </script>";
