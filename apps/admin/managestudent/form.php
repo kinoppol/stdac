@@ -9,7 +9,7 @@ if($grpId!=""){
     $saveURL=site_url('ajax/admin/managestudent/save_group/id/'.$grpId);
 }
 
-$people_data=sSelectTb($systemDb,'userdata','*','user_type!='.sQ('admin'));
+$people_data=sSelectTb($systemDb,'userdata','*','1 order by people_id');
 $checker_list=array();
 foreach($people_data as $row){
     $checker_list[$row['people_id']]=$row['name'].' '.$row['surname'];

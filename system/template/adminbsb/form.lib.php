@@ -198,7 +198,7 @@ editor".$k.".setOption(\"theme\", \"midnight\");
 						}else if($row['tokenize']){
 								if(!isset($tokenize)){
 									$tokenize='init';
-									$systemTop.='<link rel="stylesheet" href="'.site_url('system/library/ext/tokenize/tokenize2.css',true).'" />';
+									$systemTop.='<link rel="stylesheet" href="'.site_url('system/library/ext/tokenize/tokenize2_adminbsb.css',true).'" />';
 									$systemFoot.='<script src="'.site_url('system/library/ext/tokenize/tokenize2.js',true).'"></script>';
 								}
 								
