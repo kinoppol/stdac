@@ -207,6 +207,7 @@ editor".$k.".setOption(\"theme\", \"midnight\");
 									searchFromStart:false,
 									searchHighlight:true,
 									sortable:false,
+									tokensAllowCustom: false,
 								});
 								</script>';
 								

@@ -544,5 +544,6 @@ $systemFoot.="
     $('.count-to').countTo();
 </script>
 ";
-print $systemFoot; ?>
+print $systemFoot; 
+?>
 </html>

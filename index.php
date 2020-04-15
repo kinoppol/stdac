@@ -125,6 +125,8 @@ $fileContent='apps/'.$app."/".$function."/".$file.".php";
  
   include $incfile;
   $content = ob_get_contents();
+  
+renew_logon();
   if (ob_get_contents()) ob_end_clean();
   ob_end_flush();
 

@@ -121,6 +121,13 @@
     //print_r($_COOKIE);
     return sUpdateTb($systemDb,"userdata",array("last_login"=>"NOW()"),"id=".$logon_data['id'],true);
   }
+
+  function renew_logon(){
+    $time_renew=60*15;
+    if(current_user('time_logon')<=time()+$time_renew){//renew lest 15 minute each time call function
+      setcookie('user',$_COOKIE['user'], time() + $time_renew, "/");
+    }
+  }
   
   function current_user($key){
       if(isset($_COOKIE['user']))$user_data=unserialize($_COOKIE['user']);
