@@ -18,6 +18,12 @@ $current_edu_year=date('m')<4?date('Y')+542:date('Y')+543;
 
 
 $inputDetail = array(
+    'tab1'=>array(
+    "id"=>"activityTab",
+    "label"=>"เกณฑ์การประเมินผล",
+    "type"=>"tab-pane",
+    "class"=>"active"
+    ),
     'pass_score_activity' => array(
         'label' => 'เกณ์การผ่านกิจกรรม(ร่วมกิจกรรมบังคับ)',
         'type' => 'number',

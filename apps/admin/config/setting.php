@@ -18,6 +18,12 @@ $current_edu_year=date('m')<4?date('Y')+542:date('Y')+543;
 
 
 $inputDetail = array(
+    'tab1'=>array(
+    "id"=>"generalTab",
+    "label"=>"ทั่วไป",
+    "type"=>"tab-pane",
+    "class"=>"active"
+    ),
     'rms_url' => array(
         'label' => 'ที่อยู่ระบบ RMS (โปรดระบุ http://,https://)',
         'type' => 'text',

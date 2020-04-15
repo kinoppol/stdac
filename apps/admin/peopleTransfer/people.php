@@ -10,12 +10,17 @@ foreach($people_pro_data as $row){
 sDeleteTb($systemDb,"userdata");
 $import_people=0;
 foreach($people_data as $people){
-    if(!isset($people_pro[$people['people_id']])||$people_pro[$people['people_id']]==88)continue;
+    
     if($people['useradmin_activity']==1){//1 เฉพาะงานกิจกรรม
 
         $user_type="admin";
     }else{
         $user_type="user";
+
+        if(!isset($people_pro[$people['people_id']])||//ไม่รับโอนข้อมูลผู้ไม่มีข้อมูลหน้าที่รับผิดชอบ
+        $people_pro[$people['people_id']]==88||//ไม่รับโอนข้อมูลผู้ไม่มีหน้าที่รับผิดชอบ
+        !isValidNationalId($people['people_id']))continue;//ไม่รับโอนข้อมูลที่รหัสประจำตัวประชาชนไม่ถูกต้อง
+
     }
     $data=array(
         "people_id"=>sQ($people['people_id']),
