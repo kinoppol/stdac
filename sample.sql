@@ -75,6 +75,12 @@ CREATE TABLE `ac_userdata` (
   `last_login` datetime DEFAULT NULL COMMENT 'ลงชื่อเข้าใช้ครั้งสุดท้าย'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `ac_checker` (
+  `group_id` varchar(20) NOT NULL,
+  `semester` varchar(10) NOT NULL,
+  `morning_ceremony_checker` text NOT NULL COMMENT 'ผู้เช็คชื่อกิจกรรมหน้าเสาธง',
+  `assembly_checker` text NOT NULL COMMENT 'ผู้เช็คชื่อชั่วโมงกิจกรรม'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 ALTER TABLE `ac_activity`
@@ -105,6 +111,8 @@ ALTER TABLE `ac_activity`
 ALTER TABLE `ac_userdata`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสผู้ใช้';
 
+ALTER TABLE `ac_checker`
+  ADD PRIMARY KEY (`group_id`,`semester`);
   
 INSERT INTO `ac_userdata` (`username`, `password`, `user_type` , `active`) VALUES
 ('admin', MD5('admin'), 'admin','Y');

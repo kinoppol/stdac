@@ -206,7 +206,8 @@ editor".$k.".setOption(\"theme\", \"midnight\");
 								$("#'.$k.'").tokenize2({
 									searchFromStart:false,
 									searchHighlight:true,
-									sortable:false,
+									sortable:true,
+									tokensMaxItems: 5,
 									tokensAllowCustom: false,
 								});
 								</script>';
@@ -216,8 +217,9 @@ editor".$k.".setOption(\"theme\", \"midnight\");
 						
 
         				$multiple="";
-        				$row['multiple']?$multiple=" multiple":$multiple="";
-        				$ret.="<select $multiple id='".$k."' name='".$k."' ".$attr." class='".$row['class']."'>".gen_option($row['item'],$row['def'])."</select>";
+						$row['multiple']?$multiple=" multiple":$multiple="";
+        				$row['multiple']?$trail_name="[]":$trail_name="";
+        				$ret.="<select $multiple id='".$k."' name='".$k.$trail_name."' ".$attr." class='".$row['class']."'>".gen_option($row['item'],$row['def'])."</select>";
         				
         			}else{
         				if($row['autocomplete']){

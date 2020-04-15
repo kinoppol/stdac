@@ -6,7 +6,10 @@ $grpId=$hGET['id'];
 if($grpId!=""){
     $ac_data=sSelectTb($systemDb,'group','*','group_id='.$grpId);
     $ac_data=$ac_data[0];
-    $saveURL=site_url('ajax/admin/managestudent/save_group/id/'.$grpId);
+    $checker_data=sSelectTb($systemDb,'checker','*','group_id='.$grpId.' AND semester='.sQ(get_system_config('current_semester')));
+    $checker_data=$checker_data[0];
+    //print_r($checker_data);
+    $saveURL=site_url('ajax/admin/managestudent/save_checker/id/'.$grpId);
 }
 
 $people_data=sSelectTb($systemDb,'userdata','*','1 order by people_id');
@@ -25,6 +28,17 @@ $inputDetail = array(
         'value' => $ac_data['group_short_name'],
         'attr'=>array('disabled'),
     ),
+    'group_id' => array(
+        'type' => 'hidden',
+        'value' => $ac_data['group_id'],
+    ),
+    'semester' => array(
+        'label' => 'ภาคเรียน',
+        'type' => 'text',
+        'icon' => 'settings_overscan',
+        'value' => get_system_config('current_semester'),
+        'attr'=>array('readonly'),
+    ),
     'morning_ceremony_checker' => array(
         'label' => 'ผู้เช็คชื่อกิจกรรมเข้าแถว',
         'type' => 'select',
@@ -32,7 +46,7 @@ $inputDetail = array(
         'multiple'=>true,
         'icon' => 'settings_overscan',
         'item' => $checker_list,
-        'def' => $ac_data['group_short_name'],
+        'def' => explode(',',$checker_data['morning_ceremony_checker']),
     ),
     'assembly_checker' => array(
         'label' => 'ผู้เช็คชื่อคาบกิจกรรม',
@@ -41,7 +55,7 @@ $inputDetail = array(
         'multiple'=>true,
         'icon' => 'settings_overscan',
         'item' => $checker_list,
-        'def' => $ac_data['group_short_name'],
+        'def' => explode(',',$checker_data['assembly_checker']),
 
     ),
     'submit' => array(
@@ -56,7 +70,7 @@ $onSubmit .= '
 $inputForm = genInput($inputDetail, 4, 12);
 
 
-print genForm(array(
+print gen_form(array(
     'id' => 'bookForm',
     'action' => $saveURL,
     'ajaxSubmit' => $inputDetail,
