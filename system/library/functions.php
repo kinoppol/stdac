@@ -707,11 +707,11 @@ function base64url_decode($s) {
 function isValidNationalId(string $nationalId)
 {
   if (mb_strlen($nationalId) === 13) {
-    $digits = mb_str_split($nationalId);
+    $digits = str_split($nationalId);
     $lastDigit = array_pop($digits);
     $sum = array_sum(array_map(function($d, $k) {
       return ($k+2) * $d;
-    }, array_reverse($digits), array_keys($digits)));
+    }, array_reverse($digits), array_keys($digits))); 
     return $lastDigit === strval((11 - $sum % 11) % 10);
   }
   return false;
