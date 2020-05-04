@@ -3,15 +3,19 @@
 load_fun('table');
 load_fun('datatable');
 
-
-$act_id=$hGET['id'];
-$act_data=sSelectTb($systemDb,'activity','group_id','id='.sQ($act_id));
-$act_data=$act_data[0];
-
-if($act_data['group_id']!=''){
-    $groups_selected=json_decode($act_data['group_id'],true);
+if($hGET['mode']=='morningCeremony'){
+    $groups_selected=array($hGET['id']);
 }else{
-    $groups_selected=array();
+    $act_id=$hGET['id'];
+    $act_data=sSelectTb($systemDb,'activity','group_id','id='.sQ($act_id));
+    $act_data=$act_data[0];
+
+
+    if($act_data['group_id']!=''){
+        $groups_selected=json_decode($act_data['group_id']);
+    }else{
+        $groups_selected=array();
+    }
 }
 $prefix=array(
     '1'=>'นางสาว',

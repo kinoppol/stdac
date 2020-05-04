@@ -2,14 +2,14 @@
 <?php
 load_fun('table');
 load_fun('datatable');
-$group_isCheckable=sSelectTb($systemDb,"checker",'*','morning_ceremony_checker like '.sQ('%'.current_user('people_id').'%'));
+$group_isCheckable=sSelectTb($systemDb,"checker",'*','morning_ceremony_checker like '.sQ('%'.current_user('people_id').'%').' AND semester = '.sQ(get_system_config('current_semester')));
 $groups='';
 foreach($group_isCheckable as $row){
     if($groups!='')$groups.=',';
     $groups.=$row['group_id'];
 }
 
-$ac_data=sSelectTb($systemDb,"group",'*','group_id in ('.sQ($groups).')');
+$ac_data=sSelectTb($systemDb,"group",'*','group_id in ('.$groups.')');
 //print_r($complaint_data);
 $table_data=array();
 $i=0;
@@ -18,19 +18,19 @@ foreach($ac_data as $row){
     $scan_btn=array(
         'id'=>'checkAc',
         'onlyClickClose'=>true,
-        'src'=>site_url('ajax/act/check/form_scaner/mode/moningCeremony/gid/'.$row['group_id']),
+        'src'=>site_url('ajax/act/check/form_scaner/mode/morningCeremony/gid/'.$row['group_id']),
     );
 
     $check_btn=array(
         'id'=>'checkAc',
         'onlyClickClose'=>true,
-        'src'=>site_url('ajax/act/check/form_manual/mode/moningCeremony/gid/'.$row['group_id']),
+        'src'=>site_url('ajax/act/check/form_manual/mode/morningCeremony/gid/'.$row['group_id']),
     );
 
     $report_btn=array(
         'id'=>'reportAc',
         'onlyClickClose'=>true,
-        'src'=>site_url('ajax/act/report/summary/mode/moningCeremony/gid/'.$row['group_id']),
+        'src'=>site_url('ajax/act/report/summary/mode/morningCeremony/gid/'.$row['group_id']),
     );
 
     $table_data[]=array(

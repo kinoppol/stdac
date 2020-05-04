@@ -31,6 +31,12 @@ $data_modal=array(
 
 print gen_modal($data_modal);
 
+$data_modal=array(
+    'id'=>'checkAc',
+    'title'=>'เช็คชื่อกิจกรรมหน้าเสาธง',
+);
+
+print gen_modal($data_modal);
 $systemFoot.="<script>
             $(function(){
                 load_group();
