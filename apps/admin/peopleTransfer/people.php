@@ -52,26 +52,5 @@ foreach($people_data as $people){
 }
 
 ?>
-<div class="row clearfix">
-                <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="card">
-                        <div class="header">
-                            <h2>โอนข้อมูลเรียบร้อยแล้ว</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="<?php print site_url('main/wallet/transaction/view'); ?>">ดูทั้งหมด</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            ข้อมูลบุคลากรจำนวน <?php print number_format($import_people);?> คน
-                        </div>
-                    </div>
-                </div>
-    </div>
+
+                            ข้อมูลบุคลากรจำนวน <?php print number_format($import_people);?> คนเรียบร้อยแล้ว

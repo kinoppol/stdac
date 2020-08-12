@@ -7,10 +7,10 @@ $group_isCheckable=sSelectTb($systemDb,"checker",'*','assembly_checker like '.sQ
 $groups='';
 foreach($group_isCheckable as $row){
     if($groups!='')$groups.=',';
-    $groups.=$row['group_id'];
+    $groups.=sQ($row['group_id']);
 }
 
-$ac_data=sSelectTb($systemDb,"group",'*','group_id in ('.sQ($groups).')');
+$ac_data=sSelectTb($systemDb,"group",'*','group_id in ('.$groups.')',true);
 //print_r($complaint_data);
 $table_data=array();
 $i=0;

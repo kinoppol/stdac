@@ -6,11 +6,12 @@ $group_isCheckable=sSelectTb($systemDb,"checker",'*','morning_ceremony_checker l
 $groups='';
 foreach($group_isCheckable as $row){
     if($groups!='')$groups.=',';
-    $groups.=$row['group_id'];
+    $groups.=sQ($row['group_id']);
 }
 
 $ac_data=sSelectTb($systemDb,"group",'*','group_id in ('.$groups.')');
-//print_r($complaint_data);
+//print_r($ac_data);
+
 $table_data=array();
 $i=0;
 foreach($ac_data as $row){
