@@ -25,26 +25,35 @@ $inputDetail = array(
     "class"=>"active"
     ),
     'pass_score_activity' => array(
-        'label' => 'เกณ์การผ่านกิจกรรม(ร่วมกิจกรรมบังคับ)',
+        'label' => 'เกณ์การผ่านกิจกรรม',
         'type' => 'number',
         'value'=>get_system_config("pass_score_activity")!=''?get_system_config("pass_score_activity"):60,
     ),
-    'pass_score_morning_ceremony' => array(
-            'label' => 'เกณ์การผ่านกิจกรรมหน้าเสาธง',
-            'type' => 'number',
-            'value'=>get_system_config("pass_score_morning_ceremony")!=''?get_system_config("pass_score_morning_ceremony"):60,
-    ),
-        'pass_score_assembly' => array(
+);
+
+if(get_system_config("active_assembly")=='active'){
+    $inputDetail['pass_score_assembly']=array(
         'label' => 'เกณ์การผ่านคาบกิจกรรม',
         'type' => 'number',
         'value'=>get_system_config("pass_score_assembly")!=''?get_system_config("pass_score_assembly"):60,
-    ),
-        'submit' => array(
-        'label' => '&nbsp;',
-        'type' => 'submit',
-        'value' => 'บันทึก'
-    )
+    );
+}
+
+if(get_system_config("active_morning_ceremony")=='active'){
+    $inputDetail['pass_score_morning_ceremony']=array(
+        'label' => 'เกณ์การผ่านกิจกรรมหน้าเสาธง',
+        'type' => 'number',
+        'value'=>get_system_config("pass_score_morning_ceremony")!=''?get_system_config("pass_score_morning_ceremony"):60,
+    );
+}
+
+$inputDetail['save']=array(
+    'label' => '&nbsp;',
+    'type' => 'submit',
+    'value' => 'บันทึก'
 );
+
+
 $onSubmit .= '
 //alert("Save");
 ';

@@ -39,7 +39,22 @@ $inputDetail = array(
         'label' => '&nbsp;',
         'type' => 'submit',
         'value' => 'บันทึก'
-    )
+    ),
+    
+    'tab2'=>array(
+        "id"=>"usageTab",
+        "label"=>"การใช้งาน",
+        "type"=>"tab-pane",
+        "class"=>""
+        ),
+    'active'=>array(
+        'id'=>'active_act',
+        'type'=>'html',
+        'content'=>'<a href="#" id="active_act"
+        onClick="active_act()"><i class="material-icons col-green">check_box</i></a> กิจกรรมกลาง
+        <span id="assembly"></span>
+       <span id="morning_ceremony"></span>
+      '),
 );
 $onSubmit .= '
 //alert("Save");
@@ -72,3 +87,46 @@ print genForm(array(
 </div>
 </div>
 </div>
+
+<?php
+$systemFoot.='
+<script>
+$(function(){
+    '.(get_system_config("active_assembly")=='active'?'active_assembly();':'disactive_assembly();').'
+    '.(get_system_config("active_morning_ceremony")=='active'?'active_morning_ceremony();':'disactive_morning_ceremony();').'
+});
+
+function active_act(){
+    alert("ไม่สามารถปิดการใช้งานระบบนี้ได้");
+}
+
+function active_assembly(){
+    $.get("'.site_url('ajax/admin/config/save_active/set/active_assembly').'",function(data){
+        if($.trim(data)=="ok"){
+            $("#assembly").html("<a href=\\"#\\" onclick=\\"disactive_assembly()\\"><i class=\\"material-icons col-green\\">check_box</i></a> คาบกิจกรรม");
+        }
+    });
+}
+function disactive_assembly(){
+    $.get("'.site_url('ajax/admin/config/save_active/set/disactive_assembly').'",function(data){
+        if($.trim(data)=="ok"){
+            $("#assembly").html("<a href=\\"#\\" onclick=\\"active_assembly()\\"><i class=\\"material-icons col-black\\">check_box_outline_blank</i></a> คาบกิจกรรม");
+        }
+    });
+}
+
+function active_morning_ceremony(){
+    $.get("'.site_url('ajax/admin/config/save_active/set/active_morning_ceremony').'",function(data){
+        if($.trim(data)=="ok"){
+            $("#morning_ceremony").html("<a href=\\"#\\" onclick=\\"disactive_morning_ceremony()\\"><i class=\\"material-icons col-green\\">check_box</i></a> กิจกรรมหน้าเสาธง");
+        }
+    });
+}
+function disactive_morning_ceremony(){
+    $.get("'.site_url('ajax/admin/config/save_active/set/disactive_morning_ceremony').'",function(data){
+        if($.trim(data)=="ok"){
+            $("#morning_ceremony").html("<a href=\\"#\\" onclick=\\"active_morning_ceremony()\\"><i class=\\"material-icons col-black\\">check_box_outline_blank</i></a> กิจกรรมหน้าเสาธง");
+        }
+    });
+}
+</script>';

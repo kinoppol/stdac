@@ -10,7 +10,7 @@ foreach($group_isCheckable as $row){
     $groups.=sQ($row['group_id']);
 }
 
-$ac_data=sSelectTb($systemDb,"group",'*','group_id in ('.$groups.')',true);
+$ac_data=sSelectTb($systemDb,"group",'*','group_id in ('.$groups.')');
 //print_r($complaint_data);
 $table_data=array();
 $i=0;

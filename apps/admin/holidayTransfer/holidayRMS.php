@@ -50,6 +50,9 @@ foreach($holidays as $row){
 //print_r($row);
     $holiday_date=explode("/",$row['Start Date']);
     //print_r($holiday_date);
+    /*print $year;
+    print "-";*/
+    if(trim($holiday_date[2])=='')continue;
     $holiday_date=$holiday_date[2].'-'.$holiday_date[1].'-'.$holiday_date[0];
     $semester_data=sSelectTb($systemDb,'semester','semester_eduyear','semester_start<='.sQ($holiday_date).' AND semester_end >='.sQ($holiday_date));
     $semester=$semester_data[0]['semester_eduyear'];
@@ -59,9 +62,14 @@ foreach($holidays as $row){
         'holiday_name'=>sQ($row['Subject']),
         'semester'=>sQ($semester)
     );
-
-
-    $result=sInserttb($systemDb,'holiday',$data);
+    $chk=sSelectTb($systemDb,'holiday','count(*) as c','holiday_date='.$data['holiday_date']);
+    if($chk[0]['c']==0){
+        //print "INSERT";
+        $result=sInserttb($systemDb,'holiday',$data);
+    }else{
+        //print "UPDATE";
+        $result=sUpdatetb($systemDb,'holiday',$data,'holiday_date='.$data['holiday_date']);
+    }
     if($result){
         $holidayTransfer++;
     }else{

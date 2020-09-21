@@ -41,11 +41,6 @@ $menu['admin']= array(
                 'url' => 'main/admin/rmsTransfer/panel',
                 'cond' => true,
                 ),
-                'holidayTransfer' => array('bullet' => '',
-                        'title' => 'โอนข้อมูลระบบ RMS',
-                        'url' => 'main/admin/holidayTransfer/panel',
-                        'cond' => true,
-                        ),
             ),
         
     );
