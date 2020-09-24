@@ -36,7 +36,7 @@ $dates=date2date($start_check_date,$end_check_date,$dow=array(
             unset($dates[$d]);
         }
     }
-print_r($dates);
+//print_r($dates);
 
 
 $group_id=$hGET['group'];
