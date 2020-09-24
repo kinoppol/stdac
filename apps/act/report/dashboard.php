@@ -1,24 +1,28 @@
 <?php
     $title="ภาพรวม";
+
+    $current_semester=get_system_config("current_semester");
+$current_edu_year=mb_substr($current_semester,2,4);
+$current_semester=mb_substr($current_semester,0,1);
 ?>
   <div class="container-fluid">
             <div class="block-header">
-                <h2>DASHBOARD</h2>
+                <h2>DASHBOARD (<?php print $current_semester; ?>)</h2>
             </div>
 
             <?php
 
 
-                    $act_amount=sSelectTb($systemDb,'activity','count(*) as c');
+                    $act_amount=sSelectTb($systemDb,'activity','count(*) as c','semester='.sQ($current_semester).' AND year='.sQ($current_edu_year));
                     $act_amount=$act_amount[0];
 
-                    $past_act_amount=sSelectTb($systemDb,'activity','count(*) as c','end_time<NOW()');
+                    $past_act_amount=sSelectTb($systemDb,'activity','count(*) as c','semester='.sQ($current_semester).' AND year='.sQ($current_edu_year).' AND end_time<NOW()');
                     $past_act_amount=$past_act_amount[0];                  
 
-                    $now_act_amount=sSelectTb($systemDb,'activity','count(*) as c','start_time<NOW() AND end_time>NOW()');
+                    $now_act_amount=sSelectTb($systemDb,'activity','count(*) as c','semester='.sQ($current_semester).' AND year='.sQ($current_edu_year).' AND start_time<NOW() AND end_time>NOW()');
                     $now_act_amount=$now_act_amount[0];
                                  
-                    $future_act_amount=sSelectTb($systemDb,'activity','count(*) as c','start_time>NOW()');
+                    $future_act_amount=sSelectTb($systemDb,'activity','count(*) as c','semester='.sQ($current_semester).' AND year='.sQ($current_edu_year).' AND start_time>NOW()');
                     $future_act_amount=$future_act_amount[0];
                 ?>
             <div class="row clearfix">
