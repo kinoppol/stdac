@@ -2,8 +2,7 @@
     $title="ภาพรวม";
 
     $current_semester=get_system_config("current_semester");
-$current_edu_year=mb_substr($current_semester,2,4);
-$current_semester=mb_substr($current_semester,0,1);
+
 ?>
   <div class="container-fluid">
             <div class="block-header">
@@ -11,6 +10,8 @@ $current_semester=mb_substr($current_semester,0,1);
             </div>
 
             <?php
+            $current_edu_year=mb_substr($current_semester,2,4);
+            $current_semester=mb_substr($current_semester,0,1);
 
 
                     $act_amount=sSelectTb($systemDb,'activity','count(*) as c','semester='.sQ($current_semester).' AND year='.sQ($current_edu_year));
