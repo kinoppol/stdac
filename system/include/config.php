@@ -38,7 +38,7 @@ include(BASE_PATH."system/include/database.inc.php");
 
       // Database config
   
-  //load_fun('tinyDB');
+  //load_fun('tinyDB');//
 
 
     if(!isset($_SESSION['siteConfig']['siteName'])){
