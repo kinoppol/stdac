@@ -6,7 +6,7 @@ $current_semester=get_system_config("current_semester");
 $current_edu_year=mb_substr($current_semester,2,4);
 $current_semester=mb_substr($current_semester,0,1);
 
-$ac_data=sSelectTb($systemDb,"activity",'*','semester='.sQ($current_semester).' AND edu_year='.sQ($current_edu_year).' order by start_time desc');
+$ac_data=sSelectTb($systemDb,"activity",'*','semester='.sQ($current_semester).' AND year='.sQ($current_edu_year).' order by start_time desc');
 //print_r($complaint_data);
 $table_data=array();
 $i=0;
