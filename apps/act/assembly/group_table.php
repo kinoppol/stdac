@@ -3,7 +3,10 @@
 load_fun('table');
 load_fun('datatable');
 
-$group_isCheckable=sSelectTb($systemDb,"checker",'*','assembly_checker like '.sQ('%'.current_user('people_id').'%'));
+$current_semester=get_system_config("current_semester");
+
+
+$group_isCheckable=sSelectTb($systemDb,"checker",'*','assembly_checker like '.sQ('%'.current_user('people_id').'%').' AND semester ='.sQ($current_semester));
 $groups='';
 foreach($group_isCheckable as $row){
     if($groups!='')$groups.=',';

@@ -43,66 +43,78 @@ $inputDetail = array(
             'label' => 'ถือว่าขาดการเข้าร่วมกิจกรรมเมื่อเลยเวลาที่กำหนดไปแล้ว(นาที)',
             'type' => 'number',
             'value'=>get_system_config("activity_absent_signin")!=''?get_system_config("activitactivity_absent_signiny_late_signin"):30,
-    ),'tab2'=>array(
-        "id"=>"morningCeremonyTab",
-        "label"=>"กิจกรรมหน้าเสาธง",
-        "type"=>"tab-pane",
-        "class"=>""
-        ),
-    'morning_ceremony_early_signin' => array(
+    )
+    
+);
+
+if(get_system_config("active_morning_ceremony")=='active'){
+    
+    $inputDetail['tab2']=array(
+            "id"=>"morningCeremonyTab",
+            "label"=>"กิจกรรมหน้าเสาธง",
+            "type"=>"tab-pane",
+            "class"=>""
+            );
+    $inputDetail['morning_ceremony_early_signin'] = array(
         'label' => 'สแกนบัตรเข้าแถวก่อนถึงเวลาที่กำหนด(นาที)',
         'type' => 'number',
         'value'=>get_system_config("morning_ceremony_early_signin")!=''?get_system_config("morning_ceremony_early_signin"):5,
-    ),
-    'morning_ceremony_late_signin' => array(
+    );
+    $inputDetail['morning_ceremony_late_signin'] = array(
             'label' => 'สแกนบัตรเข้าแถวสายเมื่อเลยเวลาที่กำหนดไปแล้ว(นาที)',
             'type' => 'number',
             'value'=>get_system_config("morning_ceremony_late_signin")!=''?get_system_config("morning_ceremony_late_signin"):10,
-    ),
-    'morning_ceremony_late_score' => array(
+    );
+    $inputDetail['morning_ceremony_late_score'] = array(
             'label' => 'ร้อยละของการเข้าแถวในกรณีเข้าแถวสาย (เมื่อเข้าแถวปกติคือร้อยละ 100)',
             'type' => 'number',
             'value'=>get_system_config("morning_ceremony_late_score")!=''?get_system_config("morning_ceremony_late_score"):66,
-    ),
-    'morning_ceremony_absent_signin' => array(
+    );
+    $inputDetail['morning_ceremony_absent_signin'] = array(
             'label' => 'ถือว่าขาดแถวเมื่อเลยเวลาที่กำหนดไปแล้ว(นาที)',
             'type' => 'number',
             'value'=>get_system_config("morning_ceremony_absent_signin")!=''?get_system_config("activitmorning_ceremony_absent_signiny_late_signin"):15,
-    ),'tab3'=>array(
+    );
+}
+
+if(get_system_config("active_assembly")=='active'){
+    $inputDetail['tab3']=array(
         "id"=>"assemblyTab",
-        "label"=>"ชั่วโมงกิจกรรม",
+        "label"=>"คาบกิจกรรม",
         "type"=>"tab-pane",
         "class"=>""
-        ),
-    'assembly_early_signin' => array(
+    );
+    $inputDetail['assembly_early_signin'] = array(
         'label' => 'สแกนบัตรเข้าคาบกิจจกรมได้ก่อนถึงเวลาที่กำหนด(นาที)',
         'type' => 'number',
         'value'=>get_system_config("assembly_early_signin")!=''?get_system_config("assembly_early_signin"):0,
-    ),
-    'assembly_late_signin' => array(
+    );
+    $inputDetail['assembly_late_signin'] = array(
             'label' => 'สแกนบัตรเข้าคาบกิจกรรมสายเมื่อเลยเวลาที่กำหนดไปแล้ว(นาที)',
             'type' => 'number',
             'value'=>get_system_config("assembly_late_signin")!=''?get_system_config("assembly_late_signin"):15,
-    ),
-    'assembly_late_score' => array(
-            'label' => 'ร้อยละของการเข้าร่วมชั่วโมงกิจกรรมในกรณีเข้าร่วมฯ สาย (เมื่อเข้าร่วมฯ ปกติคือร้อยละ 100)',
+    );
+    $inputDetail['assembly_late_score']=array(
+            'label' => 'ร้อยละของการเข้าร่วมคาบกิจกรรมในกรณีเข้าร่วมฯ สาย (เมื่อเข้าร่วมฯ ปกติคือร้อยละ 100)',
             'type' => 'number',
             'value'=>get_system_config("assembly_late_score")!=''?get_system_config("assembly_late_score"):80,
-    ),
-    'assembly_absent_signin' => array(
+    );
+    $inputDetail['assembly_absent_signin'] = array(
             'label' => 'ถือว่าขาดคาบกิจกรรมเมื่อเลยเวลาที่กำหนดไปแล้ว(นาที)',
             'type' => 'number',
             'value'=>get_system_config("assembly_absent_signin")!=''?get_system_config("activitassembly_absent_signiny_late_signin"):30,
-    ),
-    'closeTab'=>array(
-        "type"=>"close-tab-pane",
-        ),
-        'submit' => array(
-        'label' => '&nbsp;',
-        'type' => 'submit',
-        'value' => 'บันทึก'
-    )
-);
+    );
+}
+
+$inputDetail['closeTab']=array(
+                            "type"=>"close-tab-pane",
+                        );
+$inputDetail['submit']=array(
+                            'label' => '&nbsp;',
+                            'type' => 'submit',
+                            'value' => 'บันทึก'
+                        );
+
 $onSubmit .= '
 //alert("Save");
 ';
