@@ -19,19 +19,19 @@ foreach($ac_data as $row){
     $scan_btn=array(
         'id'=>'checkAc',
         'onlyClickClose'=>true,
-        'src'=>site_url('ajax/act/check/form_scaner/mode/morningCeremony/gid/'.$row['group_id']),
+        'src'=>site_url('ajax/act/check/form_scaner/id/morningCeremony/gid/'.$row['group_id']),
     );
 
     $check_btn=array(
         'id'=>'checkAc',
         'onlyClickClose'=>true,
-        'src'=>site_url('ajax/act/check/form_manual/mode/morningCeremony/gid/'.$row['group_id']),
+        'src'=>site_url('ajax/act/check/form_manual/id/morningCeremony/gid/'.$row['group_id']),
     );
 
     $report_btn=array(
         'id'=>'reportAc',
         'onlyClickClose'=>true,
-        'src'=>site_url('ajax/act/report/summary/mode/morningCeremony/gid/'.$row['group_id']),
+        'src'=>site_url('ajax/act/report/summary/id/morningCeremony/gid/'.$row['group_id']),
     );
 
     $table_data[]=array(

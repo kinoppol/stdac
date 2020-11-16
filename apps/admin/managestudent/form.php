@@ -18,7 +18,7 @@ foreach($people_data as $row){
     $checker_list[$row['people_id']]=$row['name'].' '.$row['surname'];
 }
 
-
+$dow_arr=array('0'=>'อาทิตย์','1'=>'จันทร์','2'=>'อังคาร','3'=>'พุธ','4'=>'พฤหัสบดี','5'=>'ศุกร์','6'=>'เสาร์');
 $inputDetail = array(
     'name' => array(
         'label' => 'ชื่อกลุ่ม',
@@ -47,6 +47,15 @@ $inputDetail = array(
         'icon' => 'settings_overscan',
         'item' => $checker_list,
         'def' => explode(',',$checker_data['morning_ceremony_checker']),
+    ),
+    'morning_ceremony_date' => array(
+        'label' => 'วันที่เข้าแถว',
+        'type' => 'select',
+        //'tokenize'=>true,
+        'multiple'=>true,
+        'icon' => 'settings_overscan',
+        'item' => $dow_arr,
+        'def' => explode(',',$checker_data['morning_ceremony_date']),
     ),
     'assembly_checker' => array(
         'label' => 'ผู้เช็คชื่อคาบกิจกรรม',

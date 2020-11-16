@@ -1,3 +1,42 @@
+<?php
+    
+$id=$hGET['id'];
+    $mode='';
+    $dow_arr=array('0'=>'อาทิตย์','1'=>'จันทร์','2'=>'อังคาร','3'=>'พุธ','4'=>'พฤหัสบดี','5'=>'ศุกร์','6'=>'เสาร์');
+
+
+
+    if($hGET['id']=='morningCeremony'||$hGET['id']=='assembly'){
+        $id=$hGET['id'];
+        $mode='/gid/'.$hGET['gid'];
+
+        $checker_data=sSelectTb($systemDb,'checker','*','group_id='.$hGET['gid'].' AND semester='.sQ(get_system_config('current_semester')));
+        $checker_data=$checker_data[0];
+        //print $checker_data['morning_ceremony_date'];
+
+        $semester=sSelectTb($systemDb,'semester','*','semester_eduyear='.sQ(get_system_config('current_semester')));
+        $semester=$semester[0];
+
+        $period = new DatePeriod(
+            new DateTime($semester['semester_start']),
+            new DateInterval('P1D'),
+            new DateTime($semester['semester_end'])
+       );
+       $dow=explode(',',$checker_data['morning_ceremony_date']);
+       $dates=array();
+       foreach ($period as $key => $value) {
+           if(is_numeric(array_search(date('w', strtotime($value->format('Y-m-d'))),$dow))){
+            $dates[$value->format('Y-m-d')]=$dow_arr[date('w', strtotime($value->format('Y-m-d')))].' ที่ '.dateThai($value->format('Y-m-d'));
+           }
+        }
+        //print_r($dates);
+        $date_select="วันที่เช็คชื่อ <select>
+        ".gen_option($dates,date('Y-m-d'))."
+        <select>";
+    }
+
+    print  $date_select;
+?>
 <div id="chk_all">
 <a href="#"
          onClick="check_all_std()"><i class="material-icons col-black">check_box_outline_blank</i></a> เช็คชื่อให้ทุกคน
@@ -8,12 +47,6 @@
 </div>
 <?php
 
-$id=$hGET['id'];
-$mode='';
-if($hGET['mode']=='morningCeremony'){
-    $id=$hGET['gid'];
-    $mode='/mode/morningCeremony';
-}
 
 $systemFoot.='
 <script>

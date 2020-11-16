@@ -2,9 +2,9 @@
 <?php
 load_fun('table');
 load_fun('datatable');
-
-if($hGET['mode']=='morningCeremony'){
-    $groups_selected=array($hGET['id']);
+//print_r($_GET['p']);
+if($hGET['id']=='morningCeremony'){
+    $groups_selected=array($hGET['gid']);
 }else{
     $act_id=$hGET['id'];
     $act_data=sSelectTb($systemDb,'activity','group_id','id='.sQ($act_id));
