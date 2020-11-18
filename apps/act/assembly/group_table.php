@@ -22,19 +22,19 @@ foreach($ac_data as $row){
     $scan_btn=array(
         'id'=>'checkAc',
         'onlyClickClose'=>true,
-        'src'=>site_url('ajax/act/check/form_scaner/mode/assembly/gid/'.$row['group_id']),
+        'src'=>site_url('ajax/act/check/form_scaner/id/assembly/gid/'.$row['group_id']),
     );
 
     $check_btn=array(
         'id'=>'checkAc',
         'onlyClickClose'=>true,
-        'src'=>site_url('ajax/act/check/form_manual/mode/assembly/gid/'.$row['group_id']),
+        'src'=>site_url('ajax/act/check/form_manual/id/assembly/gid/'.$row['group_id']),
     );
 
     $report_btn=array(
         'id'=>'reportAc',
         'onlyClickClose'=>true,
-        'src'=>site_url('ajax/act/report/summary/mode/assembly/gid/'.$row['group_id']),
+        'src'=>site_url('ajax/act/report/summary/id/assembly/gid/'.$row['group_id']),
     );
 
     $table_data[]=array(

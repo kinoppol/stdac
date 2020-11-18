@@ -6,7 +6,7 @@ load_fun('system_alert');
 load_fun('form');
 $acId=$hGET['id'];
 $mode=$hGET['mode'];
-    if($acId){
+    if(is_numeric($acId)){
         $ac_data=sSelectTb($systemDb,'activity','*','id='.$acId);
         $ac_data=$ac_data[0];
 
@@ -20,10 +20,9 @@ $mode=$hGET['mode'];
           print genAlert($data);
           exit();
     }
-      $saveURL=site_url('ajax/act/check/entry_save/id/'.$acId);
-    }else if($mode){
-      $saveURL=site_url('ajax/act/check/entry_save/mode/'.$mode);
     }
+    $saveURL=site_url('ajax/act/check/entry_save/id/'.$acId.'/gid/'.$hGET['gid']);
+    
 
 
 $inputDetail = array(
@@ -37,7 +36,7 @@ $inputDetail = array(
     'submit' => array(
         'label' => '&nbsp;',
         'type' => 'submit',
-        'value' => 'บันทึกกิจกรรม'
+        'value' => 'ตกลง'
     ),
 );
 $onSubmit .= '

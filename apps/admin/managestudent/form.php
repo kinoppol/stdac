@@ -67,6 +67,14 @@ $inputDetail = array(
         'def' => explode(',',$checker_data['assembly_checker']),
 
     ),
+    'assembly_date' => array(
+        'label' => 'วันที่เข้าคาบกิจกรรม',
+        'type' => 'select',
+        'multiple'=>false,
+        'icon' => 'settings_overscan',
+        'item' => array_merge(array(-1=>'เลือกวัน'),$dow_arr),
+        'def' => $checker_data['assembly_date']==''?-1:$checker_data['assembly_date'],
+    ),
     'submit' => array(
         'label' => '&nbsp;',
         'type' => 'submit',

@@ -3,7 +3,14 @@
 load_fun('table');
 load_fun('datatable');
 //print_r($_GET['p']);
-if($hGET['id']=='morningCeremony'){
+$date=$hGET['date'];
+$table='entry_record';
+//print $date;
+$act_id=$hGET['id'];
+if($act_id=='assembly')$table.='_as';
+if($act_id=='morningCeremony')$table.='_mc';
+
+if($hGET['id']=='morningCeremony'||$hGET['id']=='assembly'){
     $groups_selected=array($hGET['gid']);
 }else{
     $act_id=$hGET['id'];
@@ -27,6 +34,11 @@ $prefix=array(
 );
 $student_data=sSelectTb($systemDb,'std','*','group_id in ('.implode(',',$groups_selected).')');
 
+$student_ids=array();
+
+foreach($student_data as $row){
+    $student_ids[]=$row['student_id'];
+}
 $group_data=sSelectTb($systemDb,'group','*');
 
 $groups=array();
@@ -35,31 +47,37 @@ foreach($group_data as $grp){
 }
 
 $students=array();
-
-$cond='act_id='.sQ($act_id);
-$check_record=sSelectTb($systemDb,'entry_record','*',$cond);
+if(is_numeric($act_id)){
+    $cond='act_id='.sQ($act_id);
+}else{
+    $cond='date_check='.sQ($date).' AND student_id in ('.implode(',',$student_ids).')';
+}
+$check_record=sSelectTb($systemDb,$table,'*',$cond);
 $record=array();
 foreach($check_record as $rec){
     $record[$rec['student_id']]=$rec['entry_type'];
 }
 //print_r($record);
 foreach($student_data as $std){
-
-    
+    $param_date='';
+    if($date){
+        $param_date=',\''.$date.'\'';
+        print $param;
+    }
 
     if($record[$std['student_id']]=='check'){
 
         $chk_box='
         <div id="chk_'.$std['student_id'].'" class="chk_btn">
             <a href="#"
-                onClick="unCheck_std('.$std['student_id'].')"><i class="material-icons col-green">check_box</i></a>
+                onClick="unCheck_std('.$std['student_id'].$param_date.')"><i class="material-icons col-green">check_box</i></a>
             </a>
         </div>';
     }else{
     $chk_box='
     <div id="chk_'.$std['student_id'].'" class="chk_btn">
         <a href="#"
-            onClick="check_std('.$std['student_id'].')"><i class="material-icons col-black">check_box_outline_blank</i></a>
+            onClick="check_std('.$std['student_id'].$param_date.')"><i class="material-icons col-black">check_box_outline_blank</i></a>
         </a>
     </div>';
     }

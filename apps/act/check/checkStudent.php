@@ -3,8 +3,14 @@
 $act_id=$hGET['id'];
 $table='entry_record';
 
-if($act_id=='assembly')$table.='_as';
-if($act_id=='morningCeremony')$table.='_mc';
+if($act_id=='assembly'){
+    $table.='_as';
+    $date=$hGET['date'];
+}
+if($act_id=='morningCeremony'){
+    $table.='_mc';
+    $date=$hGET['date'];
+}
 
 $student_id=$hGET['std_id'];
 $type=$hGET['type'];
@@ -30,8 +36,8 @@ if(is_numeric($act_id)){
     $data['act_id']=$act_id;
     $cond.=' AND act_id='.sQ($act_id); 
 }else{
-    $data['date_check']='NOW()';
-    $cond.=' AND act_id='.sQ($act_id); 
+    $data['date_check']=sQ($date);
+    $cond.=' AND date_check='.sQ($date); 
 }
 
 $check_record=sSelectTb($systemDb,$table,'count(*) as c',$cond);

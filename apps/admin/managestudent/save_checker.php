@@ -10,6 +10,7 @@ $data=array(
     'morning_ceremony_checker'=>sQ(implode(',',$_POST['morning_ceremony_checker']),true),
     'morning_ceremony_date'=>sQ(implode(',',$_POST['morning_ceremony_date']),true),
     'assembly_checker'=>sQ(implode(',',$_POST['assembly_checker']),true),
+    'assembly_date'=>sQ($_POST['assembly_date'],true),
 );
 
 $check_exists=sSelectTb($systemDb,'checker','count(*) as c','semester='.sQ($_POST['semester']).' AND group_id='.sQ($_POST['group_id']));
