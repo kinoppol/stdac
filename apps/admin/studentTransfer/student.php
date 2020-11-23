@@ -1,7 +1,7 @@
 <?php
 $import_student=0;
 sDeleteTb($systemDb,"std");
-$step=100;
+$step=10;
 //print "Hello";
 $rms=get_system_config("rms_url");
 $student_count=rms_get_data($rms,'nutty','student',null,$count="yes");
