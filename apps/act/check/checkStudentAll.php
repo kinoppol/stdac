@@ -39,7 +39,7 @@ foreach($students as $std){
 
 $data=array(
     'student_id'=>sQ($std),
-    'time_entry'=>sQ($act_data['start_time']),
+    'time_entry'=>sQ($act_data['start_time']?$act_data['start_time']:$date),
     'time_record'=>'NOW()',
     'time_update'=>'NOW()',
     'checker_id'=>current_user('id'),

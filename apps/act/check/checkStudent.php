@@ -24,7 +24,7 @@ $act_data=$act_data[0];
 
 $data=array(
     'student_id'=>sQ($student_id),
-    'time_entry'=>sQ($act_data['start_time']),
+    'time_entry'=>sQ($act_data['start_time']?$act_data['start_time']:$date),
     'time_record'=>'NOW()',
     'time_update'=>'NOW()',
     'checker_id'=>current_user('id'),
