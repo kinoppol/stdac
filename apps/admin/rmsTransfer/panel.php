@@ -61,13 +61,45 @@
 <?php
 $systemFoot.='
     <script>
+    var totalStudent=0;
+    var totalStep=0;
+    var currentStep=0;
+    var tranfered=0;
+    var countPerStep=100;
         $("#studentTransfer").click(function(){
             $("#ajaxResponseStudent").text("กำลังโหลดโปรดรอสักครู่...");
-            $.get("'.site_url('ajax/admin/studentTransfer/student').'",function(data){
-                $("#ajaxResponseStudent").text(data);
+            $.get("'.site_url('ajax/admin/studentTransfer/total_student').'",function(data){
+                var student=JSON.parse(data);
+                totalStudent=student.student_count;
+                totalStep=Math.ceil(student.student_count/countPerStep);
+                $("#ajaxResponseStudent").text("กำลังโอนข้อมูลผู้เรียน 0/"+totalStudent+" คน");
+                transferStudent();
+
             });
             
         });
+
+        function transferStudent(){
+            $.get("'.site_url('ajax/admin/studentTransfer/transfer_student/step/').'"+currentStep+"/limit/"+countPerStep,function(data){
+                var res=JSON.parse(data);
+                tranfered+=res.transfered;
+                currentStep++;
+                $("#ajaxResponseStudent").text("กำลังโอนข้อมูลผู้เรียน "+(tranfered)+"/"+totalStudent+" คน");
+                if(tranfered<totalStudent){
+                    transferStudent();
+                }else{
+                    std_grouping();
+                }
+
+            });
+
+        }
+        function std_grouping(){
+            $.get("'.site_url('ajax/admin/studentTransfer/student_group').'",function(data){
+                $("#ajaxResponseStudent").text(data);
+
+            });
+        }
 
         $("#peopleTransfer").click(function(){
             $("#ajaxResponsePeople").text("กำลังโหลดโปรดรอสักครู่...");
