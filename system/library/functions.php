@@ -97,7 +97,7 @@ function disActive_session($user_id,$session_id='*',$cookie_id='*'){
   //print $query;
   return mysqli_query($db,$query);
 }
-function gen_option($sql, $def) {
+function gen_option($sql, $def=false,$disable=false) {
   global $db;
   global $dbPrefix;
   //print $sql;
@@ -110,7 +110,11 @@ function gen_option($sql, $def) {
        }else{
       $sel = $k==$def ? ' selected="selected"' : '';
        }
-      $a[] = "<option value=\"$k\"{$sel}>$v</option>";
+
+       if(is_array($disable)){
+         $dis = in_array($k,$disable) ? ' disabled' : '';
+       }
+      $a[] = "<option value=\"$k\"{$sel}{$dis}>$v</option>";
     }
   } else if($sql!=""){
     $res = mysqli_query($db, $sql);

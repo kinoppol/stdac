@@ -4,13 +4,21 @@ load_fun('table');
 load_fun('datatable');
 
 $act_id=$hGET['id'];
-$act_data=sSelectTb($systemDb,'activity','group_id','id='.sQ($act_id));
-$act_data=$act_data[0];
+if(is_numeric($act_id)){
+    $act_data=sSelectTb($systemDb,'activity','group_id','id='.sQ($act_id));
+    $act_data=$act_data[0];
+
 
 if($act_data['group_id']!=''){
     $groups_selected=json_decode($act_data['group_id'],true);
 }else{
     $groups_selected=array();
+}
+}else{
+    $groups_selected=array($hGET['gid']);
+
+    
+
 }
 
 $group_data=sSelectTb($systemDb,'group','*');

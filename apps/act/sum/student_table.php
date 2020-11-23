@@ -7,36 +7,50 @@ $current_semester=get_system_config("current_semester");
 
 $semester_data=sSelectTb($systemDb,'semester','*','semester_eduyear='.sQ($current_semester));
 $semester_data=$semester_data[0];
-$start_check_date=$semester_data['semester_start'];
-$end_check_date=$semester_data['datechk_end'];
-/*print $start_check_date;
-print "|";
-print $end_check_date;*/
-$holidayData=sSelectTb($systemDb,'holiday','*','holiday_date between '.sQ($start_check_date).' AND '.sQ($end_check_date));
-$holiday=array();
-foreach($holidayData as $h){
-    $holiday[$h['holiday_date']]=$h['holiday_name'];
-}
-//print_r($holiday);
 
-$dates=date2date($start_check_date,$end_check_date,$dow=array(
-    0=>false,
-    1=>true,
-    2=>true,
-    3=>true,
-    4=>true,
-    5=>true,
-    6=>false
-    ));
-//print_r($dates);
-    foreach($dates as $d=>$v){
-        //print $d."<br>";
-        if($holiday[$d]){
-            //print "<br>REMOVE ".$d;
-            unset($dates[$d]);
+$checker_data=sSelectTb($systemDb,'checker','*','group_id='.$hGET['group'].' AND semester='.sQ(get_system_config('current_semester')));
+$checker_data=$checker_data[0];
+//print_r($checker_data);
+
+$holiday=sSelectTb($systemDb,'holiday','*','semester = '.sQ(get_system_config('current_semester')));
+    $holidays=array();
+    foreach($holiday as $row){
+        $holidays[]=$row['holiday_date'];
+    }
+
+    $semester=sSelectTb($systemDb,'semester','*','semester_eduyear='.sQ(get_system_config('current_semester')));
+    $semester=$semester[0];
+    //print_r($semester);
+
+    $period = new DatePeriod(
+        new DateTime($semester['semester_start']),
+        new DateInterval('P1D'),
+        new DateTime($semester['semester_end'])
+   );
+   $dates=array();
+
+   $dow_assembly=explode(',',$checker_data['assembly_date']);   
+   $dow_morning_ceremony=explode(',',$checker_data['morning_ceremony_date']);
+$date_assembly=0;
+$date_morning_ceremony=0;
+$dates_assembly=array();
+$dates_morning_ceremony=array();
+   foreach ($period as $key => $value) {
+
+    if(is_numeric(array_search(date('w', strtotime($value->format('Y-m-d'))),$dow_assembly))){
+        $date_assembly++;
+        if(!in_array($value->format('Y-m-d'),$holidays)){
+            $dates_assembly[]=$value->format('Y-m-d');
         }
     }
-//print_r($dates);
+    if(is_numeric(array_search(date('w', strtotime($value->format('Y-m-d'))),$dow_morning_ceremony))){
+        $date_morning_ceremony++;
+        if(in_array($value->format('Y-m-d'),$holidays)){
+            $dow_morning_ceremony[]=$value->format('Y-m-d');
+        }
+    }
+
+ }
 
 
 $group_id=$hGET['group'];
@@ -120,10 +134,48 @@ foreach($ac_data as $row){
         $percentage=100;
     }
 
-    $table_data[$i]['sumact']=$signAct.' ครั้ง ('.number_format($percentage,2).'%)';
-    if(get_system_config("active_morning_ceremony")=='active')$table_data[$i]['sumMorningCeremony']=$signAct.' ครั้ง ('.number_format($percentage,2).'%)';
-    if(get_system_config("active_assembly")=='active')$table_data[$i]['sumAssembly']=$signAct.' ครั้ง ('.number_format($percentage,2).'%)';
-    $table_data[$i]['grade']=$percentage>=$activity_pass?'ผ่าน':'<font color="red">ไม่ผ่าน</font>';
+    
+    $assembly_check_data=sSelectTb($systemDb,'entry_record_as','count(*) as c','student_id='.sQ($row['student_id']).' AND entry_type='.sQ('check').' AND date_check between '.sQ($semester['semester_start']).' AND '.sQ($semester['semester_end']));
+    $assembly_check_data=$assembly_check_data['0'];
+    $assembly_percentage=$assembly_check_data['c']/$date_assembly*100;
+    
+    $morning_ceremony_check_data=sSelectTb($systemDb,'entry_record_mc','count(*) as c','student_id='.sQ($row['student_id']).' AND entry_type='.sQ('check').' AND date_check between '.sQ($semester['semester_start']).' AND '.sQ($semester['semester_end']));
+    $morning_ceremony_check_data=$morning_ceremony_check_data['0'];
+    $morning_ceremony_percentage=$morning_ceremony_check_data['c']/$date_morning_ceremony*100;
+
+    if($percentage<$activity_pass){
+        $activity_color='style="color:red;"';
+        $act_grade='fail';
+    }else{
+        $activity_color='style="color:green;"';
+        $act_grade='pass';
+    }
+    if($assembly_percentage<$assembly_pass){
+        $assembly_color='style="color:red;"';
+        $assembly_grade='fail';
+    }else{
+        $assembly_color='style="color:green;"';
+        $assembly_grade='pass';
+    }
+    if($morning_ceremony_percentage<$morning_ceremony_pass){
+        $morning_ceremony_color='style="color:red;"';
+        $morning_ceremony_grade='fail';
+    }else{
+        $morning_ceremony_color='style="color:green;"';
+        $morning_ceremony_grade='pass';
+    }
+
+    if(get_system_config("active_morning_ceremony")=='active'&&$morning_ceremony_grade='fail'){
+        $act_grade='fail';
+    }
+    if(get_system_config("active_assembly")=='active'&&$assembly_grade='fail'){
+        $act_grade='fail';
+    }
+
+    $table_data[$i]['sumact']='<span '.$activity_color.'>'.$signAct.' ครั้ง ('.number_format($percentage,2).'%)</span>';
+    if(get_system_config("active_morning_ceremony")=='active')$table_data[$i]['sumMorningCeremony']='<span '.$morning_ceremony_color.'>'.$morning_ceremony_check_data['c'].'/'.$date_morning_ceremony.' ครั้ง ('.number_format($morning_ceremony_percentage,2).'%)</span>';
+    if(get_system_config("active_assembly")=='active')$table_data[$i]['sumAssembly']='<span '.$assembly_color.'>'.$assembly_check_data['c'].'/'.$date_assembly.' ครั้ง ('.number_format($assembly_percentage,2).'%)</span>';
+    $table_data[$i]['grade']=$act_grade=="pass"?'ผ่าน':'<span style="color:red;">ไม่ผ่าน</span>';
 
 }
 

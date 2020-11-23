@@ -4,6 +4,11 @@ $id=$hGET['id'];
     $mode='';
     $dow_arr=array('0'=>'อาทิตย์','1'=>'จันทร์','2'=>'อังคาร','3'=>'พุธ','4'=>'พฤหัสบดี','5'=>'ศุกร์','6'=>'เสาร์');
 
+    $holiday=sSelectTb($systemDb,'holiday','*','semester = '.sQ(get_system_config('current_semester')));
+    $holidays=array();
+    foreach($holiday as $row){
+        $holidays[]=$row['holiday_date'];
+    }
 
 
     if($hGET['id']=='morningCeremony'||$hGET['id']=='assembly'){
@@ -22,20 +27,33 @@ $id=$hGET['id'];
             new DateInterval('P1D'),
             new DateTime($semester['semester_end'])
        );
-       $dow=explode(',',$checker_data['morning_ceremony_date']);
+       if($hGET['id']=='morningCeremony'){
+        $dow=explode(',',$checker_data['morning_ceremony_date']);
+       }else if($hGET['id']=='assembly'){
+        $dow=explode(',',$checker_data['assembly_date']);
+       }
        $dates=array();
        $lasted_date='';
+       $i=0;
        foreach ($period as $key => $value) {
            if(is_numeric(array_search(date('w', strtotime($value->format('Y-m-d'))),$dow))){
-            $dates[$value->format('Y-m-d')]=$dow_arr[date('w', strtotime($value->format('Y-m-d')))].' ที่ '.dateThai($value->format('Y-m-d'));
-            if(strtotime($value->format('Y-m-d'))<time()){
+            $i++;
+            
+            $holiday_msg=in_array($value->format('Y-m-d'),$holidays)?'(วันหยุด) ':'';
+
+            if(strtotime($value->format('Y-m-d'))<time()&&!in_array($value->format('Y-m-d'),$holidays)){
                 $lasted_date=$value->format('Y-m-d');
+            }else{
+                array_push($holidays,$value->format('Y-m-d'));
             }
+
+            $dates[$value->format('Y-m-d')]='ครั้งที่ '.$i.' '.$holiday_msg.$dow_arr[date('w', strtotime($value->format('Y-m-d')))].' ที่ '.dateThai($value->format('Y-m-d'));
+            
            }
         }
         //print_r($dates);
         $date_select="วันที่เช็คชื่อ <select id=\"date_selector\">
-        ".gen_option($dates,$lasted_date)."
+        ".gen_option($dates,$lasted_date,$holidays)."
         <select>";
     }
 
@@ -53,6 +71,9 @@ $id=$hGET['id'];
 
 
 $systemFoot.='
+<style>
+    select option[disabled] { color: #F00; }
+</style>
 <script>
 $("#date_selector").change(function(){
     $("#student_Response").text("โปรดรอสักครู่..");

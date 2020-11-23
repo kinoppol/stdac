@@ -27,7 +27,7 @@ if($act_data['group_id']!=''){
 if($gid){
     $student_data=sSelectTb($systemDb,'std','*','group_id = '.sQ($gid));
 }else{
-    $student_data=sSelectTb($systemDb,'std','*','group_id in ('.implode(',',$groups_selected).')',true);
+    $student_data=sSelectTb($systemDb,'std','*','group_id in ('.implode(',',$groups_selected).')');
 }
 $students=array();
 foreach($student_data as $std){
@@ -48,7 +48,8 @@ $data=array(
 $cond='student_id='.sQ($std,true);
 
 if(is_numeric($act_id)){
-    $cond=' AND act_id='.sQ($act_id);
+    $data['act_id']=sQ($act_id);
+    $cond.=' AND act_id='.sQ($act_id);
 }else{
     $data['date_check']=sQ($date);
     $cond.=' AND date_check='.sQ($date); 
