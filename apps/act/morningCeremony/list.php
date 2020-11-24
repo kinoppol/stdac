@@ -17,6 +17,7 @@
                         </div>
                         <div class="body">
                             <div id="grouptable">
+                            โปรดรอสักครู่..
                             </div>
                         </div>
                     </div>
