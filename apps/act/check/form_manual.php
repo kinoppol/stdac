@@ -1,13 +1,19 @@
 <?php
     
+load_fun('activity');
 $id=$hGET['id'];
     $mode='';
     $dow_arr=array('0'=>'อาทิตย์','1'=>'จันทร์','2'=>'อังคาร','3'=>'พุธ','4'=>'พฤหัสบดี','5'=>'ศุกร์','6'=>'เสาร์');
 
     $holiday=sSelectTb($systemDb,'holiday','*','semester = '.sQ(get_system_config('current_semester')));
     $holidays=array();
+    $ignoreDate=array();
     foreach($holiday as $row){
-        $holidays[]=$row['holiday_date'];
+        if($row['in_use']=='N'){
+            $ignoreDate[]=$row['holiday_date'];
+        }else{
+            $holidays[]=$row['holiday_date'];
+        }
     }
 
 
@@ -22,34 +28,29 @@ $id=$hGET['id'];
         $semester=sSelectTb($systemDb,'semester','*','semester_eduyear='.sQ(get_system_config('current_semester')));
         $semester=$semester[0];
 
-        $period = new DatePeriod(
-            new DateTime($semester['semester_start']),
-            new DateInterval('P1D'),
-            new DateTime($semester['semester_end'])
-       );
+        
        if($hGET['id']=='morningCeremony'){
         $dow=explode(',',$checker_data['morning_ceremony_date']);
        }else if($hGET['id']=='assembly'){
         $dow=explode(',',$checker_data['assembly_date']);
        }
-       $dates=array();
+
+        $dates=date2date($semester['semester_start'],$semester['semester_end'],$dow,$ignoreDate);
        $lasted_date='';
        $i=0;
-       foreach ($period as $key => $value) {
-           if(is_numeric(array_search(date('w', strtotime($value->format('Y-m-d'))),$dow))){
+       foreach ($dates as $date=>$t) {
             $i++;
             
-            $holiday_msg=in_array($value->format('Y-m-d'),$holidays)?'(วันหยุด) ':'';
+            $holiday_msg=in_array($date,$holidays)?'(วันหยุด) ':'';
 
-            if(strtotime($value->format('Y-m-d'))<time()&&!in_array($value->format('Y-m-d'),$holidays)){
-                $lasted_date=$value->format('Y-m-d');
+            if(strtotime($date)<time()&&!in_array($date,$holidays)){
+                $lasted_date=$date;
             }else{
-                array_push($holidays,$value->format('Y-m-d'));
+                array_push($holidays,$date);
             }
 
-            $dates[$value->format('Y-m-d')]='ครั้งที่ '.$i.' '.$holiday_msg.$dow_arr[date('w', strtotime($value->format('Y-m-d')))].' ที่ '.dateThai($value->format('Y-m-d'));
+            $dates[$date]='ครั้งที่ '.$i.' '.$holiday_msg.$dow_arr[date('w', strtotime($date))].' ที่ '.dateThai($date);
             
-           }
         }
         //print_r($dates);
         $date_select="วันที่เช็คชื่อ <select id=\"date_selector\">
