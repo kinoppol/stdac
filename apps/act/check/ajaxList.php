@@ -102,7 +102,7 @@ $data=array("head"=>array(
     'id'=>'std_table',
     'item'=> $students,
     'pagelength'=>10,
-    'order'=>'[[ 0, "desc" ]]'
+    'order'=>'[[ 0, "acs" ]]'
     );
     print datatable($data);
     ?>
