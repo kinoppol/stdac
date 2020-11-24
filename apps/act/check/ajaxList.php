@@ -58,7 +58,9 @@ foreach($check_record as $rec){
     $record[$rec['student_id']]=$rec['entry_type'];
 }
 //print_r($record);
+$std_no=0;
 foreach($student_data as $std){
+    $std_no++;
     $param_date='';
     if($date){
         $param_date=',\''.$date.'\'';
@@ -83,7 +85,7 @@ foreach($student_data as $std){
     }
 
     $students[$std['student_id']]=array(
-        'group_id'=>$groups[$std['group_id']]['group_short_name'],
+        'std_no'=>$std_no,
         'student_id'=>$std['student_id'],
         'name'=>$prefix[$std['prefix_id']].$std['stu_fname'].' '.$std['stu_lname'],
         'check_box'=>$chk_box,
@@ -92,7 +94,7 @@ foreach($student_data as $std){
 }
 
 $data=array("head"=>array(
-    'กลุ่ม',
+    'เลขที่',
     'รหัสนักศึกษา',
     'ชื่อ-สกุล',
     'เช็คชื่อ'
