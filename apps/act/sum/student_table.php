@@ -3,6 +3,8 @@
 load_fun('table');
 load_fun('datatable');
 
+load_fun('activity');
+
 $current_semester=get_system_config("current_semester");
 
 $semester_data=sSelectTb($systemDb,'semester','*','semester_eduyear='.sQ($current_semester));
@@ -13,44 +15,29 @@ $checker_data=$checker_data[0];
 //print_r($checker_data);
 
 $holiday=sSelectTb($systemDb,'holiday','*','semester = '.sQ(get_system_config('current_semester')));
-    $holidays=array();
-    foreach($holiday as $row){
+$holidays=array();
+$ignoreDate=array();
+foreach($holiday as $row){
+    if($row['in_use']=='N'){
+        $ignoreDate[]=$row['holiday_date'];
+    }else{
         $holidays[]=$row['holiday_date'];
     }
+}
 
     $semester=sSelectTb($systemDb,'semester','*','semester_eduyear='.sQ(get_system_config('current_semester')));
     $semester=$semester[0];
     //print_r($semester);
 
-    $period = new DatePeriod(
-        new DateTime($semester['semester_start']),
-        new DateInterval('P1D'),
-        new DateTime($semester['semester_end'])
-   );
-   $dates=array();
 
    $dow_assembly=explode(',',$checker_data['assembly_date']);   
    $dow_morning_ceremony=explode(',',$checker_data['morning_ceremony_date']);
-$date_assembly=0;
-$date_morning_ceremony=0;
-$dates_assembly=array();
-$dates_morning_ceremony=array();
-   foreach ($period as $key => $value) {
 
-    if(is_numeric(array_search(date('w', strtotime($value->format('Y-m-d'))),$dow_assembly))){
-        $date_assembly++;
-        if(!in_array($value->format('Y-m-d'),$holidays)){
-            $dates_assembly[]=$value->format('Y-m-d');
-        }
-    }
-    if(is_numeric(array_search(date('w', strtotime($value->format('Y-m-d'))),$dow_morning_ceremony))){
-        $date_morning_ceremony++;
-        if(in_array($value->format('Y-m-d'),$holidays)){
-            $dow_morning_ceremony[]=$value->format('Y-m-d');
-        }
-    }
+    $dates_assembly=date2date($semester['semester_start'],$semester['semester_end'],$dow_assembly,$ignoreDate);
+    $dates_morning_ceremony=date2date($semester['semester_start'],$semester['semester_end'],$dow_morning_ceremony,$ignoreDate);
+    $date_assembly=count($dates_assembly);
+    $date_morning_ceremony=count($dates_morning_ceremony);
 
- }
 
 
 $group_id=$hGET['group'];

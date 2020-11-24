@@ -46,6 +46,10 @@ foreach($array as $row){
 //print_r($holidays);
 
 foreach($holidays as $row){
+    $canceled=(mb_substr($row['Subject'],0,3)=='<s>'?1:0);// วัยหยุดที่ขึ้นต้นด้วย <s> (โดนขีดฆ่า) หมายถึงโดนยกเลิก
+    if($canceled==1){
+        continue;
+    }
     global $systemDb;
 //print_r($row);
     $holiday_date=explode("/",$row['Start Date']);

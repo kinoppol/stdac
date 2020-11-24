@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+load_fun('activity');
 $act_id=$hGET['id'];
 $group_id=$hGET['grp_id'];
 
@@ -58,46 +59,31 @@ if(is_numeric($act_id)){
 
     $holiday=sSelectTb($systemDb,'holiday','*','semester = '.sQ(get_system_config('current_semester')));
     $holidays=array();
+    $ignoreDate=array();
     foreach($holiday as $row){
-        $holidays[]=$row['holiday_date'];
+        if($row['in_use']=='N'){
+            $ignoreDate[]=$row['holiday_date'];
+        }else{
+            $holidays[]=$row['holiday_date'];
+        }
     }
 
     $semester=sSelectTb($systemDb,'semester','*','semester_eduyear='.sQ(get_system_config('current_semester')));
     $semester=$semester[0];
     //print_r($semester);
-
-    $period = new DatePeriod(
-        new DateTime($semester['semester_start']),
-        new DateInterval('P1D'),
-        new DateTime($semester['semester_end'])
-   );
-   if($hGET['id']=='morningCeremony'){
-    $dow=explode(',',$checker_data['morning_ceremony_date']);
-   }else if($hGET['id']=='assembly'){
-    $dow=explode(',',$checker_data['assembly_date']);
-   }
-   $dates=array();
-   $lasted_date='';
-   $i=0;
-   foreach ($period as $key => $value) {
-       if(is_numeric(array_search(date('w', strtotime($value->format('Y-m-d'))),$dow))){
-        $i++;
-        
-        $holiday_msg=in_array($value->format('Y-m-d'),$holidays)?'* ':'';
-
-        if(strtotime($value->format('Y-m-d'))<time()&&!in_array($value->format('Y-m-d'),$holidays)){
-            $lasted_date=$value->format('Y-m-d');
-        }
-
-        $dates[$value->format('Y-m-d')]=$holiday_msg.dateThai($value->format('Y-m-d'),true);
-        
+    
+    if($hGET['id']=='morningCeremony'){
+        $dow=explode(',',$checker_data['morning_ceremony_date']);
+       }else if($hGET['id']=='assembly'){
+        $dow=explode(',',$checker_data['assembly_date']);
        }
-    }
+
+    $dates=date2date($semester['semester_start'],$semester['semester_end'],$dow,$ignoreDate);
 
         $head_date='';
     //print_r($dates);
     foreach($dates as $k=>$v){
-        $head_date.='<th width="2%" style="vertical-align:top;" text-rotate="90">'.$v.'</th>';
+        $head_date.='<th width="2%" style="vertical-align:top;" text-rotate="90">'.dateThai($k,true,false,true).'</th>';
     }
     if(count($dates)>1){
         $head_date.='<th width="2%" style="vertical-align:top;" text-rotate="90">เข้า</th>
@@ -180,7 +166,7 @@ foreach($student_data as $std){
                 $mark='<img src="'.site_url('images/iconmonstr-check-mark-1.png',true).'" width="10">';
             }else if(strtotime($k)<time()){
                 $a++;
-                $mark='<img src="'.site_url('images/cross-mark.png',true).'" width="10">';
+                $mark='<img src="'.site_url('images/x-symbol.jpg',true).'" width="10">';
             }else{
                 $mark='';
             }

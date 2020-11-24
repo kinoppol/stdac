@@ -41,6 +41,11 @@ $menu['admin']= array(
                 'url' => 'main/admin/rmsTransfer/panel',
                 'cond' => true,
                 ),
+                'holiday' => array('bullet' => '',
+                        'title' => 'วันหยุด',
+                        'url' => 'main/admin/holiday/list',
+                        'cond' => true,
+                        ),
             ),
         
     );
