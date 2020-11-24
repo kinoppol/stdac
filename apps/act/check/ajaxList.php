@@ -32,7 +32,7 @@ $prefix=array(
     '5'=>'นาง',
 
 );
-$student_data=sSelectTb($systemDb,'std','*','group_id in ('.implode(',',$groups_selected).')');
+$student_data=sSelectTb($systemDb,'std','*','group_id in ('.implode(',',$groups_selected).') order by student_id asc');
 
 $student_ids=array();
 
@@ -102,7 +102,7 @@ $data=array("head"=>array(
     'id'=>'std_table',
     'item'=> $students,
     'pagelength'=>10,
-    'order'=>'[[ 1, "acs" ]]'
+    'order'=>'[[ 0, "acs" ]]'
     );
     print datatable($data);
     ?>
