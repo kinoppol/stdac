@@ -39,7 +39,7 @@ $key_list=array(
 function ac($q,$api_id,$api_key,$key_list){
     $q=explode(' ',$q);
 
-    $available_function=explode(',',$key_list[$api_key])
+    $available_function=explode(',',$key_list[$api_key]);
 
 
 }
