@@ -6,6 +6,7 @@ $people_pro=array();
 foreach($people_pro_data as $row){
     $people_pro[$row['people_id']]=$row['people_stagov_id'];
 }
+$total_people=count($people_data);
 //print_r($people_data);
 sDeleteTb($systemDb,"userdata");
 $import_people=0;
@@ -19,7 +20,9 @@ foreach($people_data as $people){
 
         if(!isset($people_pro[$people['people_id']])||//ไม่รับโอนข้อมูลผู้ไม่มีข้อมูลหน้าที่รับผิดชอบ
         $people_pro[$people['people_id']]==88||//ไม่รับโอนข้อมูลผู้ไม่มีหน้าที่รับผิดชอบ
-        !isValidNationalId($people['people_id']))continue;//ไม่รับโอนข้อมูลที่รหัสประจำตัวประชาชนไม่ถูกต้อง
+        (!isValidNationalId($people['people_id'])&&
+        (is_numeric($people['people_id']))
+        ))continue;//ไม่รับโอนข้อมูลที่รหัสประจำตัวประชาชนไม่ถูกต้อง ยกเว้นชาวต่างชาติ
 
     }
     $data=array(
@@ -53,4 +56,4 @@ foreach($people_data as $people){
 
 ?>
 
-                            ข้อมูลบุคลากรจำนวน <?php print number_format($import_people);?> คนเรียบร้อยแล้ว
+                            ข้อมูลบุคลากรจำนวน <?php print number_format($import_people)." จากทั้งหมด ".$total_people." คน";?> คนเรียบร้อยแล้ว
