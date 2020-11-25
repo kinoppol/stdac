@@ -18,7 +18,8 @@ foreach($people_data as $row){
     $checker_list[$row['people_id']]=$row['name'].' '.$row['surname'];
 }
 
-$dow_arr=array('0'=>'อาทิตย์','1'=>'จันทร์','2'=>'อังคาร','3'=>'พุธ','4'=>'พฤหัสบดี','5'=>'ศุกร์','6'=>'เสาร์');
+$dow_arr=array("0"=>'อาทิตย์',"1"=>'จันทร์','2'=>'อังคาร','3'=>'พุธ','4'=>'พฤหัสบดี','5'=>'ศุกร์','6'=>'เสาร์');
+$dowa_arr=array(""=>'เลือกวัน',"0"=>'อาทิตย์',"1"=>'จันทร์','2'=>'อังคาร','3'=>'พุธ','4'=>'พฤหัสบดี','5'=>'ศุกร์','6'=>'เสาร์');
 $inputDetail = array(
     'name' => array(
         'label' => 'ชื่อกลุ่ม',
@@ -72,7 +73,7 @@ $inputDetail = array(
         'type' => 'select',
         'multiple'=>false,
         'icon' => 'settings_overscan',
-        'item' => array_merge(array(-1=>'เลือกวัน'),$dow_arr),
+        'item' => $dowa_arr,
         'def' => $checker_data['assembly_date']==''?-1:$checker_data['assembly_date'],
     ),
     'submit' => array(
