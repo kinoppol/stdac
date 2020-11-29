@@ -29,27 +29,33 @@ $id=$hGET['id'];
         $semester=$semester[0];
 
         
+        $after_check_days=get_system_config('activity_after_check');
        if($hGET['id']=='morningCeremony'){
         $dow=explode(',',$checker_data['morning_ceremony_date']);
+        $after_check_days=get_system_config('morning_ceremony_after_check');
        }else if($hGET['id']=='assembly'){
         $dow=explode(',',$checker_data['assembly_date']);
+        $after_check_days=get_system_config('assembly_after_check');
        }
 
         $dates=date2date($semester['semester_start'],$semester['semester_end'],$dow,$ignoreDate);
        $lasted_date='';
        $i=0;
+       $oldest_day=date("Y-m-d",strtotime('- '.$after_check_days.' Days'));
        foreach ($dates as $date=>$t) {
             $i++;
             
-            $holiday_msg=in_array($date,$holidays)?'(วันหยุด) ':'';
-
-            if(strtotime($date)<time()&&!in_array($date,$holidays)){
+            $disable_msg=in_array($date,$holidays)?'(วันหยุด) ':'';
+            if(strtotime($date)<(strtotime('- '.$after_check_days.' Days'))){
+                if($disable_msg=='')$disable_msg='(เลยกำหนด '.$after_check_days.' วัน)';
+                array_push($holidays,$date);
+            }if(strtotime($date)<time()&&!in_array($date,$holidays)){
                 $lasted_date=$date;
             }else{
                 array_push($holidays,$date);
             }
 
-            $dates[$date]='ครั้งที่ '.$i.' '.$holiday_msg.$dow_arr[date('w', strtotime($date))].' ที่ '.dateThai($date);
+            $dates[$date]='ครั้งที่ '.$i.' '.$disable_msg.$dow_arr[date('w', strtotime($date))].' ที่ '.dateThai($date);
             
         }
         //print_r($dates);
@@ -91,21 +97,35 @@ $("#date_selector").change(function(){
         $("#chk_"+std_id).html("<i class=\\"material-icons col-orange\\">cached</i>");
         $.ajax({url:"'.site_url('ajax/act/check/checkStudent/id/'.$hGET['id'].'/std_id/').'"+std_id+"/type/check/date/"+date, success: function( result ) {
             if($.trim(result)=="ok"){
-                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"unCheck_std("+std_id+")\\"><i class=\\"material-icons col-green\\">check_box</i></a> ");
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"optionCheck_std("+std_id+",\'"+date+"\')\\"><i class=\\"material-icons col-green\\">check_box</i></a> ");
             }else{            
-                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"check_std("+std_id+")\\"><i class=\\"material-icons col-orange\\">error</i></a> ");
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"check_std("+std_id+",\'"+date+"\')\\"><i class=\\"material-icons col-orange\\">error</i></a> ");
             }
         }
         });
         
     }
+
+    function late_std(std_id,date=false){
+        $("#chk_"+std_id).html("<i class=\\"material-icons col-orange\\">cached</i>");
+        $.ajax({url:"'.site_url('ajax/act/check/checkStudent/id/'.$hGET['id'].'/std_id/').'"+std_id+"/type/late/date/"+date, success: function( result ) {
+            if($.trim(result)=="ok"){
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"optionCheck_std("+std_id+",\'"+date+"\')\\" title=\\"สาย\\"><i class=\\"material-icons col-orange\\">access_time</i></a> ");
+            }else{            
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"check_std("+std_id+",\'"+date+"\')\\"><i class=\\"material-icons col-orange\\">error</i></a> ");
+            }
+        }
+        });
+        
+    }
+
     function unCheck_std(std_id,date=false){
         $("#chk_"+std_id).html("<i class=\\"material-icons col-orange\\">cached</i>");
         $.ajax({url:"'.site_url('ajax/act/check/checkStudent/id/'.$hGET['id'].'/std_id/').'"+std_id+"/type/unCheck/date/"+date, success: function( result ) {
             if($.trim(result)=="ok"){
-                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"check_std("+std_id+","+date+")\\"><i class=\\"material-icons\\">check_box_outline_blank</i></a> ");
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"check_std("+std_id+",\'"+date+"\')\\"><i class=\\"material-icons\\">check_box_outline_blank</i></a> ");
             }else{
-                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"unCheck_std("+std_id+","+date+")\\"><i class=\\"material-icons col-orange\\">error</i></a> ลองใหม่");
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"unCheck_std("+std_id+",\'"+date+"\')\\"><i class=\\"material-icons col-orange\\">error</i></a> ลองใหม่");
             }
         }
         });
@@ -126,6 +146,9 @@ $("#date_selector").change(function(){
         });
     }
     function unCheck_all_std(){
+        if(!confirm("ยกเลิกการเช็คชื่อทั้งหมด")){
+            return false;
+        }
         var date=$("#date_selector").val();
         $("#chk_all").html("<i class=\\"material-icons col-orange\\">cached</i>");
         $.ajax({url:"'.site_url('ajax/act/check/checkStudentAll/id/'.$hGET['id']).'/type/unCheck/date/"+date+"'.$mode.'", success: function( result ) {
@@ -137,6 +160,23 @@ $("#date_selector").change(function(){
             }
         }
         });
+    }
+    function optionCheck_std(std_id,date=false){
+        //alert(date);
+        $("#optionCheck").modal("show");
+    var md=$("#optionCheck");
+        md.find(".modal-body").html("<button class=\'btn btn-success\' style=\'width:20%;text-align:left\' onclick=\'select_check(\"check\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>check_box</i> มา</button> <button class=\'btn btn-danger\'  style=\'width:20%;text-align:left\' onclick=\'select_check(\"unCheck\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>check_box_outline_blank</i> ขาด</button> <button class=\'btn btn-warning\'  style=\'width:20%;text-align:left\' onclick=\'select_check(\"late\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>access_time</i> สาย</button>");
+    }
+
+    function select_check(select_type,std_id,date){
+        $("#optionCheck").modal("hide");
+        if(select_type=="check"){
+            check_std(std_id,date);
+        }else if(select_type=="unCheck"){
+            unCheck_std(std_id,date);
+        }else if(select_type=="late"){
+            late_std(std_id,date);
+        }
     }
 </script>
 ';

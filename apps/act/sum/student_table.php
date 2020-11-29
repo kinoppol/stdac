@@ -6,6 +6,9 @@ load_fun('datatable');
 load_fun('activity');
 
 $current_semester=get_system_config("current_semester");
+$activity_late_score=$late_score=get_system_config("activity_late_score")/100;
+$morning_ceremony_late_score=$late_score=get_system_config("morning_ceremony_late_score")/100;
+$assembly_late_score=$late_score=get_system_config("assembly_late_score")/100;
 
 $semester_data=sSelectTb($systemDb,'semester','*','semester_eduyear='.sQ($current_semester));
 $semester_data=$semester_data[0];
@@ -89,6 +92,7 @@ foreach($ac_data as $row){
     );
     
     $signAct=0;
+    $lateAct=0;
 
     foreach($act_id as $act_row){
         $check_data=sSelectTb($systemDb,"entry_record",'*','act_id='.$act_row.' AND student_id='.sQ($row['student_id']));
@@ -109,6 +113,9 @@ foreach($ac_data as $row){
         if($check_data['entry_type']=='check'){
             $table_data[$i][$act_row]='✔';
             $signAct++;
+        }else if($check_data['entry_type']=='late'){
+            $table_data[$i][$act_row]='ส';
+            $lateAct++;
         }else if($check_data['entry_type']=='unCheck'){
             $table_data[$i][$act_row]='✗';
         }else{
@@ -116,7 +123,8 @@ foreach($ac_data as $row){
         }
     }
     if(count($act_id )>0){
-        $percentage=$signAct/count($act_id)*100;
+        $total_signact=($signAct+($lateAct*$activity_late_score));
+        $percentage=$total_signact/count($act_id)*100;
     }else{
         $percentage=100;
     }
@@ -124,11 +132,17 @@ foreach($ac_data as $row){
     
     $assembly_check_data=sSelectTb($systemDb,'entry_record_as','count(*) as c','student_id='.sQ($row['student_id']).' AND entry_type='.sQ('check').' AND date_check between '.sQ($semester['semester_start']).' AND '.sQ($semester['semester_end']));
     $assembly_check_data=$assembly_check_data['0'];
-    $assembly_percentage=$assembly_check_data['c']/$date_assembly*100;
+    $assembly_late_data=sSelectTb($systemDb,'entry_record_as','count(*) as c','student_id='.sQ($row['student_id']).' AND entry_type='.sQ('late').' AND date_check between '.sQ($semester['semester_start']).' AND '.sQ($semester['semester_end']));
+    $assembly_late_data=$assembly_check_data['0'];
+    $total_sign_assembly=($assembly_check_data['c']+($assembly_late_data['c']*$assembly_late_score));
+    $assembly_percentage=$total_sign_assembly/$date_assembly*100;
     
     $morning_ceremony_check_data=sSelectTb($systemDb,'entry_record_mc','count(*) as c','student_id='.sQ($row['student_id']).' AND entry_type='.sQ('check').' AND date_check between '.sQ($semester['semester_start']).' AND '.sQ($semester['semester_end']));
     $morning_ceremony_check_data=$morning_ceremony_check_data['0'];
-    $morning_ceremony_percentage=$morning_ceremony_check_data['c']/$date_morning_ceremony*100;
+    $morning_ceremony_late_data=sSelectTb($systemDb,'entry_record_mc','count(*) as c','student_id='.sQ($row['student_id']).' AND entry_type='.sQ('late').' AND date_check between '.sQ($semester['semester_start']).' AND '.sQ($semester['semester_end']));
+    $morning_ceremony_late_data=$morning_ceremony_late_data['0'];
+    $total_sign_morning_ceremony=($morning_ceremony_check_data['c']+($morning_ceremony_late_data['c']*$morning_ceremony_late_score));
+    $morning_ceremony_percentage=$total_sign_morning_ceremony/$date_morning_ceremony*100;
 
     if($percentage<$activity_pass){
         $activity_color='style="color:red;"';
@@ -159,9 +173,9 @@ foreach($ac_data as $row){
         $act_grade='fail';
     }
 
-    $table_data[$i]['sumact']='<span '.$activity_color.'>'.$signAct.' ครั้ง ('.number_format($percentage,2).'%)</span>';
-    if(get_system_config("active_morning_ceremony")=='active')$table_data[$i]['sumMorningCeremony']='<span '.$morning_ceremony_color.'>'.$morning_ceremony_check_data['c'].'/'.$date_morning_ceremony.' ครั้ง ('.number_format($morning_ceremony_percentage,2).'%)</span>';
-    if(get_system_config("active_assembly")=='active')$table_data[$i]['sumAssembly']='<span '.$assembly_color.'>'.$assembly_check_data['c'].'/'.$date_assembly.' ครั้ง ('.number_format($assembly_percentage,2).'%)</span>';
+    $table_data[$i]['sumact']='<span '.$activity_color.'>'.$total_signact.' ครั้ง ('.number_format($percentage,2).'%)</span>';
+    if(get_system_config("active_morning_ceremony")=='active')$table_data[$i]['sumMorningCeremony']='<span '.$morning_ceremony_color.'>'.$total_sign_morning_ceremony.'/'.$date_morning_ceremony.' ครั้ง ('.number_format($morning_ceremony_percentage,2).'%)</span>';
+    if(get_system_config("active_assembly")=='active')$table_data[$i]['sumAssembly']='<span '.$assembly_color.'>'.$assembly_check_data['c'].'/'.$total_sign_assembly.' ครั้ง ('.number_format($assembly_percentage,2).'%)</span>';
     $table_data[$i]['grade']=$act_grade=="pass"?'ผ่าน':'<span style="color:red;">ไม่ผ่าน</span>';
 
 }

@@ -4,6 +4,7 @@ load_fun('table');
 load_fun('datatable');
 //print_r($_GET['p']);
 $date=$hGET['date'];
+if(!isset($date))$date=date('Y-m-d');
 $table='entry_record';
 //print $date;
 $act_id=$hGET['id'];
@@ -72,7 +73,15 @@ foreach($student_data as $std){
         $chk_box='
         <div id="chk_'.$std['student_id'].'" class="chk_btn">
             <a href="#"
-                onClick="unCheck_std('.$std['student_id'].$param_date.')"><i class="material-icons col-green">check_box</i></a>
+                onClick="optionCheck_std('.$std['student_id'].$param_date.')"><i class="material-icons col-green">check_box</i></a>
+            </a>
+        </div>';
+    }else if($record[$std['student_id']]=='late'){
+
+        $chk_box='
+        <div id="chk_'.$std['student_id'].'" class="chk_btn">
+            <a href="#"
+                onClick="optionCheck_std('.$std['student_id'].$param_date.')" title="สาย"><i class="material-icons col-orange">access_time</i></a>
             </a>
         </div>';
     }else{

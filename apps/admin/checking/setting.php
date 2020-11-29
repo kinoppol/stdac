@@ -42,7 +42,12 @@ $inputDetail = array(
     'activity_absent_signin' => array(
             'label' => 'ถือว่าขาดการเข้าร่วมกิจกรรมเมื่อเลยเวลาที่กำหนดไปแล้ว(นาที)',
             'type' => 'number',
-            'value'=>get_system_config("activity_absent_signin")!=''?get_system_config("activitactivity_absent_signiny_late_signin"):30,
+            'value'=>get_system_config("activity_absent_signin")!=''?get_system_config("activity_absent_signin"):30,
+    ),
+    'activity_after_check' => array(
+            'label' => 'เช็คชื่อย้อนหลังได้กี่วัน(กรณีเช็คด้วยมือ)',
+            'type' => 'number',
+            'value'=>get_system_config("activity_after_check")!=''?get_system_config("activity_after_check"):7,
     )
     
 );
@@ -73,7 +78,12 @@ if(get_system_config("active_morning_ceremony")=='active'){
     $inputDetail['morning_ceremony_absent_signin'] = array(
             'label' => 'ถือว่าขาดแถวเมื่อเลยเวลาที่กำหนดไปแล้ว(นาที)',
             'type' => 'number',
-            'value'=>get_system_config("morning_ceremony_absent_signin")!=''?get_system_config("activitmorning_ceremony_absent_signiny_late_signin"):15,
+            'value'=>get_system_config("morning_ceremony_absent_signin")!=''?get_system_config("morning_ceremony_absent_signin"):15,
+    );
+    $inputDetail['morning_ceremony_after_check'] = array(
+            'label' => 'เช็คชื่อย้อนหลังได้กี่วัน(กรณีเช็คด้วยมือ)',
+            'type' => 'number',
+            'value'=>get_system_config("morning_ceremony_after_check")!=''?get_system_config("morning_ceremony_after_check"):7,
     );
 }
 
@@ -102,7 +112,12 @@ if(get_system_config("active_assembly")=='active'){
     $inputDetail['assembly_absent_signin'] = array(
             'label' => 'ถือว่าขาดคาบกิจกรรมเมื่อเลยเวลาที่กำหนดไปแล้ว(นาที)',
             'type' => 'number',
-            'value'=>get_system_config("assembly_absent_signin")!=''?get_system_config("activitassembly_absent_signiny_late_signin"):30,
+            'value'=>get_system_config("assembly_absent_signin")!=''?get_system_config("assembly_absent_signin"):30,
+    );
+    $inputDetail['assembly_after_check'] = array(
+            'label' => 'เช็คชื่อย้อนหลังได้กี่วัน(กรณีเช็คด้วยมือ)',
+            'type' => 'number',
+            'value'=>get_system_config("assembly_after_check")!=''?get_system_config("assembly_after_check"):7,
     );
 }
 

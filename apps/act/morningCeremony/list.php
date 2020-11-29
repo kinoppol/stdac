@@ -46,6 +46,13 @@ $data_modal=array(
 
 print gen_modal($data_modal);
 
+$data_modal=array(
+    'id'=>'optionCheck',
+    'title'=>'ตัวเลือกการเช็คชื่อ',
+);
+
+print gen_modal($data_modal);
+
 $systemFoot.="<script>
             $(function(){
                 load_group();

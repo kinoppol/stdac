@@ -4,10 +4,15 @@ load_fun('activity');
 $act_id=$hGET['id'];
 $group_id=$hGET['grp_id'];
 
+$check_sign='<img src="'.site_url('images/iconmonstr-check-mark-1.png',true).'" width="10">';
+$late_sign='ส';
+$absent_sign='<img src="'.site_url('images/x-symbol.jpg',true).'" width="10">';
+
 $table='entry_record';
 $pageSize="A4";
 $pass_score=get_system_config('pass_score_activity');
 if($act_id=='assembly'){
+    $late_score=get_system_config("assembly_late_score")/100;
     $table.='_as';
     $date=$hGET['date'];
     $pageSize="A4-L";
@@ -15,6 +20,7 @@ if($act_id=='assembly'){
 $pass_score=get_system_config('pass_score_assembly');
 }
 if($act_id=='morningCeremony'){
+    $late_score=get_system_config("morning_ceremony_late_score")/100;
     $table.='_mc';
     $date=$hGET['date'];
     $pageSize="A4-L";
@@ -163,10 +169,13 @@ foreach($student_data as $std){
                 $mark='*';
             }else if($record[$std['student_id']][$k]=='check'){
                 $c++;
-                $mark='<img src="'.site_url('images/iconmonstr-check-mark-1.png',true).'" width="10">';
+                $mark=$check_sign;
+            }else if($record[$std['student_id']][$k]=='late'){
+                $c+=$late_score;
+                $mark=$late_sign;
             }else if(strtotime($k)<time()){
                 $a++;
-                $mark='<img src="'.site_url('images/x-symbol.jpg',true).'" width="10">';
+                $mark=$absent_sign;
             }else{
                 $mark='';
             }
@@ -193,7 +202,7 @@ foreach($student_data as $std){
 $html.="</tbody>
 </table>";
 $html.="
-* วันหยุด
+".$check_sign." = มา, ".$absent_sign." = ขาด, ".$late_sign." = สาย, * วันหยุด
 <table width=\"100%\">
 <tr>
 <td style=\"text-align:center\">
