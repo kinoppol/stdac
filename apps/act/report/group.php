@@ -4,7 +4,7 @@ load_fun('activity');
 $act_id=$hGET['id'];
 $group_id=$hGET['grp_id'];
 
-$check_sign='<img src="'.site_url('images/iconmonstr-check-mark-1.png',true).'" width="10">';
+$check_sign='<img src="'.site_url('images/check-mark.jpg',true).'" width="10">';
 $late_sign='ส';
 $absent_sign='<img src="'.site_url('images/x-symbol.jpg',true).'" width="10">';
 
@@ -188,9 +188,9 @@ foreach($student_data as $std){
 
     }else{
         if($record[$std['student_id']]=='check'){
-            $mark='<img src="'.site_url('images/iconmonstr-check-mark-1.png',true).'" width="10">';
+            $mark='<img src="'.site_url('images/check-mark.jpg',true).'" width="10">';
         }else if(strtotime($ac_data['end_time'])<time()){
-            $mark='<img src="'.site_url('images/cross-mark.png',true).'" width="10">';
+            $mark='<img src="'.site_url('images/x-symbol.jpg',true).'" width="10">';
         }else{
             $mark='';
         }
