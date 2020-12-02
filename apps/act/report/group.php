@@ -126,7 +126,8 @@ if(is_numeric($act_id)){
 }else{
     $cond='student_id in ('.(implode(',',$student_ids)).') AND date_check between '.sQ($semester['semester_start']).' AND '.sQ($semester['semester_end']);
 }
-$check_record=sSelectTb($systemDb,$table,'*',$cond);
+$check_record=sSelectTb($systemDb,$table,'*',$cond,true);
+//print_r($check_record);
 $record=array();
 foreach($check_record as $rec){
     if(is_numeric($act_id)){
@@ -187,10 +188,12 @@ foreach($student_data as $std){
             <td style="text-align:center;">'.(($c/$t*100<$pass_score)?"มผ.":"ผ.").'</td>';
 
     }else{
-        if($record[$std['student_id']]=='check'){
-            $mark='<img src="'.site_url('images/iconmonstr-check-mark-1.png',true).'" width="10">';
+        if(in_array('check',$record[$std['student_id']])){
+            $mark=$check_sign;
+        }else if(in_array('late',$record[$std['student_id']])){
+            $mark=$late_sign;
         }else if(strtotime($ac_data['end_time'])<time()){
-            $mark='<img src="'.site_url('images/cross-mark.png',true).'" width="10">';
+            $mark=$absent_sign;
         }else{
             $mark='';
         }

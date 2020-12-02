@@ -42,7 +42,7 @@ $data=array("head"=>array(
     'id'=>'group_table',
     'item'=>$table_data,
     'pagelength'=>10,
-    'order'=>'[[ 1, "desc" ]]'
+    'order'=>'[[ 0, "asc" ]]'
     );
     print datatable($data);
     ?>

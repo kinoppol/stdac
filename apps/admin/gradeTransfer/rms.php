@@ -2,9 +2,11 @@
 
 $app_name='nutty';
 $act_id=1;
-$url_callback=site_url('ajax/admin/api/rms');
+$semester=$hGET['semester'];
+$url_callback=site_url('ajax/admin/api/rms/semester/'.$semester);
 
 $URL=get_system_config("rms_url").'/api_connection.php?app_name='.$app_name.'&act_id='.$act_id.'&url='.urlencode($url_callback);
 $result = file_get_contents($URL);
-
+$semester=str_replace("-", "/", $hGET['semester']);
+print "โอนผลกิจกรรม ภาคเรียน ".$semester." ";
 print $result;
