@@ -20,7 +20,7 @@ if($hGET['id']=='morningCeremony'||$hGET['id']=='assembly'){
 
 
     if($act_data['group_id']!=''){
-        $groups_selected=json_decode($act_data['group_id']);
+        $groups_selected=json_decode($act_data['group_id'],true);
     }else{
         $groups_selected=array();
     }
@@ -33,6 +33,7 @@ $prefix=array(
     '5'=>'นาง',
 
 );
+//print_r($groups_selected);
 $student_data=sSelectTb($systemDb,'std','*','group_id in ('.implode(',',$groups_selected).') order by student_id asc');
 
 $student_ids=array();
