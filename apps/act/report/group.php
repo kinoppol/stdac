@@ -188,19 +188,12 @@ foreach($student_data as $std){
             <td style="text-align:center;">'.(($c/$t*100<$pass_score)?"มผ.":"ผ.").'</td>';
 
     }else{
-<<<<<<< HEAD
         if(in_array('check',$record[$std['student_id']])){
             $mark=$check_sign;
         }else if(in_array('late',$record[$std['student_id']])){
             $mark=$late_sign;
         }else if(strtotime($ac_data['end_time'])<time()){
             $mark=$absent_sign;
-=======
-        if($record[$std['student_id']]=='check'){
-            $mark='<img src="'.site_url('images/check-mark.jpg',true).'" width="10">';
-        }else if(strtotime($ac_data['end_time'])<time()){
-            $mark='<img src="'.site_url('images/x-symbol.jpg',true).'" width="10">';
->>>>>>> 982fa19141019060ff8f3a149ef4f50055cd01b4
         }else{
             $mark='';
         }
