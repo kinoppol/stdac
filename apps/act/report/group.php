@@ -3,11 +3,17 @@ error_reporting(0);
 load_fun('activity');
 $act_id=$hGET['id'];
 $group_id=$hGET['grp_id'];
+$mode=$hGET['mode'];
 
 $check_sign='<img src="'.site_url('images/check-mark.jpg',true).'" width="10">';
 $late_sign='ส';
 $absent_sign='<img src="'.site_url('images/x-symbol.jpg',true).'" width="10">';
-
+if(isset($mode)&&$mode=='xls'){
+    $check_sign='1';
+    $late_sign='ส';
+    $absent_sign='0';
+    
+}
 $table='entry_record';
 $pageSize="A4";
 $pass_score=get_system_config('pass_score_activity');
@@ -126,7 +132,7 @@ if(is_numeric($act_id)){
 }else{
     $cond='student_id in ('.(implode(',',$student_ids)).') AND date_check between '.sQ($semester['semester_start']).' AND '.sQ($semester['semester_end']);
 }
-$check_record=sSelectTb($systemDb,$table,'*',$cond,true);
+$check_record=sSelectTb($systemDb,$table,'*',$cond);
 //print_r($check_record);
 $record=array();
 foreach($check_record as $rec){
@@ -221,7 +227,13 @@ $html.="
 </table>
 ";
 
-
+if(isset($mode)&&$mode=='xls'){
+    $fname='stdac_report_'.$act_id.'_'.$group_id.'_'.time().'.xls';
+    header('Content-disposition: attachment; filename='.$fname);
+    header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    readfile($fname);
+    print $html;  
+}else{
 load_fun('mpdf');
 $pdf_data=array(
         			   'html'=>$html,
@@ -236,3 +248,4 @@ $pdf_data=array(
                     );
 //print $html;       			   
 genPdf($pdf_data,$pageNo=NULL,$location=$dir,$f_name);
+}

@@ -32,7 +32,8 @@ foreach($groups_selected as $grp){
     $reports[]=array(
     'grp_id'=>$grp,
     'grp_name'=>$groups[$grp]['group_short_name'],
-    'btn'=>'<a href="'.site_url('ajax/act/report/group/id/'.$act_id.'/grp_id/'.$grp).'" target="_blank" class="btn btn-danger"><i class="material-icons">book</i></a>'
+    'btn'=>'<a href="'.site_url('ajax/act/report/group/id/'.$act_id.'/grp_id/'.$grp).'" target="_blank" class="btn btn-danger" title="PDF"><i class="material-icons">book</i></a>
+            <a href="'.site_url('ajax/act/report/group/id/'.$act_id.'/grp_id/'.$grp.'/mode/xls').'" target="_blank" class="btn btn-success" title="Excel"><i class="material-icons">border_all</i></a>'
 );
 }
 $data=array("head"=>array(
