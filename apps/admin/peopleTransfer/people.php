@@ -12,9 +12,12 @@ sDeleteTb($systemDb,"userdata");
 $import_people=0;
 foreach($people_data as $people){
     
-    if($people['useradmin_activity']==1){//1 เฉพาะงานกิจกรรม
+    if($people['useradmin_activity']==1||$people['useradmin_activity']==2){//1 Admin
 
         $user_type="admin";
+    }else if($people['useradmin_activity']==3){//1 Admin
+
+        $user_type="staff";
     }else{
         $user_type="user";
 
