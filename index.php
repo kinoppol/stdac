@@ -12,7 +12,7 @@ define('INDEX_PATH', str_replace('\\','/',dirname(__FILE__)).'/');
 include('system/include/config.php');
 
 $theme=get_system_config("theme");
-print $theme;
+print ">>>>>>>>>".$theme;
 $systemTitle=get_system_config('siteName');
 $systemSubTitle=get_system_config('subName');
 $displayUserName=current_user('name')." ".current_user('surname');
