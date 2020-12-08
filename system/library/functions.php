@@ -360,7 +360,7 @@ function gen_menu($menu_id=NULL, $menu=array(), $def=NULL,$class=NULL) {
     global $prefix;
     
     $query="select * from {$prefix}site_config where config_name='{$name}' limit 1";
-    print $query;
+    //print $query;
     $result=mysqli_query($db,$query);
     
     //print_r( $db);
