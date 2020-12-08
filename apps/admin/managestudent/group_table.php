@@ -14,6 +14,12 @@ foreach($ac_data as $row){
         'onlyClickClose'=>false,
         'src'=>site_url('ajax/admin/managestudent/form/id/'.$row['group_id']),
     );
+    
+    $doc_btn=array(
+        'id'=>'doc',
+        'onlyClickClose'=>false,
+        'src'=>site_url('ajax/admin/managestudent/doc_list/id/'.$row['group_id']),
+    );
     $table_data[]=array(
         //'no'=>$i,
         'group_id'=>$row['group_id'],
@@ -22,7 +28,8 @@ foreach($ac_data as $row){
         'minor_name'=>$row['minor_name'],
         'level_name'=>$row['level_name'],
         '<a href="'.site_url('main/admin/managestudent/view/group/'.$row['group_id']).'" class="btn btn-info"><i class="material-icons">search</i></a> '.
-        '<a '.gen_modal_link($edit_btn).' class="btn btn-warning" title="แก้ไข"><i class="material-icons">build</i></a>'
+        '<a '.gen_modal_link($edit_btn).' class="btn btn-warning" title="แก้ไข"><i class="material-icons">build</i></a>',
+        '<a '.gen_modal_link($doc_btn).' class="btn btn-danger" title="เอกสาร อวท."><i class="material-icons">book</i></a>'
     );
     
 }
@@ -34,6 +41,7 @@ $data=array("head"=>array(
     'สาขางาน',
     'ชั้นปี',
     'จัดการ',
+    'เอกสาร'
     ),
     'id'=>'group_table',
     'item'=>$table_data,

@@ -32,6 +32,13 @@ $data_modal=array(
 
 print gen_modal($data_modal);
 
+$data_modal=array(
+    'id'=>'doc',
+    'title'=>'ใบสมัคร อวท.',
+);
+
+print gen_modal($data_modal);
+
 $systemFoot.="<script>
             $(function(){
                 load_group();
