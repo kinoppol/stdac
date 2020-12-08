@@ -10,9 +10,7 @@ header('Content-Type: text/html; charset=utf-8');
 define('INDEX_PATH', str_replace('\\','/',dirname(__FILE__)).'/');
 
 include('system/include/config.php');
-print "XXXXXXXXXXXX;
 $theme=get_system_config("theme");
-print ">>>>>>>>>".$theme;
 $systemTitle=get_system_config('siteName');
 $systemSubTitle=get_system_config('subName');
 $displayUserName=current_user('name')." ".current_user('surname');
