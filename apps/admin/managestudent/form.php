@@ -1,5 +1,6 @@
 <div id="ajaxResponse">
 </div>
+<div class="card">
 <?php
 load_fun('form');
 $grpId=$hGET['id'];
@@ -96,3 +97,5 @@ print gen_form(array(
     'onSubmit' => $onSubmit,
     'item' => $inputForm
 ));
+?>
+</div>
