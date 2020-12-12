@@ -99,4 +99,16 @@ $systemFoot.="<script>
                 function load_ac(){
                     $('#actable').load('".site_url('ajax/act/list/ac_table')."');
                 }
+        var myInt;
+            function closeAndLoad(){
+                myInt=setInterval(hideModal,2000);
+                //load_ac();
+            }
+
+            function hideModal(){
+                $(\"#addAc\").modal(\"hide\");
+                $(\"#editAc\").modal(\"hide\");
+                document.location.reload();               
+                clearInterval(myInt);
+            }
                 </script>";

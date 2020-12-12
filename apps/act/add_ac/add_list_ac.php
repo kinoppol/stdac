@@ -68,7 +68,7 @@ if($result){
     $data['color']='alert-success';
     $data['text']='&nbsp;บันทึกสำเร็จ';
     print genAlert($data);
-
+/*
     $systemFoot.='
         <script>
         var myInt;
@@ -84,7 +84,7 @@ if($result){
                 clearInterval(myInt);
             }
         </script>
-    ';
+    ';*/
 }else{
     $data['icon']='warning';
     $data['color']='alert-danger';

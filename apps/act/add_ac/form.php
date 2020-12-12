@@ -70,7 +70,7 @@ $inputDetail = array(
     ),
 );
 $onSubmit .= '
-//alert("Save");
+closeAndLoad();
 ';
 $inputForm = genInput($inputDetail, 4, 12);
 
