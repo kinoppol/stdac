@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 22, 2020 at 04:31 PM
+-- Generation Time: Dec 22, 2020 at 04:38 PM
 -- Server version: 5.7.32-0ubuntu0.16.04.1
 -- PHP Version: 7.0.33-0ubuntu0.16.04.16
 
@@ -1260,6 +1260,38 @@ CREATE TABLE `ac_site_config` (
   `detail` text NOT NULL,
   `lastUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ac_site_config`
+--
+
+INSERT INTO `ac_site_config` (`config_name`, `detail`, `lastUpdate`) VALUES
+('active_assembly', 'active', '2020-12-12 08:43:57'),
+('active_morning_ceremony', 'active', '2020-09-25 12:34:02'),
+('activity_absent_signin', '60', '2020-11-29 19:25:37'),
+('activity_after_check', '365', '2020-12-12 08:16:11'),
+('activity_late_score', '50', '2020-11-29 19:25:37'),
+('activity_late_signin', '30', '2020-11-29 19:25:36'),
+('assembly_absent_signin', '60', '2020-11-29 19:26:23'),
+('assembly_after_check', '60', '2020-11-29 19:26:23'),
+('assembly_late_score', '80', '2020-11-29 19:25:37'),
+('assembly_late_signin', '15', '2020-11-29 19:25:37'),
+('current_semester', '2/2563', '2020-12-02 14:11:30'),
+('morning_ceremony_absent_signin', '30', '2020-11-29 19:25:57'),
+('morning_ceremony_after_check', '60', '2020-12-02 00:47:01'),
+('morning_ceremony_early_signin', '10', '2020-11-29 19:25:57'),
+('morning_ceremony_late_score', '50', '2020-11-29 19:25:57'),
+('morning_ceremony_late_signin', '15', '2020-11-29 19:25:57'),
+('pass_score', '60', '2020-01-30 11:50:49'),
+('pass_score_activity', '60', '2020-11-23 18:27:17'),
+('pass_score_assembly', '60', '2020-11-23 18:27:18'),
+('pass_score_morning_ceremony', '60', '2020-11-23 18:27:18'),
+('rms_url', 'https://rms.bncc.ac.th', '2020-01-30 11:50:49'),
+('school_name', 'วิทยาลัยพณิชยการบางนา', '2020-12-08 17:26:01'),
+('siteName', 'Student Activity', '2019-11-11 09:01:54'),
+('siteURL', 'https://stdac.bncc.ac.th', '2019-11-27 10:18:34'),
+('subName', 'SA', '2019-11-11 09:02:23'),
+('theme', 'adminbsb', '2019-11-01 16:18:36');
 
 -- --------------------------------------------------------
 
