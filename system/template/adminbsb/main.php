@@ -54,6 +54,13 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php print $componentURL; ?>css/themes/all-themes.css" rel="stylesheet" />
+    <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+  <style>
+  body{
+    font-family: 'Kanit', sans-serif;
+  }
+  </style>
     <?php print $systemTop; ?>
 </head>
 
