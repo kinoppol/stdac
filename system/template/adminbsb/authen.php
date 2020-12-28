@@ -28,6 +28,13 @@
 
     <!-- Custom Css -->
     <link href="<?php print $componentURL; ?>css/style.css" rel="stylesheet">
+    <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+  <style>
+  body{
+    font-family: 'Kanit', sans-serif;
+  }
+  </style>
 </head>
 
 <body class="login-page">
