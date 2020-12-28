@@ -708,7 +708,7 @@ function base64url_decode($s) {
   return base64_decode(str_replace(array('-', '_'), array('+', '/'), $s));
 }
 
-function isValidNationalId(string $nationalId)
+function isValidNationalId($nationalId)
 {
   if (mb_strlen($nationalId) === 13) {
     $digits = str_split($nationalId);
