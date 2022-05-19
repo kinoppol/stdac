@@ -50,7 +50,7 @@ function gen_sub_menu($arr,$id){
                       <i>'.$sub['title'].'</i>
                   </a>
                   '.
-                  (is_array($sub['item'])&&count($sub['item'])?gen_sub_menu($sub['item'],$id.$k):'')
+                  (!empty($sub['item'])&&is_array($sub['item'])&&count($sub['item'])?gen_sub_menu($sub['item'],$id.$k):'')
                   .'
               </li>
               ';
@@ -70,7 +70,7 @@ function gen_sub_menu($arr,$id){
       $ret='';
       
       foreach($menu as $k=>$grpMenu){
-          if(!$grpMenu['cond']) continue;
+          if(empty($grpMenu['cond'])) continue;
           $currentURI=$template.'/'.$app.'/'.$function.'/'.$file;
           $subMenu='';
           if(isset($grpMenu['item'])&&count($grpMenu['item'])>0){
@@ -83,7 +83,7 @@ function gen_sub_menu($arr,$id){
           if($parentActive!=''){
               $activeMenu=$parentActive;
           }else{
-              if($grpMenu['url']==$currentURI){
+              if(!empty($grpMenu['url'])&&$grpMenu['url']==$currentURI){
                   $activeMenu='active';
               }else{
                  

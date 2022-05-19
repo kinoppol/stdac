@@ -36,12 +36,12 @@
   
 	$logon_data=$userdata;
   $logon_data["time_logon"]=$time_logon;
-  $personal_data=sSelectTb($systemDb,'personal','*','id='.$logon_data['personal_id']);
+  /*$personal_data=sSelectTb($systemDb,'userdata','*','id='.$logon_data['personal_id']);
   $personal_data=$personal_data[0];
 
   
   $logon_data["fname"]=$personal_data['fname'];
-  $logon_data["lname"]=$personal_data['lname'];
+  $logon_data["lname"]=$personal_data['lname'];*/
 	//$logon_data["picture"]=$picture;
 	//$logon_data["picture_file"]=$picture_file;
 	//$logon_data["accession"]=$accession;
@@ -133,7 +133,11 @@
       if(isset($_COOKIE['user']))$user_data=unserialize($_COOKIE['user']);
     //print_r($user_data);
       if(!isset($user_data['id']))return 0;
-      return $user_data[$key];
+      if(!empty($user_data[$key])){
+        return $user_data[$key];
+      }else{
+        return false;
+      }
   }
   
   function update_current_user($data){

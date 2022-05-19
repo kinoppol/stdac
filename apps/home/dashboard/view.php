@@ -48,8 +48,8 @@
                 </div>
                 
                 <?php
-                    $docCount=sSelectTb($systemDb,'files_doc','count(*) as c','owner_id='.current_user('id').' AND type="doc"');
-                    $docCount=$docCount[0];
+                    //$docCount=sSelectTb($systemDb,'files_doc','count(*) as c','owner_id='.current_user('id').' AND type="doc"');
+                    //$docCount=$docCount[0];
                 ?>
                 
                
@@ -83,6 +83,7 @@
                 <!-- #END# Task Info -->
                 <!-- Disk Usage -->
                 <?php
+                /*
                     $docSize=sSelectTb($systemDb,'files_doc','sum(file_size) as c','owner_id='.current_user('id').' AND type="doc"');
                     $docSize=$docSize[0];
                     
@@ -91,41 +92,8 @@
 
                     $totalSize=100*1024*1024;
                     $freeSize=$totalSize-$docSize['c']-$picSize['c'];
+                    */
                 ?>
           
             </div>
             <?php
-            $systemFoot.="<script>
-            $(function(){
-                load_last_transaction();
-            });
-                function load_last_transaction(){
-                    $('#last_transaction').load('".site_url('ajax/home/dashboard/last_transaction')."');
-                }
-            </script>";
-            $systemFoot.="
-            <script>
-            $(function(){
-                initDonutChart();
-            });
-                function initDonutChart() {
-    Morris.Donut({
-        element: 'donut_chart',
-        data: [{
-            label: 'เอกสาร (".formatSizeUnits($docSize['c']).")',
-            value: ".round($docSize['c']/$totalSize*100)."
-        }, {
-            label: 'รูปภาพ (".formatSizeUnits($picSize['c']).")',
-            value: ".round($picSize['c']/$totalSize*100)."
-        }, {
-            label: 'ว่าง (".formatSizeUnits($freeSize).")',
-            value: ".round($freeSize/$totalSize*100)."
-        },],
-        colors: ['rgb(212, 50,50)', 'rgb(50, 180, 50)', 'rgb(0, 152, 212)', 'rgb(0, 150, 136)', 'rgb(96, 125, 139)'],
-        formatter: function (y) {
-            return y + '%'
-        }
-    });
-}
-            </script>
-            ";

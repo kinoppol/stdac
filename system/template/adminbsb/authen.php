@@ -56,5 +56,7 @@
     <script src="<?php print $componentURL; ?>js/admin.js"></script>
     <script src="<?php print $componentURL; ?>js/pages/examples/sign-in.js"></script>
 </body>
-<?php print $systemFoot; ?>
+<?php 
+if(!empty($systemFoot))
+print $systemFoot; ?>
 </html>

@@ -710,6 +710,7 @@ function base64url_decode($s) {
 
 function isValidNationalId($nationalId)
 {
+  if(!is_numeric($nationalId)) return false;
   if (mb_strlen($nationalId) === 13) {
     $digits = str_split($nationalId);
     $lastDigit = array_pop($digits);

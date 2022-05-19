@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $rms=get_system_config("rms_url");
 $people_data=rms_get_data($rms,'nutty','people');
 $people_pro_data=rms_get_data($rms,'nutty','people_pro');
@@ -11,7 +14,6 @@ $total_people=count($people_data);
 sDeleteTb($systemDb,"userdata");
 $import_people=0;
 foreach($people_data as $people){
-    
     if($people['useradmin_activity']==1||$people['useradmin_activity']==2){//1 Admin
 
         $user_type="admin";
@@ -21,10 +23,9 @@ foreach($people_data as $people){
     }else{
         $user_type="user";
 
-        if(!isset($people_pro[$people['people_id']])||//ไม่รับโอนข้อมูลผู้ไม่มีข้อมูลหน้าที่รับผิดชอบ
+        if((is_numeric($people['people_id'])&&(!isset($people_pro[$people['people_id']])||//ไม่รับโอนข้อมูลผู้ไม่มีข้อมูลหน้าที่รับผิดชอบ
         $people_pro[$people['people_id']]==88||//ไม่รับโอนข้อมูลผู้ไม่มีหน้าที่รับผิดชอบ
-        (!isValidNationalId($people['people_id'])&&
-        (is_numeric($people['people_id']))
+        (!isValidNationalId($people['people_id'])))
         ))continue;//ไม่รับโอนข้อมูลที่รหัสประจำตัวประชาชนไม่ถูกต้อง ยกเว้นชาวต่างชาติ
 
     }
@@ -52,10 +53,14 @@ foreach($people_data as $people){
         //print "1".$people['people_user'];
     }else{
         print $systemDb['db']->error;
+        //print "error";
         exit();
     }
 
+    //print "Finish";
 }
+
+print "Finish";
 
 ?>
 

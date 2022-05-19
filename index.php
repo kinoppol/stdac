@@ -4,6 +4,8 @@ print "กำลังปรับปรุงข้อมูล.. รอสั�
 exit();
 }
 $startRender=microtime(true);
+$systemFoot='';
+$systemTop='';
 ob_start();
 session_start();
 header('Content-Type: text/html; charset=utf-8');
