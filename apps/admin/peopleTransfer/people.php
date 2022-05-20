@@ -23,10 +23,11 @@ foreach($people_data as $people){
     }else{
         $user_type="user";
 
-        if((is_numeric($people['people_id'])&&(!isset($people_pro[$people['people_id']])||//ไม่รับโอนข้อมูลผู้ไม่มีข้อมูลหน้าที่รับผิดชอบ
+        if((is_numeric($people['people_id'])&&//ยกเว้นชาวต่างชาติ
+        (!isset($people_pro[$people['people_id']])||//ไม่รับโอนข้อมูลผู้ไม่มีข้อมูลหน้าที่รับผิดชอบ
         $people_pro[$people['people_id']]==88||//ไม่รับโอนข้อมูลผู้ไม่มีหน้าที่รับผิดชอบ
         (!isValidNationalId($people['people_id'])))
-        ))continue;//ไม่รับโอนข้อมูลที่รหัสประจำตัวประชาชนไม่ถูกต้อง ยกเว้นชาวต่างชาติ
+        ))continue;//ไม่รับโอนข้อมูลที่รหัสประจำตัวประชาชนไม่ถูกต้อง 
 
     }
     $data=array(
