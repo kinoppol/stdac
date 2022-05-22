@@ -34,6 +34,26 @@ foreach($ac_data as $row){
         'src'=>site_url('ajax/act/report/summary/id/morningCeremony/gid/'.$row['group_id']),
     );
 
+    $scan_link=gen_modal_link($scan_btn);
+    $scan_color='success';
+    $manual_link=gen_modal_link($check_btn);
+    $manual_color='primary';
+    if(get_system_config("morning_ceremony_force_checking")=='force_in_time'){
+        $start_time=strtotime(get_system_config("morning_ceremony_start_time"));
+        $end_time=strtotime(get_system_config("morning_ceremony_end_time"));
+        $current_time=strtotime(date('H:i'));
+        if($current_time<$start_time||$current_time>$end_time){
+            $scan_link=' href="javascript:alert(\'อนุญาตให้เช็คชื่อในเวลา '.get_system_config("morning_ceremony_start_time").' - '.get_system_config("morning_ceremony_end_time").' เท่านั้น\\n(หากถึงเวลาแล้วยังเช็คชื่อไมได้ให้รีเฟรช)\')"';
+            $scan_color='default';
+            $manual_link=$scan_link;
+            $manual_color='default';
+        }
+        /*
+        print $start_time.'<br>';
+        print $end_time.'<br>';
+        print $current_time.'<br>';
+        */
+    }
     $table_data[]=array(
         //'no'=>$i,
         'group_id'=>$row['group_id'],
@@ -41,8 +61,8 @@ foreach($ac_data as $row){
         'major_name'=>$row['major_name'],
         'minor_name'=>$row['minor_name'],
         'level_name'=>$row['level_name'],
-        '<a '.gen_modal_link($scan_btn).' class="btn btn-success" title="สแกนบัตร"><i class="material-icons">camera</i></a> '.
-        '<a '.gen_modal_link($check_btn).' class="btn btn-primary" title="เช็คชื่อ"><i class="material-icons">check_circle</i></a> '.
+        '<a '.$scan_link.' class="btn btn-'.$scan_color.'" title="สแกนบัตร"><i class="material-icons">camera</i></a> '.
+        '<a '.$manual_link.' class="btn btn-'.$manual_color.'" title="เช็คชื่อ"><i class="material-icons">check_circle</i></a> '.
         '<a '.gen_modal_link($report_btn).' class="btn btn-danger" title="รายงานการเช็คชื่อ"><i class="material-icons">book</i></a> '
     );
     

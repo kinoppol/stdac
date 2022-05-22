@@ -40,6 +40,15 @@ if($_POST['activity_after_check']){
 
 }
 //แถว
+if($_POST['morning_ceremony_start_time']){
+    update_system_config('morning_ceremony_start_time',$_POST['morning_ceremony_start_time']);
+}
+if($_POST['morning_ceremony_end_time']){
+    update_system_config('morning_ceremony_end_time',$_POST['morning_ceremony_end_time']);
+}
+if($_POST['morning_ceremony_force_checking']){
+    update_system_config('morning_ceremony_force_checking',$_POST['morning_ceremony_force_checking']);
+}
 if($_POST['morning_ceremony_early_signin']){
     update_system_config('morning_ceremony_early_signin',$_POST['morning_ceremony_early_signin']);
 }
@@ -55,7 +64,7 @@ if($_POST['morning_ceremony_absent_signin']){
     update_system_config('morning_ceremony_absent_signin',$_POST['morning_ceremony_absent_signin']);
 
 }
-if($_POST['morning_ceremony_after_check']){
+if(!empty($_POST['morning_ceremony_after_check'])||$_POST['morning_ceremony_after_check']==0){
     update_system_config('morning_ceremony_after_check',$_POST['morning_ceremony_after_check']);
 
 }

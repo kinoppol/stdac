@@ -47,7 +47,13 @@ $id=$hGET['id'];
             
             $disable_msg=in_array($date,$holidays)?'(วันหยุด) ':'';
             if(strtotime($date)<(strtotime('- '.$after_check_days.' Days'))){
-                if($disable_msg=='')$disable_msg='(เลยกำหนด '.$after_check_days.' วัน)';
+                if($disable_msg==''){
+                    if($after_check_days>1){
+                        $disable_msg='(เลยกำหนด '.$after_check_days.' วัน) ';
+                    }else{
+                        $disable_msg='(ไม่อนุญาตให้เช็คชื่อย้อนหลัง) ';                        
+                    }
+                }
                 array_push($holidays,$date);
             }if(strtotime($date)<time()&&!in_array($date,$holidays)){
                 $lasted_date=$date;

@@ -60,6 +60,25 @@ if(get_system_config("active_morning_ceremony")=='active'){
             "type"=>"tab-pane",
             "class"=>""
             );
+    $inputDetail['morning_ceremony_start_time'] = array(
+        'label' => 'เวลาเริ่มเข้าแถว',
+        'type' => 'time',
+        'value'=>!empty(get_system_config("morning_ceremony_start_time"))?get_system_config("morning_ceremony_start_time"):'07:30',
+    );
+    $inputDetail['morning_ceremony_end_time'] = array(
+        'label' => 'เวลาสิ้นสุดการเข้าแถว',
+        'type' => 'time',
+        'value'=>!empty(get_system_config("morning_ceremony_end_time"))?get_system_config("morning_ceremony_end_time"):'08:00',
+    );
+    $inputDetail['morning_ceremony_force_checking'] = array(
+        'label' => 'ข้อกำหนดในการเช็คชื่อ',
+        'type' => 'select',
+        'item'=>array(
+            'force_in_time'=>'เช็คชื่อภายในเวลาที่กำหนดเท่านั้น',
+            'force_on_day'=>'เช็คชื่อได้ตลอดวัน',
+        ),
+        'def'=>!empty(get_system_config("morning_ceremony_force_checking"))?get_system_config("morning_ceremony_force_checking"):'force_on_day',
+    );
     $inputDetail['morning_ceremony_early_signin'] = array(
         'label' => 'สแกนบัตรเข้าแถวก่อนถึงเวลาที่กำหนด(นาที)',
         'type' => 'number',
@@ -81,8 +100,9 @@ if(get_system_config("active_morning_ceremony")=='active'){
             'value'=>get_system_config("morning_ceremony_absent_signin")!=''?get_system_config("morning_ceremony_absent_signin"):15,
     );
     $inputDetail['morning_ceremony_after_check'] = array(
-            'label' => 'เช็คชื่อย้อนหลังได้กี่วัน(กรณีเช็คด้วยมือ)',
+            'label' => 'เช็คชื่อย้อนหลังได้กี่วัน(กรณีเช็คด้วยมือ) 1 คือไม่อนุญาตให้เช็คชื่อย้อนหลัง',
             'type' => 'number',
+            'attr' => array('min'=>'1'),
             'value'=>get_system_config("morning_ceremony_after_check")!=''?get_system_config("morning_ceremony_after_check"):7,
     );
 }
