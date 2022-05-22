@@ -80,6 +80,11 @@ $id=$hGET['id'];
 <div id="student_Response">
 โปรดรอสักครู่..
 </div>
+<style>
+.modal {
+  overflow-y:auto;
+}
+</style>
 <?php
 
 
@@ -176,6 +181,7 @@ $("#date_selector").change(function(){
 
     function select_check(select_type,std_id,date){
         $("#optionCheck").modal("hide");
+        $("body").removeClass("modal-open");
         if(select_type=="check"){
             check_std(std_id,date);
         }else if(select_type=="unCheck"){

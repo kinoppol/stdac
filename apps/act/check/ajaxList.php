@@ -104,14 +104,14 @@ foreach($student_data as $std){
 }
 
 $data=array("head"=>array(
-    'เลขที่',
+    'ที่',
     'รหัสนักศึกษา',
     'ชื่อ-สกุล',
     'เช็คชื่อ'
     ),
     'id'=>'std_table',
     'item'=> $students,
-    'pagelength'=>10,
+    'pagelength'=>$std_no>10?'50':10,
     'order'=>'[[ 0, "asc" ]]'
     );
     print datatable($data);

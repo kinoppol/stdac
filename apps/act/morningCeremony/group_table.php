@@ -59,8 +59,8 @@ foreach($ac_data as $row){
         'group_id'=>$row['group_id'],
         'group_short_name'=>$row['group_short_name'],
         'major_name'=>$row['major_name'],
-        'minor_name'=>$row['minor_name'],
-        'level_name'=>$row['level_name'],
+        //'minor_name'=>$row['minor_name'],
+        //'level_name'=>$row['level_name'],
         '<a '.$scan_link.' class="btn btn-'.$scan_color.'" title="สแกนบัตร"><i class="material-icons">camera</i></a> '.
         '<a '.$manual_link.' class="btn btn-'.$manual_color.'" title="เช็คชื่อ"><i class="material-icons">check_circle</i></a> '.
         '<a '.gen_modal_link($report_btn).' class="btn btn-danger" title="รายงานการเช็คชื่อ"><i class="material-icons">book</i></a> '
@@ -72,8 +72,8 @@ $data=array("head"=>array(
     'รหัสกลุ่ม',
     'ชื่อกลุ่ม',
     'สาขาวิชา',
-    'สาขางาน',
-    'ชั้นปี',
+    //'สาขางาน',
+    //'ชั้นปี',
     'จัดการ',
     ),
     'id'=>'group_table',
