@@ -1,10 +1,7 @@
 <?php
+
+
 load_fun('form');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-print 'ERR';
-exit();
 $current_edu_year=date('m')<4?date('Y')+542:date('Y')+543;
             $current_semester=date('m')<10&&date('m')>4?1:2;
             $current_semester=$current_semester.'/'.$current_edu_year;
