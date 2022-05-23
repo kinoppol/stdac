@@ -364,12 +364,12 @@ function gen_menu($menu_id=NULL, $menu=array(), $def=NULL,$class=NULL) {
     $result=mysqli_query($db,$query);
     
     //print_r( $db);
-    $data=mysqli_fetch_array($result);
     if(mysqli_num_rows($result)){
+      $data=mysqli_fetch_array($result);
       if($exist){
         return 1;
       }else{
-        return $data['detail'];
+        return !empty($data['detail'])?$data['detail']:'';
       }
     }else{
     return false;
