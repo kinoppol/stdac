@@ -4,6 +4,7 @@ print "กำลังปรับปรุงข้อมูล.. รอสั�
 exit();
 }
 print 333;
+exit();
 
 $startRender=microtime(true);
 $systemFoot='';
