@@ -78,7 +78,7 @@ if(get_system_config("active_morning_ceremony")=='active'){
             'force_in_time'=>'เช็คชื่อภายในเวลาที่กำหนดเท่านั้น',
             'force_on_day'=>'เช็คชื่อได้ตลอดวัน',
         ),
-        //'def'=>!empty(get_system_config("morning_ceremony_force_checking"))?get_system_config("morning_ceremony_force_checking"):'force_on_day',
+        'def'=>!empty(get_system_config("morning_ceremony_force_checking"))?get_system_config("morning_ceremony_force_checking"):'force_on_day',
     );
     $inputDetail['morning_ceremony_early_signin'] = array(
         'label' => 'สแกนบัตรเข้าแถวก่อนถึงเวลาที่กำหนด(นาที)',
