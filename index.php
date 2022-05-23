@@ -3,6 +3,11 @@ if(0){
 print "กำลังปรับปรุงข้อมูล.. รอสักครู่";
 exit();
 }
+
+load_fun('form');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $startRender=microtime(true);
 $systemFoot='';
 $systemTop='';
