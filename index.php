@@ -3,6 +3,7 @@ if(0){
 print "กำลังปรับปรุงข้อมูล.. รอสักครู่";
 exit();
 }
+print 333;
 
 $startRender=microtime(true);
 $systemFoot='';
