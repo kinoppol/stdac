@@ -233,11 +233,13 @@ input[type=checkbox] {
 		<input type="text" name="db_name" placeholder="Database name" id="db_name" required>
 		<input type="text" name="tb_prefix" placeholder="table prefix" id="tb_prefix" value="sa_">
 		<input type="text" name="rms_url" placeholder="ระบุลิงก์ไปยังระบบ RMS" id="rms_url" required>
+		<!--
 		<button class="login login-check" type="button" id="chk_url">ตรวจสอบ URL</button>
 		<select name="school_id" disabled>
 	  		<option value="00">เลือกสถานศึกษา</option>
 		</select>
-		<input type="submit" name="continue" class="login login-submit" value="ดำเนินการต่อ" id="continue" disabled>
+-->
+		<input type="submit" name="continue" class="login login-submit" value="ดำเนินการต่อ" id="continue">
 	  </form>
 	</div>
 </div>
