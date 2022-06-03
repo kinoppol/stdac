@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 22, 2020 at 04:38 PM
--- Server version: 5.7.32-0ubuntu0.16.04.1
--- PHP Version: 7.0.33-0ubuntu0.16.04.16
+-- Host: 127.0.0.1
+-- Generation Time: Jun 03, 2022 at 07:35 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,26 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_activity`
+-- Table structure for table `sa_activity`
 --
 
-CREATE TABLE `ac_activity` (
+CREATE TABLE `sa_activity` (
   `id` int(11) NOT NULL,
   `name` varchar(1000) NOT NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   `semester` char(1) NOT NULL,
   `year` char(4) NOT NULL,
-  `group_id` text
+  `group_id` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_checker`
+-- Table structure for table `sa_checker`
 --
 
-CREATE TABLE `ac_checker` (
+CREATE TABLE `sa_checker` (
   `group_id` varchar(20) NOT NULL,
   `semester` varchar(10) NOT NULL,
   `morning_ceremony_checker` text NOT NULL COMMENT 'ผู้เช็คชื่อกิจกรรมหน้าเสาธง',
@@ -54,22 +55,22 @@ CREATE TABLE `ac_checker` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_district`
+-- Table structure for table `sa_district`
 --
 
-CREATE TABLE `ac_district` (
+CREATE TABLE `sa_district` (
   `district_code` varchar(4) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสอำเภอ',
   `district_name` varchar(150) CHARACTER SET utf8 NOT NULL COMMENT 'ชื่ออำเภอ',
   `postcode` varchar(5) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสไปรษณีย์',
-  `geo_id` int(5) NOT NULL DEFAULT '0',
+  `geo_id` int(5) NOT NULL DEFAULT 0,
   `province_code` varchar(5) CHARACTER SET utf8 NOT NULL DEFAULT '0' COMMENT 'รหัสจังหวัด'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ac_district`
+-- Dumping data for table `sa_district`
 --
 
-INSERT INTO `ac_district` (`district_code`, `district_name`, `postcode`, `geo_id`, `province_code`) VALUES
+INSERT INTO `sa_district` (`district_code`, `district_name`, `postcode`, `geo_id`, `province_code`) VALUES
 ('1001', 'เขตพระนคร', '10200', 2, '10'),
 ('1002', 'เขตดุสิต', '10300', 2, '10'),
 ('1003', 'เขตหนองจอก', '10530', 2, '10'),
@@ -1067,10 +1068,10 @@ INSERT INTO `ac_district` (`district_code`, `district_name`, `postcode`, `geo_id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_entry_record`
+-- Table structure for table `sa_entry_record`
 --
 
-CREATE TABLE `ac_entry_record` (
+CREATE TABLE `sa_entry_record` (
   `act_id` int(11) NOT NULL,
   `student_id` varchar(20) NOT NULL,
   `time_entry` datetime NOT NULL,
@@ -1083,10 +1084,10 @@ CREATE TABLE `ac_entry_record` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_entry_record_as`
+-- Table structure for table `sa_entry_record_as`
 --
 
-CREATE TABLE `ac_entry_record_as` (
+CREATE TABLE `sa_entry_record_as` (
   `student_id` varchar(20) NOT NULL,
   `date_check` date NOT NULL,
   `time_entry` datetime DEFAULT NULL,
@@ -1099,10 +1100,10 @@ CREATE TABLE `ac_entry_record_as` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_entry_record_mc`
+-- Table structure for table `sa_entry_record_mc`
 --
 
-CREATE TABLE `ac_entry_record_mc` (
+CREATE TABLE `sa_entry_record_mc` (
   `student_id` varchar(20) NOT NULL,
   `date_check` date NOT NULL,
   `time_entry` datetime DEFAULT NULL,
@@ -1115,10 +1116,10 @@ CREATE TABLE `ac_entry_record_mc` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_group`
+-- Table structure for table `sa_group`
 --
 
-CREATE TABLE `ac_group` (
+CREATE TABLE `sa_group` (
   `group_id` varchar(10) NOT NULL,
   `group_short_name` varchar(100) NOT NULL,
   `major_name` varchar(100) NOT NULL,
@@ -1129,10 +1130,10 @@ CREATE TABLE `ac_group` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_holiday`
+-- Table structure for table `sa_holiday`
 --
 
-CREATE TABLE `ac_holiday` (
+CREATE TABLE `sa_holiday` (
   `holiday_date` date NOT NULL,
   `semester` varchar(10) NOT NULL,
   `holiday_name` varchar(100) NOT NULL,
@@ -1142,22 +1143,22 @@ CREATE TABLE `ac_holiday` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_province`
+-- Table structure for table `sa_province`
 --
 
-CREATE TABLE `ac_province` (
+CREATE TABLE `sa_province` (
   `province_code` varchar(2) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสจังหวัด',
   `province_name` varchar(150) CHARACTER SET utf8 NOT NULL COMMENT 'ชื่อจังหวัด',
-  `zone_id` int(5) NOT NULL DEFAULT '0' COMMENT 'รหัสภาค',
+  `zone_id` int(5) NOT NULL DEFAULT 0 COMMENT 'รหัสภาค',
   `latitude` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT 'พิกัด',
   `longitude` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT 'พิกัด'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ac_province`
+-- Dumping data for table `sa_province`
 --
 
-INSERT INTO `ac_province` (`province_code`, `province_name`, `zone_id`, `latitude`, `longitude`) VALUES
+INSERT INTO `sa_province` (`province_code`, `province_name`, `zone_id`, `latitude`, `longitude`) VALUES
 ('50', 'เชียงใหม่', 2, '18.7877477', '98.99313110000003'),
 ('57', 'เชียงราย', 2, '19.9071656', '99.83095500000002'),
 ('76', 'เพชรบุรี', 1, '13.1111601', '99.93913069999996'),
@@ -1239,10 +1240,10 @@ INSERT INTO `ac_province` (`province_code`, `province_name`, `zone_id`, `latitud
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_semester`
+-- Table structure for table `sa_semester`
 --
 
-CREATE TABLE `ac_semester` (
+CREATE TABLE `sa_semester` (
   `semester_start` date NOT NULL,
   `semester_end` date NOT NULL,
   `semester_eduyear` varchar(6) NOT NULL,
@@ -1252,20 +1253,20 @@ CREATE TABLE `ac_semester` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_site_config`
+-- Table structure for table `sa_site_config`
 --
 
-CREATE TABLE `ac_site_config` (
+CREATE TABLE `sa_site_config` (
   `config_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `detail` text NOT NULL,
-  `lastUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `lastUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `ac_site_config`
+-- Dumping data for table `sa_site_config`
 --
 
-INSERT INTO `ac_site_config` (`config_name`, `detail`, `lastUpdate`) VALUES
+INSERT INTO `sa_site_config` (`config_name`, `detail`, `lastUpdate`) VALUES
 ('active_assembly', 'active', '2020-12-12 08:43:57'),
 ('active_morning_ceremony', 'active', '2020-09-25 12:34:02'),
 ('activity_absent_signin', '60', '2020-11-29 19:25:37'),
@@ -1276,30 +1277,33 @@ INSERT INTO `ac_site_config` (`config_name`, `detail`, `lastUpdate`) VALUES
 ('assembly_after_check', '60', '2020-11-29 19:26:23'),
 ('assembly_late_score', '80', '2020-11-29 19:25:37'),
 ('assembly_late_signin', '15', '2020-11-29 19:25:37'),
-('current_semester', '2/2563', '2020-12-02 14:11:30'),
+('current_semester', '1/2565', '2022-05-17 00:44:27'),
 ('morning_ceremony_absent_signin', '30', '2020-11-29 19:25:57'),
-('morning_ceremony_after_check', '60', '2020-12-02 00:47:01'),
+('morning_ceremony_after_check', '15', '2022-06-01 01:02:42'),
 ('morning_ceremony_early_signin', '10', '2020-11-29 19:25:57'),
+('morning_ceremony_end_time', '08:00', '2022-05-22 18:08:15'),
+('morning_ceremony_force_checking', 'force_in_time', '2022-05-31 07:04:17'),
 ('morning_ceremony_late_score', '50', '2020-11-29 19:25:57'),
 ('morning_ceremony_late_signin', '15', '2020-11-29 19:25:57'),
+('morning_ceremony_start_time', '07:30', '2022-05-22 18:08:15'),
 ('pass_score', '60', '2020-01-30 11:50:49'),
 ('pass_score_activity', '60', '2020-11-23 18:27:17'),
 ('pass_score_assembly', '60', '2020-11-23 18:27:18'),
 ('pass_score_morning_ceremony', '60', '2020-11-23 18:27:18'),
-('rms_url', 'https://rms.bncc.ac.th', '2020-01-30 11:50:49'),
+('rms_url', 'RMS_URL', '2020-01-30 11:50:49'),
 ('school_name', 'วิทยาลัยพณิชยการบางนา', '2020-12-08 17:26:01'),
 ('siteName', 'Student Activity', '2019-11-11 09:01:54'),
-('siteURL', 'https://stdac.bncc.ac.th', '2019-11-27 10:18:34'),
+('siteURL', 'SITE_URL', '2019-11-27 10:18:34'),
 ('subName', 'SA', '2019-11-11 09:02:23'),
 ('theme', 'adminbsb', '2019-11-01 16:18:36');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_std`
+-- Table structure for table `sa_std`
 --
 
-CREATE TABLE `ac_std` (
+CREATE TABLE `sa_std` (
   `student_id` varchar(100) NOT NULL,
   `prefix_id` char(1) DEFAULT NULL,
   `gender_id` int(11) DEFAULT NULL,
@@ -1324,10 +1328,10 @@ CREATE TABLE `ac_std` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_std_register`
+-- Table structure for table `sa_std_register`
 --
 
-CREATE TABLE `ac_std_register` (
+CREATE TABLE `sa_std_register` (
   `id` int(11) NOT NULL,
   `qr_code` varchar(100) NOT NULL,
   `std_code` varchar(100) NOT NULL,
@@ -1338,22 +1342,22 @@ CREATE TABLE `ac_std_register` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_subdistrict`
+-- Table structure for table `sa_subdistrict`
 --
 
-CREATE TABLE `ac_subdistrict` (
+CREATE TABLE `sa_subdistrict` (
   `subdistrict_code` varchar(6) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสตำบล',
   `subdistrict_name` varchar(150) CHARACTER SET utf8 NOT NULL COMMENT 'ชื่อตำบล',
   `district_code` varchar(10) CHARACTER SET utf8 NOT NULL DEFAULT '0' COMMENT 'รหัสอำเภอ',
   `province_code` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสจังหวัด',
-  `geo_id` int(5) NOT NULL DEFAULT '0' COMMENT 'รหัสภาค'
+  `geo_id` int(5) NOT NULL DEFAULT 0 COMMENT 'รหัสภาค'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ac_subdistrict`
+-- Dumping data for table `sa_subdistrict`
 --
 
-INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
+INSERT INTO `sa_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
 ('100101', 'พระบรมมหาราชวัง', '1001', '10', 2),
 ('100102', 'วังบูรพาภิรมย์   ', '1001', '10', 2),
 ('100103', 'วัดราชบพิธ   ', '1001', '10', 2),
@@ -2541,7 +2545,7 @@ INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_
 ('201102', 'ท่าบุญมี   ', '2011', '20', 5),
 ('207201', 'หนองปรือ*   ', '2072', '20', 5),
 ('210101', 'ท่าประดู่   ', '2101', '21', 5);
-INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
+INSERT INTO `sa_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
 ('210102', 'เชิงเนิน   ', '2101', '21', 5),
 ('210103', 'ตะพง   ', '2101', '21', 5),
 ('210104', 'ปากน้ำ   ', '2101', '21', 5),
@@ -3737,7 +3741,7 @@ INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_
 ('320310', 'ทุ่งกุลา   ', '3203', '32', 3),
 ('320401', 'จอมพระ   ', '3204', '32', 3),
 ('320402', 'เมืองลีง   ', '3204', '32', 3);
-INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
+INSERT INTO `sa_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
 ('320403', 'กระหาด   ', '3204', '32', 3),
 ('320404', 'บุแกรง   ', '3204', '32', 3),
 ('320405', 'หนองสนิท   ', '3204', '32', 3),
@@ -4952,7 +4956,7 @@ INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_
 ('401008', 'บ้านหัน*   ', '4010', '40', 3),
 ('401009', 'บ้านลาน   ', '4010', '40', 3),
 ('401010', 'แคนเหนือ   ', '4010', '40', 3);
-INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
+INSERT INTO `sa_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
 ('401011', 'ภูเหล็ก   ', '4010', '40', 3),
 ('401012', '*หนองแซง   ', '4010', '40', 3),
 ('401013', 'ป่าปอ   ', '4010', '40', 3),
@@ -6158,7 +6162,7 @@ INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_
 ('470106', 'เชียงเครือ   ', '4701', '47', 3),
 ('470107', 'ท่าแร่   ', '4701', '47', 3),
 ('470108', '*บ้านโพน   ', '4701', '47', 3);
-INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
+INSERT INTO `sa_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
 ('470109', 'ม่วงลาย   ', '4701', '47', 3),
 ('470110', 'กกปลาซิว*   ', '4701', '47', 3),
 ('470111', 'ดงชน   ', '4701', '47', 3),
@@ -7368,7 +7372,7 @@ INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_
 ('571108', 'เวียงกาหลง*   ', '5711', '57', 1),
 ('571201', 'แม่เปา   ', '5712', '57', 1),
 ('571202', 'แม่ต๋ำ   ', '5712', '57', 1);
-INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
+INSERT INTO `sa_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
 ('571203', 'ไม้ยา   ', '5712', '57', 1),
 ('571204', 'เม็งราย   ', '5712', '57', 1),
 ('571205', 'ตาดควัน   ', '5712', '57', 1),
@@ -8564,7 +8568,7 @@ INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_
 ('720802', 'วังลึก   ', '7208', '72', 2),
 ('720803', 'สามชุก   ', '7208', '72', 2),
 ('720804', 'หนองผักนาก   ', '7208', '72', 2);
-INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
+INSERT INTO `sa_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
 ('720805', 'บ้านสระ   ', '7208', '72', 2),
 ('720806', 'หนองสะเดา   ', '7208', '72', 2),
 ('720807', 'กระเสียว   ', '7208', '72', 2),
@@ -9767,7 +9771,7 @@ INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_
 ('920120', 'นาท่ามใต้   ', '9201', '92', 6),
 ('920121', '*ช่อง   ', '9201', '92', 6),
 ('920194', '*นาข้าวเสีย   ', '9201', '92', 6);
-INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
+INSERT INTO `sa_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_code`, `province_code`, `geo_id`) VALUES
 ('920195', '*โคกสะบ้า   ', '9201', '92', 6),
 ('920196', '*ละมอ   ', '9201', '92', 6),
 ('920197', '*นาหมื่นศรี   ', '9201', '92', 6),
@@ -10226,10 +10230,10 @@ INSERT INTO `ac_subdistrict` (`subdistrict_code`, `subdistrict_name`, `district_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ac_userdata`
+-- Table structure for table `sa_userdata`
 --
 
-CREATE TABLE `ac_userdata` (
+CREATE TABLE `sa_userdata` (
   `id` int(11) NOT NULL COMMENT 'รหัสผู้ใช้',
   `people_id` varchar(13) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL COMMENT 'ชื่อผู้ใช้',
@@ -10249,76 +10253,76 @@ CREATE TABLE `ac_userdata` (
 --
 
 --
--- Indexes for table `ac_activity`
+-- Indexes for table `sa_activity`
 --
-ALTER TABLE `ac_activity`
+ALTER TABLE `sa_activity`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ac_checker`
+-- Indexes for table `sa_checker`
 --
-ALTER TABLE `ac_checker`
+ALTER TABLE `sa_checker`
   ADD PRIMARY KEY (`group_id`,`semester`);
 
 --
--- Indexes for table `ac_entry_record`
+-- Indexes for table `sa_entry_record`
 --
-ALTER TABLE `ac_entry_record`
+ALTER TABLE `sa_entry_record`
   ADD UNIQUE KEY `act_id` (`act_id`,`student_id`,`time_entry`);
 
 --
--- Indexes for table `ac_entry_record_as`
+-- Indexes for table `sa_entry_record_as`
 --
-ALTER TABLE `ac_entry_record_as`
+ALTER TABLE `sa_entry_record_as`
   ADD UNIQUE KEY `student_id` (`student_id`,`date_check`);
 
 --
--- Indexes for table `ac_entry_record_mc`
+-- Indexes for table `sa_entry_record_mc`
 --
-ALTER TABLE `ac_entry_record_mc`
+ALTER TABLE `sa_entry_record_mc`
   ADD UNIQUE KEY `student_id` (`student_id`,`date_check`);
 
 --
--- Indexes for table `ac_group`
+-- Indexes for table `sa_group`
 --
-ALTER TABLE `ac_group`
+ALTER TABLE `sa_group`
   ADD PRIMARY KEY (`group_id`);
 
 --
--- Indexes for table `ac_holiday`
+-- Indexes for table `sa_holiday`
 --
-ALTER TABLE `ac_holiday`
+ALTER TABLE `sa_holiday`
   ADD PRIMARY KEY (`holiday_date`);
 
 --
--- Indexes for table `ac_semester`
+-- Indexes for table `sa_semester`
 --
-ALTER TABLE `ac_semester`
+ALTER TABLE `sa_semester`
   ADD PRIMARY KEY (`semester_eduyear`);
 
 --
--- Indexes for table `ac_site_config`
+-- Indexes for table `sa_site_config`
 --
-ALTER TABLE `ac_site_config`
+ALTER TABLE `sa_site_config`
   ADD PRIMARY KEY (`config_name`),
   ADD UNIQUE KEY `config_name` (`config_name`);
 
 --
--- Indexes for table `ac_std`
+-- Indexes for table `sa_std`
 --
-ALTER TABLE `ac_std`
+ALTER TABLE `sa_std`
   ADD PRIMARY KEY (`student_id`);
 
 --
--- Indexes for table `ac_std_register`
+-- Indexes for table `sa_std_register`
 --
-ALTER TABLE `ac_std_register`
+ALTER TABLE `sa_std_register`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ac_userdata`
+-- Indexes for table `sa_userdata`
 --
-ALTER TABLE `ac_userdata`
+ALTER TABLE `sa_userdata`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `people_id` (`people_id`);
@@ -10328,20 +10332,24 @@ ALTER TABLE `ac_userdata`
 --
 
 --
--- AUTO_INCREMENT for table `ac_activity`
+-- AUTO_INCREMENT for table `sa_activity`
 --
-ALTER TABLE `ac_activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+ALTER TABLE `sa_activity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `ac_std_register`
+-- AUTO_INCREMENT for table `sa_std_register`
 --
-ALTER TABLE `ac_std_register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `sa_std_register`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `ac_userdata`
+-- AUTO_INCREMENT for table `sa_userdata`
 --
-ALTER TABLE `ac_userdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสผู้ใช้', AUTO_INCREMENT=2335;
+ALTER TABLE `sa_userdata`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสผู้ใช้';
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

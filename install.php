@@ -38,7 +38,7 @@ fclose($setupFile);
 
 
 $SQL=file_get_contents("sample.sql");
-$SQL=str_replace('`ac_','`'.$tb_prefix,$SQL);
+$SQL=str_replace('`sa_','`'.$tb_prefix,$SQL);
 $SQL=str_replace('RMS_URL',$rms_url,$SQL);
 $SQL=str_replace('SITE_URL',$site_url,$SQL);
 //print $SQL;
