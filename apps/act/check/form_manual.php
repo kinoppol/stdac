@@ -70,13 +70,25 @@ $id=$hGET['id'];
         <select>";
     }
 
+    $actType=array(
+        'activity'=>'activity',
+        'morningCeremony'=>'morning_ceremony',
+        'assembly'=>'morning_ceremony',
+    );
+
     print  $date_select;
+    //print $actType[$hGET['id']]."_check_all";
+    if(get_system_config($actType[$hGET['id']]."_check_all")!='deny'){
 ?>
+
 <div id="chk_all">
 <a href="#"
          onClick="check_all_std()"><i class="material-icons col-black">check_box_outline_blank</i></a> เช็คชื่อให้ทุกคน
         </a>
 </div>
+<?php
+    }
+?>
 <div id="student_Response">
 โปรดรอสักครู่..
 </div>

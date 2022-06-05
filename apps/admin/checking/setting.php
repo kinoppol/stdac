@@ -35,6 +35,15 @@ $inputDetail = array(
             'type' => 'number',
             'value'=>get_system_config("activity_late_signin")!=''?get_system_config("activity_late_signin"):15,
     ),
+    'activity_check_all' => array(
+        'label' => 'ปุ่มเช็คชื่อให้ทุกคน',
+        'type' => 'select',
+        'item'=>array(
+            'allow'=>'อนุญาตให้ใช้ปุ่มเช็คชื่อให้ทุกคน',
+            'deny'=>'ไม่อนุญาตให้ใช้',
+        ),
+        'def'=>get_system_config("activity_check_all")!=''?get_system_config("activity_check_all"):'allow',
+    ),
     'activity_late_score' => array(
             'label' => 'ร้อยละของการเข้าร่วมกิจกรรมในกรณีเข้าร่วมฯ สาย (เมื่อเข้าร่วมฯ ปกติคือร้อยละ 100)',
             'type' => 'number',
@@ -70,6 +79,15 @@ if(get_system_config("active_morning_ceremony")=='active'){
         'label' => 'เวลาสิ้นสุดการเข้าแถว',
         'type' => 'time',
         'value'=>get_system_config("morning_ceremony_end_time")!=''?get_system_config("morning_ceremony_end_time"):'08:00',
+    );
+    $inputDetail['morning_ceremony_check_all'] = array(
+        'label' => 'ปุ่มเช็คชื่อให้ทุกคน',
+        'type' => 'select',
+        'item'=>array(
+            'allow'=>'อนุญาตให้ใช้ปุ่มเช็คชื่อให้ทุกคน',
+            'deny'=>'ไม่อนุญาตให้ใช้',
+        ),
+        'def'=>get_system_config("morning_ceremony_check_all")!=''?get_system_config("morning_ceremony_check_all"):'allow',
     );
     $inputDetail['morning_ceremony_force_checking'] = array(
         'label' => 'ข้อกำหนดในการเช็คชื่อ',
@@ -124,6 +142,15 @@ if(get_system_config("active_assembly")=='active'){
             'label' => 'สแกนบัตรเข้าคาบกิจกรรมสายเมื่อเลยเวลาที่กำหนดไปแล้ว(นาที)',
             'type' => 'number',
             'value'=>get_system_config("assembly_late_signin")!=''?get_system_config("assembly_late_signin"):15,
+    );
+    $inputDetail['assembly_check_all'] = array(
+        'label' => 'ปุ่มเช็คชื่อให้ทุกคน',
+        'type' => 'select',
+        'item'=>array(
+            'allow'=>'อนุญาตให้ใช้ปุ่มเช็คชื่อให้ทุกคน',
+            'deny'=>'ไม่อนุญาตให้ใช้',
+        ),
+        'def'=>get_system_config("assembly_check_all")!=''?get_system_config("assembly_check_all"):'allow',
     );
     $inputDetail['assembly_late_score']=array(
             'label' => 'ร้อยละของการเข้าร่วมคาบกิจกรรมในกรณีเข้าร่วมฯ สาย (เมื่อเข้าร่วมฯ ปกติคือร้อยละ 100)',

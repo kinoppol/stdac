@@ -49,7 +49,7 @@ function get_include_contents($filename) {
   if($htacceassConfig){
   $hGET=array_reverse($_GET);
   }else{
-    $str=explode('/',$_GET['p']);
+    empty($_GET['p'])?$str=array():$str=explode('/',$_GET['p']);
     $num=0;
     $hGET=array();
     foreach($str as $v){

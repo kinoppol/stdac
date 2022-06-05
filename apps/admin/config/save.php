@@ -25,8 +25,12 @@ if($_POST['activity_early_signin']){
 }
 if($_POST['activity_late_signin']){
     update_system_config('activity_late_signin',$_POST['activity_late_signin']);
-
 }
+
+if($_POST['activity_check_all']){
+    update_system_config('activity_check_all',$_POST['activity_check_all']);
+}
+
 if($_POST['activity_late_score']){
     update_system_config('activity_late_score',$_POST['activity_late_score']);
 
@@ -48,6 +52,10 @@ if($_POST['morning_ceremony_end_time']){
 }
 if($_POST['morning_ceremony_force_checking']){
     update_system_config('morning_ceremony_force_checking',$_POST['morning_ceremony_force_checking']);
+}
+
+if($_POST['morning_ceremony_check_all']){
+    update_system_config('morning_ceremony_check_all',$_POST['morning_ceremony_check_all']);
 }
 if($_POST['morning_ceremony_early_signin']){
     update_system_config('morning_ceremony_early_signin',$_POST['morning_ceremony_early_signin']);
@@ -76,6 +84,11 @@ if($_POST['assembly_late_signin']){
     update_system_config('assembly_late_signin',$_POST['assembly_late_signin']);
 
 }
+
+if($_POST['assembly_check_all']){
+    update_system_config('assembly_check_all',$_POST['assembly_check_all']);
+}
+
 if($_POST['assembly_late_score']){
     update_system_config('assembly_late_score',$_POST['assembly_late_score']);
 
