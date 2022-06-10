@@ -52,7 +52,7 @@ foreach($ac_data as $row){
 
 $ac_row=array(
     'no'=>$i,
-    'name'=>'<span title="'.strlim($row['name']).'">'.strlim($row['name'],50).'</span>',
+    'name'=>'<span title="'.$row['name'].'">'.strlim($row['name'],50).'</span>',
     'start_time'=>mb_substr($row['start_time'],0,10).'<br>เวลา '.mb_substr($row['start_time'],11,5).' น.',
     'end_time'=>mb_substr($row['end_time'],0,10).'<br>เวลา '.mb_substr($row['end_time'],11,5).' น.',
     'semester'=>$row['semester'].'/'.$row['year'],
