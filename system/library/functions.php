@@ -431,7 +431,7 @@ function strLim($str,$lim=NULL,$tail='..',$returnArray=false,$psSign=''){
    $orgStr=$str;
     if($lim){
         if(mb_strlen($str)>$lim){
-            $str=mb_substr($str,0,$lim-mb_strlen($tail)).$tail.$psSign;
+            $str=mb_substr($str,0,$lim-mb_strlen($tail),'utf-8').$tail.$psSign;
         }
     }
     if($returnArray){
