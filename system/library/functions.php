@@ -430,7 +430,7 @@ function includeAppLib($appName){
 function strLim($str,$lim=NULL,$tail='..',$returnArray=false,$psSign=''){
    $orgStr=$str;
     if($lim){
-        if(mb_strlen($str)>$lim){
+        if(mb_strlen($str,'utf-8')>$lim){
             $str=mb_substr($str,0,$lim-mb_strlen($tail),'utf-8').$tail.$psSign;
         }
     }
