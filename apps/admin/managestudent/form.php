@@ -1,6 +1,11 @@
+<div class="container-fluid">
 <div id="ajaxResponse">
 </div>
+
+<div class="row clearfix">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div class="card">
+<div class="body">
 <?php
 load_fun('form');
 $grpId=$hGET['id'];
@@ -80,7 +85,7 @@ $inputDetail = array(
     'submit' => array(
         'label' => '&nbsp;',
         'type' => 'submit',
-        'value' => 'บันทึกกิจกรรม'
+        'value' => 'บันทึกข้อมูล'
     ),
 );
 $onSubmit .= '
@@ -98,4 +103,8 @@ print gen_form(array(
     'item' => $inputForm
 ));
 ?>
+</div>
+</div>
+</div>
+</div>
 </div>

@@ -1,6 +1,11 @@
+<div class="container-fluid">
 <div id="ajaxResponse">
 </div>
+
+<div class="row clearfix">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <div class="card">
+<div class="body">
 <?php
 load_fun('form');
 $acId=$hGET['id'];
@@ -84,4 +89,8 @@ print genForm(array(
     'item' => $inputForm
 ));
 ?>
+</div>
+</div>
+</div>
+</div>
 </div>

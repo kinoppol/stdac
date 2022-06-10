@@ -73,12 +73,15 @@ $id=$hGET['id'];
     $actType=array(
         'activity'=>'activity',
         'morningCeremony'=>'morning_ceremony',
-        'assembly'=>'morning_ceremony',
+        'assembly'=>'assembly',
     );
-
+    $actTypeName=$actType[$hGET['id']];
     print  $date_select;
     //print $actType[$hGET['id']]."_check_all";
-    if(get_system_config($actType[$hGET['id']]."_check_all")!='deny'){
+    if(is_numeric($hGET['id'])){
+        $actTypeName='activity';
+    }
+    if(get_system_config($actTypeName."_check_all")!='deny'){
 ?>
 
 <div id="chk_all">

@@ -52,9 +52,9 @@ foreach($ac_data as $row){
 
 $ac_row=array(
     'no'=>$i,
-    'name'=>strlim($row['name'],50),
-    'start_time'=>$row['start_time'],
-    'end_time'=>$row['end_time'],
+    'name'=>'<span title="'.strlim($row['name']).'">'.strlim($row['name'],50).'</span>',
+    'start_time'=>mb_substr($row['start_time'],0,10).'<br>เวลา '.mb_substr($row['start_time'],11,5).' น.',
+    'end_time'=>mb_substr($row['end_time'],0,10).'<br>เวลา '.mb_substr($row['end_time'],11,5).' น.',
     'semester'=>$row['semester'].'/'.$row['year'],
     '<a '.gen_modal_link($scan_btn).' class="btn btn-success" title="สแกนบัตร"><i class="material-icons">camera</i></a> '.
     '<a '.gen_modal_link($check_btn).' class="btn btn-primary" title="เช็คชื่อ"><i class="material-icons">check_circle</i></a> '.

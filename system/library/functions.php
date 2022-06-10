@@ -495,7 +495,7 @@ function gen_modal($data){
 	global $systemFoot;
 	global $systemTop;
 	$ret='<div class="modal fade" id="'.$data['id'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
     <div class="modal-content">
       <div class="modal-header">
         

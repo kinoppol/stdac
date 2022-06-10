@@ -42,8 +42,8 @@
         			if($row['type']!="hidden"){
 						//if($input_number>0)$ret.='<br>';
 						$input_number++;
-        			$ret.="<h2 class=\"card-inside-title\">".$row['label']."</h2>";
-        		$ret.="<div class=\"col-sm-12\"><div class=\"form-group\"><div class=\"form-line\">";
+        			$ret.="<label for=\"".$k."\">".$row['label']."</label>";
+        		$ret.="<div class=\"form-group\"><div class=\"form-line\">";
         		//$ret.="<label for=\"".$k."\" class=\"col-md-".($row['btLW']?$row['btLW']:$labelW)." control-label\">".$row['label']."</label>";
         		//$ret.="<div class=\"col-xs-".($row['btIW']?$row['btIW']:$inputW)." col-sm-".($row['btIW']?$row['btIW']:$inputW)." col-md-".($row['btIW']?$row['btIW']:$inputW)."  input-group\">";
         			}
@@ -248,7 +248,7 @@ editor".$k.".setOption(\"theme\", \"midnight\");
                 <i class="'.$row['icon'].'"></i>
               </button>';*/
                     if($row['type']!="hidden"){
-				$ret.="</div></div></div>
+				$ret.="</div></div>
 				";
                     }
         		/*
@@ -286,7 +286,7 @@ editor".$k.".setOption(\"theme\", \"midnight\");
         		}else{
         		   $enc='';
         		}
-        		$ret.="<form id='".$data['id']."' action='".$data['action']."' target='".$data['target']."' ".$attr." class=\"form-horizontal\" ".$enc."  role=\"form\" method='".$data['method']."'>";
+        		$ret.="<form id='".$data['id']."' action='".$data['action']."' target='".$data['target']."' ".$attr." ".$enc."  role=\"form\" method='".$data['method']."'>";
         		//$ret.="<div class=\"box-body\">";
         		
         			$ret.=$data['item'];
@@ -387,7 +387,7 @@ function showUpdate(txt){
         		}else{
         		   $enc='';
         		}
-        		$ret.="<form id='".$data['id']."' action='".$data['action']."' ".$attr." class=\"form-horizontal\" ".$enc."  role=\"form\" method='".$data['method']."'>";
+        		$ret.="<form id='".$data['id']."' action='".$data['action']."' ".$attr." ".$enc."  role=\"form\" method='".$data['method']."'>";
         		//$ret.="<div class=\"box-body\">";
         		
         			$ret.=$data['item'];
