@@ -1,7 +1,37 @@
 <?php
-$output = shell_exec('who am i');
-print $output;
-$output = shell_exec('sudo who am i');
-print $output;
-$output = shell_exec('sudo git pull');
-print $output;
+require_once "zip.php";
+define('UPDATER_PATH', str_replace('\\','/',dirname(__FILE__)).'/');
+print UPDATER_PATH;
+//exit();
+$url = "https://github.com/kinoppol/stdac/archive/refs/heads/master.zip";
+$zip_file = UPDATER_PATH."/update/stdac.zip";
+
+$zip_resource = fopen($zip_file, "w");
+
+$ch_start = curl_init();
+curl_setopt($ch_start, CURLOPT_URL, $url);
+curl_setopt($ch_start, CURLOPT_FAILONERROR, true);
+curl_setopt($ch_start, CURLOPT_HEADER, 0);
+curl_setopt($ch_start, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($ch_start, CURLOPT_AUTOREFERER, true);
+curl_setopt($ch_start, CURLOPT_BINARYTRANSFER,true);
+curl_setopt($ch_start, CURLOPT_TIMEOUT, 10);
+curl_setopt($ch_start, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch_start, CURLOPT_SSL_VERIFYPEER, 0); 
+curl_setopt($ch_start, CURLOPT_FILE, $zip_resource);
+$page = curl_exec($ch_start);
+if(!$page)
+{
+ echo "Error :- ".curl_error($ch_start);
+}
+curl_close($ch_start);
+
+$zip = new my_ZipArchive();
+$extractPath = UPDATER_PATH;
+if($zip->open($zip_file) != "true")
+{
+ echo "Error :- Unable to open the Zip File";
+} 
+
+$zip->extractSubdirTo($extractPath,'stdac-master/');
+$zip->close();
