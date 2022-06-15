@@ -30,7 +30,7 @@ if(!$page)
  exit();
 }
 curl_close($ch_start);
-exit();
+//exit();
 $zip = new my_ZipArchive();
 $extractPath = UPDATER_PATH;
 if($zip->open($zip_file) != "true")
