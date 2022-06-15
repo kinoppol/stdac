@@ -10,14 +10,14 @@ $zip_file = UPDATER_PATH."/update/stdac.zip";
 $zip_resource = fopen($zip_file, "w");
 
 $ch_start = curl_init();
-curl_setopt($ch_start, CURLOPT_TIMEOUT, 300);
+//curl_setopt($ch_start, CURLOPT_TIMEOUT, 300);
 curl_setopt($ch_start, CURLOPT_URL, $url);
 curl_setopt($ch_start, CURLOPT_FAILONERROR, true);
 curl_setopt($ch_start, CURLOPT_HEADER, 0);
 curl_setopt($ch_start, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($ch_start, CURLOPT_AUTOREFERER, true);
 curl_setopt($ch_start, CURLOPT_BINARYTRANSFER,true);
-curl_setopt($ch_start, CURLOPT_TIMEOUT, 10);
+curl_setopt($ch_start, CURLOPT_TIMEOUT, 300);
 curl_setopt($ch_start, CURLOPT_SSL_VERIFYHOST, 0);
 curl_setopt($ch_start, CURLOPT_SSL_VERIFYPEER, 0); 
 curl_setopt($ch_start, CURLOPT_FILE, $zip_resource);
