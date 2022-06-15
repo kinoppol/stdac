@@ -19,7 +19,9 @@ curl_setopt($ch_start, CURLOPT_AUTOREFERER, true);
 curl_setopt($ch_start, CURLOPT_BINARYTRANSFER,true);
 curl_setopt($ch_start, CURLOPT_TIMEOUT, 300);
 curl_setopt($ch_start, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($ch_start, CURLOPT_SSL_VERIFYPEER, 0); 
+curl_setopt($ch_start, CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch_start, CURLOPT_SSL_VERIFYPEER, true);
+
 curl_setopt($ch_start, CURLOPT_FILE, $zip_resource);
 $page = curl_exec($ch_start);
 if(!$page)
@@ -28,7 +30,7 @@ if(!$page)
  exit();
 }
 curl_close($ch_start);
-
+exit();
 $zip = new my_ZipArchive();
 $extractPath = UPDATER_PATH;
 if($zip->open($zip_file) != "true")
