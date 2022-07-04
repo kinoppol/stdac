@@ -35,6 +35,7 @@
   }
   
 	$logon_data=$userdata;
+  $logon_data["time_expire"]=time()+$time_logon;
   $logon_data["time_logon"]=$time_logon;
   /*$personal_data=sSelectTb($systemDb,'userdata','*','id='.$logon_data['personal_id']);
   $personal_data=$personal_data[0];
@@ -124,7 +125,7 @@
 
   function renew_logon(){
     $time_renew=60*15;
-    if(current_user('time_logon')<=time()+$time_renew){//renew lest 15 minute each time call function
+    if(current_user('time_expire')<=time()+$time_renew){//renew lest 15 minute each time call function
       setcookie('user',$_COOKIE['user'], time() + $time_renew, "/");
     }
   }

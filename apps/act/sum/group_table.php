@@ -13,10 +13,11 @@ foreach($ac_data as $row){
         //'no'=>$i,
         'group_id'=>$row['group_id'],
         'group_short_name'=>$row['group_short_name'],
-        'major_name'=>$row['major_name'],
-        'minor_name'=>$row['minor_name'],
-        'level_name'=>$row['level_name'],
-        '<a href="'.site_url('main/act/sum/viewGroup/group_id/'.$row['group_id']).'"><i class="material-icons col-red">assignment</i> สรุปผล</a>'
+        'major_name'=>strLim($row['major_name'],20),
+        'minor_name'=>strLim($row['minor_name'],20),
+        //'level_name'=>$row['level_name'],
+        '<a '.gen_modal_link($report_btn).' class="btn btn-primary" title="รายงานการเช็คชื่อ"><i class="material-icons">book</i></a> ',
+        '<a href="'.site_url('main/act/sum/viewGroup/group_id/'.$row['group_id']).'" class="btn btn-danger"><i class="material-icons" title="สรุปผล">assignment</i></a>'
     );
     
 }
@@ -26,8 +27,9 @@ $data=array("head"=>array(
     'ชื่อกลุ่ม',
     'สาขาวิชา',
     'สาขางาน',
-    'ชั้นปี',
-    'จัดการ',
+    //'ชั้นปี',
+    'สรุปกิจกรรม<br>หน้าเสาธง',
+    'สรุปรวม',
     ),
     'id'=>'group_table',
     'item'=>$table_data,

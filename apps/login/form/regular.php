@@ -24,7 +24,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink" value="yes">
                             <label for="rememberme">จำฉันไว้</label>
                         </div>
                         <div class="col-xs-4">
