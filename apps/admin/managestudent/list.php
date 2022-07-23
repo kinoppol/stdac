@@ -34,7 +34,7 @@ print gen_modal($data_modal);
 
 $data_modal=array(
     'id'=>'doc',
-    'title'=>'ใบสมัคร อวท.',
+    'title'=>'แบบฟอร์ม อวท. ต่าง ๆ ',
 );
 
 print gen_modal($data_modal);
