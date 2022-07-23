@@ -25,7 +25,7 @@ foreach($ac_data as $row){
         'group_id'=>$row['group_id'],
         'group_short_name'=>$row['group_short_name'],
         'major_name'=>$row['major_name'],
-        'minor_name'=>$row['minor_name'],
+        //'minor_name'=>$row['minor_name'],
         'level_name'=>$row['level_name'],
         '<a href="'.site_url('main/admin/managestudent/view/group/'.$row['group_id']).'" class="btn btn-info"><i class="material-icons">search</i></a> '.
         '<a '.gen_modal_link($edit_btn).' class="btn btn-warning" title="แก้ไข"><i class="material-icons">build</i></a>',
@@ -38,7 +38,7 @@ $data=array("head"=>array(
     'รหัสกลุ่ม',
     'ชื่อกลุ่ม',
     'สาขาวิชา',
-    'สาขางาน',
+    //'สาขางาน',
     'ชั้นปี',
     'จัดการ',
     'เอกสาร'

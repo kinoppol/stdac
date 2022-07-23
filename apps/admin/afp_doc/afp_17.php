@@ -5,22 +5,17 @@ $group_id=$hGET['gid'];
 //$stdDb=stdDb();\
 $html='';
 $student_data=sSelectTb($systemDb,'std','*','group_id='.sQ($group_id,true).' order by student_id');
-foreach($student_data as $std){
-      
-if(isset($type)&&$type=='full'){
-   $oneForm=signUpFrom_06($std['student_id'],true);
-}else{
-   $oneForm=signUpFrom_06($std['student_id'],true);
-}
-   if($html!=''&&$oneForm)$html.="<PAGEBREAK>";
-$html.=$oneCard;
-$html.=signUpFrom_06($std['student_id']);
-}
+$prefix_data=array(
+    '1'=>'นาย',
+    '2'=>'นางสาว',
+);      
+$html.=afp_17($student_data);
+
 //print $html;
 $pdf_data=array(
         			   'html'=>$html,
         			   'size'=>'A4',
-        			   'fontsize'=>12,
+        			   'fontsize'=>16,
         			   'marginL'=>20,
         			   'marginR'=>20,
         			   'marginT'=>0,

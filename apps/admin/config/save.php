@@ -101,6 +101,16 @@ if($_POST['assembly_after_check']){
     update_system_config('assembly_after_check',$_POST['assembly_after_check']);
 
 }
+//SignName
+if($_POST['signName']){
+    update_system_config('signName',$_POST['signName']);
+
+}
+
+if($_POST['signPosition']){
+    update_system_config('signPosition',$_POST['signPosition']);
+
+}
 
     $msg=" บันทึกข้อมูลเรียบร้อยแล้ว";
         

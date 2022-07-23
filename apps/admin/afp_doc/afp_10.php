@@ -8,21 +8,21 @@ $student_data=sSelectTb($systemDb,'std','*','group_id='.sQ($group_id,true).' ord
 foreach($student_data as $std){
       
 if(isset($type)&&$type=='full'){
-   $oneForm=signUpFrom($std['student_id'],true);
+   $oneForm=signUpFrom_10($std['student_id'],true);
 }else{
-   $oneForm=signUpFrom($std['student_id'],true);
+   $oneForm=signUpFrom_10($std['student_id'],true);
 }
    if($html!=''&&$oneForm)$html.="<PAGEBREAK>";
 $html.=$oneCard;
-$html.=signUpFrom($std['student_id']);
+$html.=signUpFrom_10($std['student_id']);
 }
 //print $html;
 $pdf_data=array(
         			   'html'=>$html,
         			   'size'=>'A4',
         			   'fontsize'=>14,
-        			   'marginL'=>10,
-        			   'marginR'=>10,
+        			   'marginL'=>20,
+        			   'marginR'=>20,
         			   'marginT'=>0,
         			   'marginB'=>0,
         			   //'wartermarkimage'=>'https://sas.bncc.ac.th/images/bg.jpg',

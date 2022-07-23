@@ -55,6 +55,30 @@ $inputDetail = array(
         <span id="assembly"></span>
        <span id="morning_ceremony"></span>
       '),
+    
+      'tab3'=>array(
+          "id"=>"signTab",
+          "label"=>"การลงนาม",
+          "type"=>"tab-pane",
+          "class"=>""
+          ),
+      'signName'=>array(
+          'label' => 'ชื่อ-สกุล ผู้ลงนามในเอกสาร',
+          'id'=>'signName',
+          'type' => 'text',
+          'value'=>get_system_config("signName")
+          ),
+      'signPosition'=>array(
+          'label' => 'ตำแหน่งของผู้ลงนามในเอกสาร',
+          'id'=>'signPosition',
+          'type' => 'text',
+          'value'=>get_system_config("signPosition")
+          ),
+          'submit2' => array(
+              'label' => '&nbsp;',
+              'type' => 'submit',
+              'value' => 'บันทึก'
+          ),
 );
 $onSubmit .= '
 //alert("Save");
