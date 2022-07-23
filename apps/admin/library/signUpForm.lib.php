@@ -9,6 +9,12 @@ function signUpFrom_06($code){
        '1'=>'นาย',
        '2'=>'นางสาว',
    );
+   
+   $level_data=array(
+      '2'=>'ปวช. ',
+      '3'=>'ปวส. ',
+      '4'=>'ปวส. ',
+   );
 
    $TAB='<span style="visibility:hidden;" style="color:white;">XXXXXXXXX.</span>';
    $student_data=sSelectTb($systemDb,'std','*','student_id='.sQ($code));
@@ -71,7 +77,7 @@ $province_data=$province_data[0];
        เป็นนักเรียน นักศึกษา ระดับชั้น 
       </td>
       <td width="10%" style="border-bottom: 1px solid black; border-style: dotted;" align="center">
-       '.thaiNum($group_data['group_short_name']).'
+       '.$level_data[mb_substr($student_data['student_id'],2,1)].'
       </td>
       </tr>
       </table>
@@ -396,6 +402,12 @@ function signUpFrom_10($code){
        '1'=>'นาย',
        '2'=>'นางสาว',
    );
+   
+   $level_data=array(
+      '2'=>'ปวช. ',
+      '3'=>'ปวส. ',
+      '4'=>'ปวส. ',
+   );
 
    $TAB='<span style="visibility:hidden;" style="color:white;">XXXXXXXXX.</span>';
    $student_data=sSelectTb($systemDb,'std','*','student_id='.sQ($code));
@@ -457,7 +469,7 @@ $province_data=$province_data[0];
        เป็นนักเรียน นักศึกษา ระดับชั้น 
       </td>
       <td width="10%" style="border-bottom: 1px solid black; border-style: dotted;" align="center">
-       '.thaiNum($group_data['group_short_name']).'
+      '.$level_data[mb_substr($student_data['student_id'],2,1)].'
       </td>
       </tr>
       </table>
