@@ -24,6 +24,11 @@ $inputDetail = array(
     "type"=>"tab-pane",
     "class"=>"active"
     ),
+    'school_name' => array(
+        'label' => 'ชื่อสถานศึกษา',
+        'type' => 'text',
+        'value'=>get_system_config("school_name")
+    ),
     'rms_url' => array(
         'label' => 'ที่อยู่ระบบ RMS (โปรดระบุ http://,https://)',
         'type' => 'text',

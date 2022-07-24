@@ -4,6 +4,10 @@ if($_POST['rms_url']){
     update_system_config('rms_url',$_POST['rms_url']);
 }
 
+if($_POST['school_name']){
+    update_system_config('school_name',$_POST['school_name']);
+}
+
 if($_POST['pass_score_activity']){
     update_system_config('pass_score_activity',$_POST['pass_score_activity']);
 }
