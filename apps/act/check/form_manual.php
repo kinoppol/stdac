@@ -145,6 +145,19 @@ $("#date_selector").change(function(){
         
     }
 
+    function leave_std(std_id,date=false){
+        $("#chk_"+std_id).html("<i class=\\"material-icons col-orange\\">cached</i>");
+        $.ajax({url:"'.site_url('ajax/act/check/checkStudent/id/'.$hGET['id'].'/std_id/').'"+std_id+"/type/leave/date/"+date, success: function( result ) {
+            if($.trim(result)=="ok"){
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"optionCheck_std("+std_id+",\'"+date+"\')\\" title=\\"สาย\\"><i class=\\"material-icons col-orange\\">skip_next</i></a> ");
+            }else{            
+                $("#chk_"+std_id).html("<a href=\\"#\\" onclick=\\"check_std("+std_id+",\'"+date+"\')\\"><i class=\\"material-icons col-orange\\">error</i></a> ");
+            }
+        }
+        });
+        
+    }
+
     function unCheck_std(std_id,date=false){
         $("#chk_"+std_id).html("<i class=\\"material-icons col-orange\\">cached</i>");
         $.ajax({url:"'.site_url('ajax/act/check/checkStudent/id/'.$hGET['id'].'/std_id/').'"+std_id+"/type/unCheck/date/"+date, success: function( result ) {
@@ -191,7 +204,7 @@ $("#date_selector").change(function(){
         //alert(date);
         $("#optionCheck").modal("show");
     var md=$("#optionCheck");
-        md.find(".modal-body").html("<button class=\'btn btn-success\' style=\'width:20%;text-align:left\' onclick=\'select_check(\"check\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>check_box</i> มา</button> <button class=\'btn btn-danger\'  style=\'width:20%;text-align:left\' onclick=\'select_check(\"unCheck\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>check_box_outline_blank</i> ขาด</button> <button class=\'btn btn-warning\'  style=\'width:20%;text-align:left\' onclick=\'select_check(\"late\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>access_time</i> สาย</button>");
+        md.find(".modal-body").html("<button class=\'btn btn-success\' style=\'width:20%;text-align:left\' onclick=\'select_check(\"check\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>check_box</i> มา</button> <button class=\'btn btn-danger\'  style=\'width:20%;text-align:left\' onclick=\'select_check(\"unCheck\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>check_box_outline_blank</i> ขาด</button> <button class=\'btn btn-warning\'  style=\'width:20%;text-align:left\' onclick=\'select_check(\"late\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>access_time</i> สาย</button> <button class=\'btn btn-warning\'  style=\'width:20%;text-align:left\' onclick=\'select_check(\"leave\",\""+std_id+"\",\""+date+"\")\'><i class=\'material-icons\'>skip_next</i> ลา</button>");
     }
 
     function select_check(select_type,std_id,date){
@@ -203,6 +216,8 @@ $("#date_selector").change(function(){
             unCheck_std(std_id,date);
         }else if(select_type=="late"){
             late_std(std_id,date);
+        }else if(select_type=="leave"){
+            leave_std(std_id,date);
         }
     }
 </script>
