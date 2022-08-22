@@ -85,6 +85,14 @@ foreach($student_data as $std){
                 onClick="optionCheck_std('.$std['student_id'].$param_date.')" title="สาย"><i class="material-icons col-orange">access_time</i></a>
             </a>
         </div>';
+    }else if($record[$std['student_id']]=='leave'){
+        print "555";
+        $chk_box='
+        <div id="chk_'.$std['student_id'].'" class="chk_btn">
+            <a href="#"
+                onClick="optionCheck_std('.$std['student_id'].$param_date.')" title="ลา"><i class="material-icons col-orange">skip_next</i></a>
+            </a>
+        </div>';
     }else{
     $chk_box='
     <div id="chk_'.$std['student_id'].'" class="chk_btn">
