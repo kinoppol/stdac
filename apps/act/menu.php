@@ -32,6 +32,11 @@ $menu['atc']= array(
                 'url' => 'main/act/sum/view',
                 'cond' => current_user('user_type')=='admin',
                 ),
+        'check' => array('bullet' => '',
+                'title' => 'ตรวจสอบการเช็คชื่อ',
+                'url' => 'main/act/report/check_checker',
+                'cond' => current_user('user_type')=='admin',
+                ),
                 
                 'report' => array('bullet' => '',
                 'title' => 'บทสรุป',

@@ -1,8 +1,8 @@
 <?php
 
-$start_date_report=$hGET['s_date'];
-$end_date_report=$hGET['e_date'];
-$semester=$hGET['semester'];
+$start_date_report=$_POST['s_date'];
+$end_date_report=$_POST['e_date'];
+$semester=$_POST['semester'];
 $semester=str_replace('-','/',$semester);
 
 header("Content-Type: application/vnd.ms-excel"); // ประเภทของไฟล์
