@@ -27,6 +27,12 @@ $inputDetail = array(
         'icon' => 'settings_overscan',
         'value' => date('Y-m-d')
     ),
+    'marker' => array(
+        'label' => 'เครื่องหมาย',
+        'type' => 'select',
+        'icon' => 'settings_overscan',
+        'item' => array('check'=>'เครื่องหมายถูก ✔','number'=>'เลข 1'),
+    ),
     'submit' => array(
         'label' => '&nbsp;',
         'type' => 'submit',

@@ -5,6 +5,11 @@ $end_date_report=$_POST['e_date'];
 $semester=$_POST['semester'];
 $semester=str_replace('-','/',$semester);
 
+    $marker='✔';
+if($_POST['marker']=='number'){
+    $marker='1';
+}
+
 header("Content-Type: application/vnd.ms-excel"); // ประเภทของไฟล์
 header('Content-Disposition: attachment; filename="stdac_'.$start_date_report.'_'.$end_date_report.'.xls"'); //กำหนดชื่อไฟล์
 header("Content-Type: application/force-download"); // กำหนดให้ถ้าเปิดหน้านี้ให้ดาวน์โหลดไฟล์
@@ -92,7 +97,7 @@ foreach($groups as $k=>$v){
     print $checker[$k];
     print "</td>";
     foreach($date_report as $d){
-        print "<td>".(!empty($c_data[$d][$k])?"✔":"")."</td>";
+        print "<td align=\"center\">".(!empty($c_data[$d][$k])?$marker:"")."</td>";
         }
     print "</tr>";    
 
