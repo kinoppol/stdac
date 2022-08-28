@@ -32,7 +32,8 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <!--
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
@@ -55,11 +56,30 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php print $componentURL; ?>css/themes/all-themes.css" rel="stylesheet" />
     <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
   <style>
-  body{
-    font-family: 'Kanit', sans-serif;
-  }
+@font-face {
+    font-family: 'Sarabun', sans-serif;
+    src: url('http://webfont.webdesigner.in.th/font/THSarabunNew/thsarabunnew.eot');
+    src: url('http://webfont.webdesigner.in.th/font/THSarabunNew/thsarabunnew.eot') format('embedded-opentype'),
+         url('http://webfont.webdesigner.in.th/font/THSarabunNew/thsarabunnew.woff') format('woff'),
+         url('http://webfont.webdesigner.in.th/font/THSarabunNew/thsarabunnew.ttf') format('truetype'),
+         url('http://webfont.webdesigner.in.th/font/THSarabunNew/thsarabunnew.svg#THSarabunNewRegular') format('svg');
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Sarabun', sans-serif;
+}
+
+body,ul,li,input{
+	font-family: 'Sarabun', sans-serif;
+}
+
+span {
+	font-family: 'Sarabun', sans-serif;
+}
+  </style>
+  <style>
   .modal-dialog-full-width {
         width: 100% !important;
         height: 100% !important;

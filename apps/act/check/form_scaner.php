@@ -1,5 +1,8 @@
+<script src="<?php print site_url('system/library/ext/barcodescan/html5-qrcode.min.js',true); ?>"></script>
 <div id="ajaxResponse">
 </div>
+<div style="width: 100%;" id="reader"></div>
+<button class="btn btn-danger" id="use_cam"><i class="material-icons">photo_camera</i> ใช้กล้อง</button>
 <?php
 
 load_fun('system_alert');
@@ -47,7 +50,7 @@ $inputForm = genInput($inputDetail, 4, 12);
 $systemFoot.='
 <script> 
 $(function() {
-    setInterval(focus_std,1000);
+    setInterval(focus_std,3000);
     
 });
 function focus_std(){
@@ -95,5 +98,22 @@ $systemFoot.="
 
          }
      });
+
+     function onScanSuccess(decodedText, decodedResult) {
+      // Handle on success condition with the decoded text or result.
+      //alert('Scan result:'+decodedText);
+      $(\"#student_id\").val(decodedText);
+      $(\"#bookForm\").submit();
+  }
+  
+  var html5QrcodeScanner = new Html5QrcodeScanner(
+    \"reader\", { fps: 10, qrbox: { width: 400, height: 250 } });
+  
+  $(\"#use_cam\").click(function(){
+    html5QrcodeScanner.render(onScanSuccess);
+    $(\"#use_cam\").hide();
+  });
+  
+
     </script>
 ";
