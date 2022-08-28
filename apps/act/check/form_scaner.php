@@ -49,8 +49,9 @@ $inputForm = genInput($inputDetail, 4, 12);
 
 $systemFoot.='
 <script> 
+var intObj;
 $(function() {
-    setInterval(focus_std,3000);
+  intObj=setInterval(focus_std,3000);
     
 });
 function focus_std(){
@@ -112,6 +113,7 @@ $systemFoot.="
   $(\"#use_cam\").click(function(){
     html5QrcodeScanner.render(onScanSuccess);
     $(\"#use_cam\").hide();
+    clearInterval(intObj);
   });
   
 
