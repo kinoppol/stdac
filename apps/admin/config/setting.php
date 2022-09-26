@@ -34,11 +34,6 @@ $inputDetail = array(
         'type' => 'text',
         'value'=>get_system_config("rms_url")
     ),
-    'siteURL' => array(
-        'label' => 'ที่อยู่ระบบ stdac (โปรดระบุ http://,https://)',
-        'type' => 'text',
-        'value'=>get_system_config("siteURL")
-    ),
     'current_semester' => array(
         'label' => 'ภาคเรียนปัจจุบัน',
         'type' => 'select',

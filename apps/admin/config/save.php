@@ -3,9 +3,7 @@ load_fun('system_alert');
 if($_POST['rms_url']){
     update_system_config('rms_url',$_POST['rms_url']);
 }
-if($_POST['siteURL']){
-    update_system_config('siteURL',$_POST['siteURL']);
-}
+
 if($_POST['school_name']){
     update_system_config('school_name',$_POST['school_name']);
 }
