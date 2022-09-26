@@ -1,16 +1,21 @@
 <?php
-$json_file=APP_PATH.'admin/json/'.$hGET['semester'].'.json';
-//print $json_file;
-print file_get_contents($json_file);
-/*
 load_fun('activity');
 ini_set('memory_limit', '-1');
 //error_reporting(E_ALL);
-$std_data=sSelectTb($systemDb,'std','*','1 order by student_id');
+
+
+$group_data=sSelectTb($systemDb,'group','group_id');
+//print_r($group_data);
+$total_group=count($group_data);
+$group_id=$group_data[$hGET['round']]['group_id'];
+
+$semester=str_replace("-", "/", $hGET['semester']);
+
+$std_data=sSelectTb($systemDb,'std','*','group_id='.sQ($group_id).' order by student_id');
 
 $data=array();
 
-$semester=str_replace("-", "/", $hGET['semester']);
+
 
 $semester_data=sSelectTb($systemDb,'semester','*','semester_eduyear='.sQ($semester));
 $semester_data=$semester_data[0];
@@ -176,7 +181,28 @@ function as_result($student_id,$group_id){
     );
     return $res;
 }
+$fname=APP_PATH.'admin/json/'.$hGET['semester'].'.json';
+//print $fname;
+if($hGET['round']==0){
+    $json_file=fopen($fname,'w');
+    $json_data=json_encode($data);
+}else{
+    $old_json=json_decode(file_get_contents($fname),true);
 
-print json_encode($data);
-*/
+    $json_file=fopen($fname,'w');
+    $json_data=json_encode(
+        array_merge(
+            $old_json,
+            $data
+        )
+    );
+}
+fwrite($json_file,$json_data);
+fclose($json_file);
+if($hGET['round']<$total_group){
+    print 'กำลังประมวลผลกลุ่มที่ '.($hGET['round']+1).' จากทั้งหมด '.$total_group.' กลุ่ม ('.number_format(($hGET['round']+1)/$total_group*100).'%)';
+    //sleep(1);
+}else{
+    print 'ok';
+}
 ?>

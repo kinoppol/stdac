@@ -29,7 +29,12 @@ function site_url($url='', $direct=false){
 		return $url;
 	}
         global $htacceassConfig;
-  if(!$htacceassConfig&&$url!=''){$uriAdder="/?p=";}else{$uriAdder="/";}
+  if(!$htacceassConfig&&$url!=''){
+    $uriAdder="/";
+    if(mb_substr(SITE_URL,mb_strlen(SITE_URL)-1,1)=='/'){
+      $uriAdder="";
+    }
+    $uriAdder.="?p=";}else{$uriAdder="/";}
   if (!$direct){
     if(substr(SITE_URL,strlen(SITE_URL)-9,9)=="index.php") return SITE_URL.'/'.$url;
     //return SITE_URL.'index.php/'.$url;

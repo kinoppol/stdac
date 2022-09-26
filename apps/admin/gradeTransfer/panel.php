@@ -8,7 +8,7 @@ foreach($semesterData as $row){
 ?><div class="row clearfix">
                 <!-- Task Info -->
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="card">
+                    <div class="card col-md-8">
                         <div class="header">
 
                             <h2>โอนข้อมูลผลกิจกรรม</h2>
@@ -20,13 +20,44 @@ foreach($semesterData as $row){
                                 print gen_option($semesters,$current_semester);
                             ?>
                         </select>
-                            <button class="btn btn-lg btn-primary" id="transfer">โอนข้อมูล</button>
+                            <br>
+                            <button class="btn btn-lg btn-primary form-control" id="evaluate">ประมวลผล</button>
+                            <br>
+                            <button class="btn btn-lg btn-danger form-control" id="transfer" disabled>โอนข้อมูล</button>
                         </div>
                     </div>
                 </div>
     </div>
 <?php
 $systemFoot.='
+<script>
+        $("#evaluate").click(function(){
+            var semester=$("#selectedSemester").val();
+            var round=0;
+            //var loop=true;
+            semester=semester.replace("/","-");
+            //alert(encodeURIComponent(semester));
+            $("#ajaxResponse").text("กำลังโหลดโปรดรอสักครู่...");
+            $("#evaluate").attr("disabled",true);
+            eva(semester,0);
+            
+        });
+        function eva(semester,round){
+            $.get("'.site_url('ajax/admin/gradeTransfer/group_evaluate/semester/').'"+semester+"/round/"+round,function(data){
+                if(data.trim()=="ok"){
+                    //exit
+                    eva_complete();
+                }else{
+                    eva(semester,round+1);
+                }
+                $("#ajaxResponse").text(data);
+            });
+        }
+        function eva_complete(){
+            $("#ajaxResponse").text("ประมวลผลสำเร็จ");
+            $("#transfer").removeAttr("disabled");
+        }
+    </script>
     <script>
         $("#transfer").click(function(){
             var semester=$("#selectedSemester").val();
