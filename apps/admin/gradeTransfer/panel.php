@@ -21,9 +21,9 @@ foreach($semesterData as $row){
                             ?>
                         </select>
                             <br>
-                            <button class="btn btn-lg btn-primary form-control" id="evaluate">ประมวลผล</button>
-                            <br>
-                            <button class="btn btn-lg btn-danger form-control" id="transfer" disabled>โอนข้อมูล</button>
+                            <button class="btn btn-lg btn-primary form-control" id="evaluate">ประมวลผลแล้วส่งข้อมูล</button>
+                            <!-- <br>
+                            <button class="btn btn-lg btn-danger form-control" id="transfer" disabled>โอนข้อมูล</button> -->
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ $systemFoot.='
                 }else{
                     eva(semester,round+1);
                 }
-                $("#ajaxResponse").text(data);
+                $("#ajaxResponse").html(data);
             });
         }
         function eva_complete(){
