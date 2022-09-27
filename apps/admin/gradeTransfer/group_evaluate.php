@@ -222,8 +222,8 @@ $school_id = '01';
 
 $act_ids=array(
     'act'=>1,
-    'mc'=>2,
-    'as'=>3,
+    'mc'=>3,
+    'as'=>2,
 );
 
 $json_file=APP_PATH.'admin/json/'.$hGET['semester'].'.json';
