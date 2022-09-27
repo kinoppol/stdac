@@ -48,9 +48,9 @@ foreach($acts as $row){
 }
 
     foreach($act_id as $act_row){
-        $check_data=sSelectTb($systemDb,"entry_record",'*','act_id='.$act_row.' AND student_id='.sQ($row['student_id']));
+        $check_data=sSelectTb($systemDb,"entry_record",'*','act_id='.$act_row.' AND student_id='.sQ($std_id));
         $check_data=$check_data[0];
-        if($check_data['entry_type']=='check'){
+        if($check_data['entry_type']=='check' OR $check_data['entry_type']=='leave'){
             $signAct++;
         }
     }
@@ -141,7 +141,7 @@ function mc_result($student_id,$group_id){
         }
         //print_r($checking);
     $count=array_count_values($checking);
-    $totalCheck=$count['check']+($count['late']*$morning_ceremony_late_score);    
+    $totalCheck=$count['check']+$count['leave']+($count['late']*$morning_ceremony_late_score);    
     $cdates=count($dates_semester[$group_id]['morning_ceremony']);
     if($cdates>0){
         $percentage=($totalCheck/$cdates)*100;
@@ -237,7 +237,7 @@ foreach ($data as $row) {
 	
 	$make_call = callAPIConnect($method,$url,$act_id,$app_name,$school_id,$row['semes'],$row['student_id'],$v,$row[$k.'_value']);
 	$response = json_decode($make_call, true);
-	echo print_r($response);
+	//echo print_r($response);
     $x++;
     }
 }
