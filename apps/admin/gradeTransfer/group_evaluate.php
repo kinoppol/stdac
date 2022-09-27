@@ -9,6 +9,10 @@ $group_data=sSelectTb($systemDb,'group','group_id');
 $total_group=count($group_data);
 $group_id=$group_data[$hGET['round']]['group_id'];
 
+if($hGET['gid']){
+    $group_id=$hGET['gid'];
+}
+
 $semester=str_replace("-", "/", $hGET['semester']);
 
 $std_data=sSelectTb($systemDb,'std','*','group_id='.sQ($group_id).' order by student_id');
@@ -166,7 +170,7 @@ function as_result($student_id,$group_id){
             $checking[$row['date_check']]=$row['entry_type'];
         }
     $count=array_count_values($checking);
-    $totalCheck=$count['check']+($count['late']*$assembly_late_score);
+    $totalCheck=$count['check']+$count['leave']+($count['late']*$assembly_late_score);
     $cdates=count($dates_semester[$group_id]['assembly']);
     if($cdates>0){
         $percentage=($totalCheck/$cdates)*100;
@@ -233,7 +237,7 @@ foreach ($data as $row) {
 	
 	$make_call = callAPIConnect($method,$url,$act_id,$app_name,$school_id,$row['semes'],$row['student_id'],$v,$row[$k.'_value']);
 	$response = json_decode($make_call, true);
-	//echo print_r($response);
+	echo print_r($response);
     $x++;
     }
 }
