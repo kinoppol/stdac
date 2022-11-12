@@ -6,7 +6,7 @@ function sInsertTb($db_param,$tb,$data,$debug=false){
   
   //print '->>>>>'.$prefix;
   
-  $query="insert into {$prefix}{$tb} ";
+  $query="insert ignore into {$prefix}{$tb} ";
   
   $col="(";
   $val=" values (";
