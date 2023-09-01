@@ -9,10 +9,6 @@ $group_data=sSelectTb($systemDb,'group','group_id');
 $total_group=count($group_data);
 $group_id=$group_data[$hGET['round']]['group_id'];
 
-if($hGET['gid']){
-    $group_id=$hGET['gid'];
-}
-
 $semester=str_replace("-", "/", $hGET['semester']);
 
 $std_data=sSelectTb($systemDb,'std','*','group_id='.sQ($group_id).' order by student_id');
@@ -48,9 +44,9 @@ foreach($acts as $row){
 }
 
     foreach($act_id as $act_row){
-        $check_data=sSelectTb($systemDb,"entry_record",'*','act_id='.$act_row.' AND student_id='.sQ($std_id));
+        $check_data=sSelectTb($systemDb,"entry_record",'*','act_id='.$act_row.' AND student_id='.sQ($row['student_id']));
         $check_data=$check_data[0];
-        if($check_data['entry_type']=='check' OR $check_data['entry_type']=='leave'){
+        if($check_data['entry_type']=='check'){
             $signAct++;
         }
     }
@@ -141,7 +137,7 @@ function mc_result($student_id,$group_id){
         }
         //print_r($checking);
     $count=array_count_values($checking);
-    $totalCheck=$count['check']+$count['leave']+($count['late']*$morning_ceremony_late_score);    
+    $totalCheck=$count['check']+($count['late']*$morning_ceremony_late_score);    
     $cdates=count($dates_semester[$group_id]['morning_ceremony']);
     if($cdates>0){
         $percentage=($totalCheck/$cdates)*100;
@@ -170,7 +166,7 @@ function as_result($student_id,$group_id){
             $checking[$row['date_check']]=$row['entry_type'];
         }
     $count=array_count_values($checking);
-    $totalCheck=$count['check']+$count['leave']+($count['late']*$assembly_late_score);
+    $totalCheck=$count['check']+($count['late']*$assembly_late_score);
     $cdates=count($dates_semester[$group_id]['assembly']);
     if($cdates>0){
         $percentage=($totalCheck/$cdates)*100;
@@ -222,8 +218,8 @@ $school_id = '01';
 
 $act_ids=array(
     'act'=>1,
-    'mc'=>3,
-    'as'=>2,
+    'mc'=>2,
+    'as'=>3,
 );
 
 $json_file=APP_PATH.'admin/json/'.$hGET['semester'].'.json';
