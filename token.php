@@ -11,8 +11,9 @@ if($token!=$chk_token){
 }else{
     //require_once('system/include/config.php');
     require_once('system/library/functions.php');
+    require_once('system/library/fun/user.fun.php');
     print "โปรดรอสักครู่..";
     $_SESSION['id']=$id;
-    define('SITE_URL','');
-    redirect(site_url('authen/login/byToken'),true,2);
+    signInUser($id,$remember=false,$noRedirect=false);
+    redirect('./index.php',true,2);
 }
