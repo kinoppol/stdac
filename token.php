@@ -1,11 +1,12 @@
 <?php
 $id=$_GET['id'];
 $token=$_GET['token'];
-$chk_token=md5($id.date(Y-m-d));
+$seed=$id.date("Y-m-d");
+$chk_token=md5($seed);
 if($token!=$chk_token){
     print "Error - token expired.";
-    print $chk_token;
-    print "<br>".$token;
+    //print $chk_token;
+    //print "<br>".$token;
     exit();
 }else{
     print "โปรดรอสักครู่..";
