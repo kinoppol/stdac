@@ -9,7 +9,7 @@ if($token!=$chk_token){
     //print "<br>".$token;
     exit();
 }else{
-    require_once('system/include/config.php');
+    //require_once('system/include/config.php');
     require_once('system/library/functions.php');
     print "โปรดรอสักครู่..";
     $_SESSION['id']=$id;
