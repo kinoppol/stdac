@@ -1,4 +1,5 @@
 <?php
+session_start();
 $id=$_GET['id'];
 $token=$_GET['token'];
 $seed=$id.date("Y-m-d");
@@ -8,6 +9,6 @@ if($token!=$chk_token){
     exit();
 }else{
     print "โปรดรอสักครู่..";
-    $_SESSION['id']=$id;
+    $_SESSION['id_token']=$id;
     print "<meta http-equiv=\"refresh\" content=\"0;./index.php?token=\"".$token."\">";
 }
