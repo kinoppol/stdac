@@ -46,7 +46,7 @@
 	//$logon_data["picture"]=$picture;
 	//$logon_data["picture_file"]=$picture_file;
 	//$logon_data["accession"]=$accession;
-  //                 print_r($logon_data);
+              print_r($logon_data);
                    
   if(user_logon($logon_data)){
   
