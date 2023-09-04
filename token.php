@@ -4,7 +4,8 @@ $token=$_GET['token'];
 $chk_token=md5($id.date(Y-m-d));
 if($token!=$chk_token){
     print "Error - token expired.";
-    //print $chk_token;
+    print $chk_token;
+    print "<br>".$token;
     exit();
 }else{
     print "โปรดรอสักครู่..";
