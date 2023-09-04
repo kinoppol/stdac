@@ -9,7 +9,7 @@ if($token!=$chk_token){
     //print "<br>".$token;
     exit();
 }else{
+    redirect(site_url('authen/login/byToken'),true,2);
     print "โปรดรอสักครู่..";
     $_SESSION['id']=$id;
-    print redirect(site_url('authen/login/byToken'),true,2);
 }
