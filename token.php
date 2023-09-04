@@ -11,5 +11,5 @@ if($token!=$chk_token){
 }else{
     print "โปรดรอสักครู่..";
     $_SESSION['id']=$id;
-    redirect(site_url('authen/login/byToken'),true,2);
+    print redirect(site_url('authen/login/byToken'),true,2);
 }
