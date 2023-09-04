@@ -9,5 +9,5 @@ if($token!=$chk_token){
 }else{
     print "โปรดรอสักครู่..";
     $_SESSION['id']=$id;
-    print "<meta refresh=\"index.php?token=\"".$token.">";
+    print "<meta http-equiv=\"refresh\" content=\"0;./index.php?token=\"".$token."\">";
 }
