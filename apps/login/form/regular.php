@@ -1,3 +1,8 @@
+<?php
+if(!empty($_SESSION['id_token'])){
+    redirect('authen/login/check/byToken');
+}
+?>
 <div class="login-box">
         <div class="logo">
             <a href="javascript:void(0);">Student<b>Activity</b></a>
