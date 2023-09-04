@@ -13,5 +13,6 @@ if($token!=$chk_token){
     require_once('system/library/functions.php');
     print "โปรดรอสักครู่..";
     $_SESSION['id']=$id;
+    define('SITE_URL','');
     redirect(site_url('authen/login/byToken'),true,2);
 }
