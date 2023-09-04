@@ -9,7 +9,7 @@ if($token!=$chk_token){
     exit();
 }else{
     print '<meta charset="UTF-8">';
-    print "โปรดรอสักครู่..";
+    print "Loading..";
     $_SESSION['id_token']=$id;
-    print "<meta http-equiv=\"refresh\" content=\"2;./index.php?token=".$token."\">";
+    print "<meta http-equiv=\"refresh\" content=\"0;./index.php?token=".$token."\">";
 }
