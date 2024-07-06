@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2024 at 12:51 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Generation Time: Jun 03, 2022 at 07:35 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `sa_activity` (
   `semester` char(1) NOT NULL,
   `year` char(4) NOT NULL,
   `group_id` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ CREATE TABLE `sa_checker` (
   `morning_ceremony_date` varchar(20) NOT NULL,
   `assembly_checker` text NOT NULL COMMENT 'ผู้เช็คชื่อชั่วโมงกิจกรรม',
   `assembly_date` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -59,11 +59,11 @@ CREATE TABLE `sa_checker` (
 --
 
 CREATE TABLE `sa_district` (
-  `district_code` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'รหัสอำเภอ',
-  `district_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ชื่ออำเภอ',
-  `postcode` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'รหัสไปรษณีย์',
+  `district_code` varchar(4) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสอำเภอ',
+  `district_name` varchar(150) CHARACTER SET utf8 NOT NULL COMMENT 'ชื่ออำเภอ',
+  `postcode` varchar(5) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสไปรษณีย์',
   `geo_id` int(5) NOT NULL DEFAULT 0,
-  `province_code` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT 'รหัสจังหวัด'
+  `province_code` varchar(5) CHARACTER SET utf8 NOT NULL DEFAULT '0' COMMENT 'รหัสจังหวัด'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1079,7 +1079,7 @@ CREATE TABLE `sa_entry_record` (
   `time_update` datetime NOT NULL,
   `checker_id` int(11) NOT NULL,
   `entry_type` enum('check','unCheck','notYet','late') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1095,7 +1095,7 @@ CREATE TABLE `sa_entry_record_as` (
   `time_update` datetime NOT NULL,
   `checker_id` int(11) NOT NULL,
   `entry_type` enum('check','unCheck','notYet','late') NOT NULL DEFAULT 'notYet'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1111,7 +1111,7 @@ CREATE TABLE `sa_entry_record_mc` (
   `time_update` datetime NOT NULL,
   `checker_id` int(11) NOT NULL,
   `entry_type` enum('check','unCheck','notYet','late') NOT NULL DEFAULT 'notYet'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1125,7 +1125,7 @@ CREATE TABLE `sa_group` (
   `major_name` varchar(100) NOT NULL,
   `minor_name` varchar(100) NOT NULL,
   `level_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1138,7 +1138,7 @@ CREATE TABLE `sa_holiday` (
   `semester` varchar(10) NOT NULL,
   `holiday_name` varchar(100) NOT NULL,
   `in_use` enum('Y','N') NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1147,11 +1147,11 @@ CREATE TABLE `sa_holiday` (
 --
 
 CREATE TABLE `sa_province` (
-  `province_code` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'รหัสจังหวัด',
-  `province_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ชื่อจังหวัด',
+  `province_code` varchar(2) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสจังหวัด',
+  `province_name` varchar(150) CHARACTER SET utf8 NOT NULL COMMENT 'ชื่อจังหวัด',
   `zone_id` int(5) NOT NULL DEFAULT 0 COMMENT 'รหัสภาค',
-  `latitude` varchar(20) NOT NULL COMMENT 'พิกัด',
-  `longitude` varchar(20) NOT NULL COMMENT 'พิกัด'
+  `latitude` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT 'พิกัด',
+  `longitude` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT 'พิกัด'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1248,7 +1248,7 @@ CREATE TABLE `sa_semester` (
   `semester_end` date NOT NULL,
   `semester_eduyear` varchar(6) NOT NULL,
   `datechk_end` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1260,7 +1260,7 @@ CREATE TABLE `sa_site_config` (
   `config_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `detail` text NOT NULL,
   `lastUpdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sa_site_config`
@@ -1323,7 +1323,7 @@ CREATE TABLE `sa_std` (
   `tumbol_id` varchar(10) NOT NULL,
   `group_id` varchar(10) NOT NULL,
   `uid` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1337,7 +1337,7 @@ CREATE TABLE `sa_std_register` (
   `std_code` varchar(100) NOT NULL,
   `time_scan` datetime NOT NULL,
   `act_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1346,10 +1346,10 @@ CREATE TABLE `sa_std_register` (
 --
 
 CREATE TABLE `sa_subdistrict` (
-  `subdistrict_code` varchar(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'รหัสตำบล',
-  `subdistrict_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'ชื่อตำบล',
-  `district_code` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT 'รหัสอำเภอ',
-  `province_code` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'รหัสจังหวัด',
+  `subdistrict_code` varchar(6) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสตำบล',
+  `subdistrict_name` varchar(150) CHARACTER SET utf8 NOT NULL COMMENT 'ชื่อตำบล',
+  `district_code` varchar(10) CHARACTER SET utf8 NOT NULL DEFAULT '0' COMMENT 'รหัสอำเภอ',
+  `province_code` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT 'รหัสจังหวัด',
   `geo_id` int(5) NOT NULL DEFAULT 0 COMMENT 'รหัสภาค'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -10246,14 +10246,7 @@ CREATE TABLE `sa_userdata` (
   `active` enum('Y','N','B') NOT NULL DEFAULT 'Y' COMMENT 'เปิดใช้งาน',
   `user_type` enum('admin','advisor','staff','user','guest') NOT NULL DEFAULT 'user' COMMENT 'ประเภทผู้ใช้',
   `last_login` datetime DEFAULT NULL COMMENT 'ลงชื่อเข้าใช้ครั้งสุดท้าย'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `sa_userdata`
---
-
-INSERT INTO `sa_userdata` (`id`, `people_id`, `username`, `password`, `image_uri`, `name`, `surname`, `email`, `personal_id`, `active`, `user_type`, `last_login`) VALUES
-(1, NULL, 'admin', '81dc9bdb52d04dc20036dbd8313ed055', NULL, '', '', NULL, NULL, 'Y', 'admin', NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -10354,9 +10347,15 @@ ALTER TABLE `sa_std_register`
 -- AUTO_INCREMENT for table `sa_userdata`
 --
 ALTER TABLE `sa_userdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสผู้ใช้', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสผู้ใช้';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Dumping data for table `sa_userdata`
+--
+
+INSERT INTO `sa_userdata` (`id`, `people_id`, `username`, `password`, `image_uri`, `name`, `surname`, `email`, `personal_id`, `active`, `user_type`, `last_login`) VALUES
+(1, NULL, 'admin', '81dc9bdb52d04dc20036dbd8313ed055', NULL, '', '', NULL, NULL, 'Y', 'admin', NULL);
