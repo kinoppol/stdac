@@ -177,7 +177,7 @@ foreach($ac_data as $row){
     $table_data[$i]['sumact']='<span '.$activity_color.'>'.$total_signact.' ครั้ง ('.number_format($percentage,2).'%)</span>';
     if(get_system_config("active_morning_ceremony")=='active')$table_data[$i]['sumMorningCeremony']='<span '.$morning_ceremony_color.'>'.$total_sign_morning_ceremony.'/'.$date_morning_ceremony.' ครั้ง ('.number_format($morning_ceremony_percentage,2).'%)</span>';
     if(get_system_config("active_assembly")=='active')$table_data[$i]['sumAssembly']='<span '.$assembly_color.'>'.$total_sign_assembly.'/'.$date_assembly.' ครั้ง ('.number_format($assembly_percentage,2).'%)</span>';
-    $table_data[$i]['grade']=$act_grade=="pass"?'ผ่าน':'<span style="color:red;">ไม่ผ่าน</span>';
+    $table_data[$i]['grade']=$act_grade=="pass"?'<span style="color:green;">ผ่าน</span>':'<span style="color:red;">ไม่ผ่าน</span>';
 
 }
 
