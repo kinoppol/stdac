@@ -49,7 +49,6 @@ foreach($acts as $row){
 
     foreach($act_id as $act_row){
         $check_data=sSelectTb($systemDb,"entry_record",'*','act_id='.$act_row.' AND student_id='.sQ($row['student_id']));
-        print_r($check_data);
         $check_data=$check_data[0];
         if($check_data['entry_type']=='check'){
             $signAct++;
@@ -60,7 +59,7 @@ foreach($acts as $row){
     }else{
         $ac_percentage=$signAct/$count_ac*100;
     }
-    print $ac_percentage."<<";
+    print '('.$signAct.')'.$ac_percentage."<<";
     return array(
         'total_act'=>$count_ac,
         'checked_act'=>$signAct,
