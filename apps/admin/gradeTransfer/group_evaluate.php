@@ -4,10 +4,14 @@ ini_set('memory_limit', '-1');
 //error_reporting(E_ALL);
 
 
+if(!empty($hGET['group_id'])){
+    $group_id=$hGET['group_id'];
+}else{
 $group_data=sSelectTb($systemDb,'group','group_id');
 //print_r($group_data);
 $total_group=count($group_data);
 $group_id=$group_data[$hGET['round']]['group_id'];
+}
 
 $semester=str_replace("-", "/", $hGET['semester']);
 
