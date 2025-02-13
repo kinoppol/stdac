@@ -167,10 +167,10 @@ foreach($ac_data as $row){
         $morning_ceremony_grade='pass';
     }
 
-    if(get_system_config("active_morning_ceremony")=='active'&&$morning_ceremony_grade='fail'){
+    if(get_system_config("active_morning_ceremony")=='active'&&$morning_ceremony_grade=='fail'){
         $act_grade='fail';
     }
-    if(get_system_config("active_assembly")=='active'&&$assembly_grade='fail'){
+    if(get_system_config("active_assembly")=='active'&&$assembly_grade=='fail'){
         $act_grade='fail';
     }
 
