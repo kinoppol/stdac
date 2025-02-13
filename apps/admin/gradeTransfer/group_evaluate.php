@@ -54,11 +54,16 @@ foreach($acts as $row){
             $signAct++;
         }
     }
-
+    if($count_ac==0){
+        $ac_percentage=100;
+    }else{
+        $ac_percentage=$signAct/$count_ac*100;
+    }
+    
     return array(
         'total_act'=>$count_ac,
         'checked_act'=>$signAct,
-        'percentage'=>$count_ac<1?'100':$signAct/$count_ac*100
+        'percentage'=>$ac_percentage
     );
 
 }
