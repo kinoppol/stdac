@@ -48,7 +48,7 @@ foreach($acts as $row){
 }
 
     foreach($act_id as $act_row){
-        $check_data=sSelectTb($systemDb,"entry_record",'*','act_id='.$act_row.' AND student_id='.sQ($row['student_id']));
+        $check_data=sSelectTb($systemDb,"entry_record",'*','act_id='.$act_row.' AND student_id='.sQ($act_row['student_id']));
         $check_data=$check_data[0];
         if($check_data['entry_type']=='check'){
             $signAct++;
