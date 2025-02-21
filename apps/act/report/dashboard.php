@@ -148,6 +148,7 @@ error_reporting(E_ALL);
                 <!-- #END# Task Info -->
                 <!-- Disk Usage -->
                 <?php
+/*
                     $docSize=sSelectTb($systemDb,'files_doc','sum(file_size) as c','owner_id='.current_user('id').' AND type="doc"');
                     $docSize=$docSize[0];
                     
@@ -156,6 +157,7 @@ error_reporting(E_ALL);
 
                     $totalSize=100*1024*1024;
                     $freeSize=$totalSize-$docSize['c']-$picSize['c'];
+*/
                 ?><!--
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="card">
