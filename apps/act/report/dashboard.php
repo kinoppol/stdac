@@ -184,6 +184,7 @@ error_reporting(E_ALL);
                
             </div>
             <?php
+/*
             $systemFoot.="<script>
             $(function(){
                 load_last_transaction();
@@ -218,3 +219,4 @@ error_reporting(E_ALL);
 }
             </script>
             ";
+*/
