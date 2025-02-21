@@ -2,6 +2,9 @@
     $title="ภาพรวม";
 
     $current_semester=get_system_config("current_semester");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 ?>
   <div class="container-fluid">
@@ -44,7 +47,7 @@
                 </div>
 
                 <?php
-                    $picCount=sSelectTb($systemDb,'files_doc','count(*) as c','owner_id='.current_user('id').' AND type="pic"');
+                    $picCount=sSelectTb($systemDb,'files_doc','count(*) as c','owner_id='.current_user('id').' AND type="pic"',true);
                     $picCount=$picCount[0];
                 ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
