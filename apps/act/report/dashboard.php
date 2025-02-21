@@ -39,7 +39,7 @@ error_reporting(E_ALL);
                         </div>
                         
                         <div class="content">
-                            <div class="text">จำนวนกิจกรรมทั้งหมด</div>
+                            <div class="text">จำนวนกิจกรรมทั้งหมด X</div>
                             <div class="number count-to" data-from="0" data-to="<?php print $act_amount['c'];?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                         
