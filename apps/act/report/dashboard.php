@@ -47,8 +47,10 @@ error_reporting(E_ALL);
                 </div>
 
                 <?php
+/*
                     $picCount=sSelectTb($systemDb,'files_doc','count(*) as c','owner_id='.current_user('id').' AND type="pic"',true);
                     $picCount=$picCount[0];
+    */
                 ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-green hover-expand-effect">
