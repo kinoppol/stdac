@@ -39,7 +39,7 @@ error_reporting(E_ALL);
                         </div>
                         
                         <div class="content">
-                            <div class="text">จำนวนกิจกรรมทั้งหมด X</div>
+                            <div class="text">จำนวนกิจกรรมทั้งหมด</div>
                             <div class="number count-to" data-from="0" data-to="<?php print $act_amount['c'];?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                         
@@ -67,8 +67,10 @@ error_reporting(E_ALL);
                 </div>
                 
                 <?php
+/*
                     $docCount=sSelectTb($systemDb,'files_doc','count(*) as c','owner_id='.current_user('id').' AND type="doc"');
                     $docCount=$docCount[0];
+*/
                 ?>
                 
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
