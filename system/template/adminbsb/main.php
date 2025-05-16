@@ -399,7 +399,7 @@ span {
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                <a href="http://www.bncc.ac.th" target="_blank" title="วิทยาลัยพณิชยการบางนา">BNCC</a> &copy; <?php print date('Y'); ?> <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                <!-- <a href="http://www.bncc.ac.th" target="_blank" title="วิทยาลัยพณิชยการบางนา">BNCC</a> --> &copy; <?php print date('Y'); ?> <a href="javascript:void(0);">AdminBSB - Material Design</a>.
                 </div>
                 <!--
                 <div class="version">

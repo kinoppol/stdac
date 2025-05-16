@@ -1291,10 +1291,10 @@ INSERT INTO `sa_site_config` (`config_name`, `detail`, `lastUpdate`) VALUES
 ('pass_score_assembly', '60', '2020-11-23 18:27:18'),
 ('pass_score_morning_ceremony', '60', '2020-11-23 18:27:18'),
 ('rms_url', 'RMS_URL', '2020-01-30 11:50:49'),
-('school_name', 'วิทยาลัยพณิชยการบางนา', '2020-12-08 17:26:01'),
-('siteName', 'Student Activity', '2019-11-11 09:01:54'),
+('school_name', 'วิทยาลัยบริหารธุรกิจและการท่องเที่ยวกรุงเทพ', '2025-05-17 17:26:01'),
+('siteName', 'Student Activity Management System', '2019-11-11 09:01:54'),
 ('siteURL', 'SITE_URL', '2019-11-27 10:18:34'),
-('subName', 'SA', '2019-11-11 09:02:23'),
+('subName', 'SAM', '2019-11-11 09:02:23'),
 ('theme', 'adminbsb', '2019-11-01 16:18:36');
 
 -- --------------------------------------------------------
