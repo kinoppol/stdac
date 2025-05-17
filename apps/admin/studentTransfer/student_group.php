@@ -11,6 +11,9 @@ foreach($group_data as $group){
         "major_name"=>sQ($group['major_name']),
         "minor_name"=>sQ($group['minor_name']),
         "level_name"=>sQ($group['level_name']),
+        "advisor_01"=>sQ($group['teacher_id1']),
+        "advisor_02"=>sQ($group['teacher_id2']),
+        "advisor_03"=>sQ($group['teacher_id3']),
     );
     $result=sInsertTb($systemDb,"group",$data);
     if($result){

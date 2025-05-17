@@ -25,6 +25,17 @@ $inputDetail = array(
         "type"=>"tab-pane",
         "class"=>"active"
         ),
+        
+    'activity_checker' => array(
+        'label' => 'มอบหมายผู้เช็คชื่อ',
+        'type' => 'select',
+        'item'=>array(
+            'advisor'=>'ครูที่ปรึกษา',
+            'staff'=>'งานกิจกรรม',
+            'other'=>'อื่น ๆ (ต้องมอบหมายในระบบ)',
+        ),
+        'def'=>get_system_config("activity_checker")!=''?get_system_config("activity_checker"):'staff',
+    ),
     'activity_early_signin' => array(
         'label' => 'สแกนบัตรเข้าร่วมกิจกรรมก่อนถึงเวลาที่กำหนด(นาที)',
         'type' => 'number',
@@ -70,6 +81,16 @@ if(get_system_config("active_morning_ceremony")=='active'){
             "type"=>"tab-pane",
             "class"=>""
             );
+    $inputDetail['morning_ceremony_checker'] = array(
+        'label' => 'มอบหมายผู้เช็คชื่อ',
+        'type' => 'select',
+        'item'=>array(
+            'advisor'=>'ครูที่ปรึกษา',
+            'staff'=>'งานกิจกรรม',
+            'other'=>'อื่น ๆ (ต้องมอบหมายในระบบ)',
+        ),
+        'def'=>get_system_config("morning_ceremony_checker")!=''?get_system_config("morning_ceremony_checker"):'advisor',
+    );
     $inputDetail['morning_ceremony_start_time'] = array(
         'label' => 'เวลาเริ่มเข้าแถว',
         'type' => 'time',
@@ -133,6 +154,16 @@ if(get_system_config("active_assembly")=='active'){
         "type"=>"tab-pane",
         "class"=>""
     );
+    $inputDetail['massembly_checker'] = array(
+        'label' => 'มอบหมายผู้เช็คชื่อ',
+        'type' => 'select',
+        'item'=>array(
+            'advisor'=>'ครูที่ปรึกษา',
+            'staff'=>'งานกิจกรรม',
+            'other'=>'อื่น ๆ (ต้องมอบหมายในระบบ)',
+        ),
+        'def'=>get_system_config("massembly_checker")!=''?get_system_config("massembly_checker"):'advisor',
+    );
     $inputDetail['assembly_early_signin'] = array(
         'label' => 'สแกนบัตรเข้าคาบกิจจกรมได้ก่อนถึงเวลาที่กำหนด(นาที)',
         'type' => 'number',
@@ -190,7 +221,7 @@ $inputForm = genInput($inputDetail, 4, 12);
                 <h2>ตั้งค่าการเช็คชื่อเข้าร่วมกิจกรรม</h2>
             </div>
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="body">
 <?php

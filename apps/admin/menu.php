@@ -3,7 +3,7 @@ $menu['admin']= array(
     'class' => "header",
     'title' => 'ดูแลระบบ',
     'cond' => current_user('user_type')=='admin'||current_user('user_type')=='staff',
-    'bullet' => 'nature_people',
+    'bullet' => 'settings',
     'color' => 'col-green',
     'item' => array(
         //'billing' => array('bullet' => '',

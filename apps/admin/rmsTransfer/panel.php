@@ -1,6 +1,6 @@
 <div class="row clearfix">
                 <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="header">
                             <h2>โอนข้อมูลผู้เรียน</h2>
@@ -11,11 +11,9 @@
                         </div>
                     </div>
                 </div>
-    </div>
 
-    <div class="row clearfix">
                 <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="header">
                             <h2>โอนข้อมูลบุคลากร</h2>
@@ -26,11 +24,9 @@
                         </div>
                     </div>
                 </div>
-    </div>
 
-<div class="row clearfix">
             <!-- Task Info -->
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="card">
                     <div class="header">
                         <h2>โอนข้อมูลภาคเรียน</h2>
@@ -41,11 +37,9 @@
                     </div>
                 </div>
             </div>
-</div>
 
-<div class="row clearfix">
             <!-- Task Info -->
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="card">
                     <div class="header">
                         <h2>โอนข้อมูลวันหยุดจากระบบ RMS</h2>

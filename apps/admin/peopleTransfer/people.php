@@ -61,8 +61,8 @@ foreach($people_data as $people){
     //print "Finish";
 }
 
-print "Finish";
-
+//print "Finish";
+//print number_format($import_people)." จากทั้งหมด ".$total_people." คน";เรียบร้อยแล้ว
 ?>
 
-                            ข้อมูลบุคลากรจำนวน <?php print number_format($import_people)." จากทั้งหมด ".$total_people." คน";?> คนเรียบร้อยแล้ว
+                            ข้อมูลบุคลากรจำนวน <?php print number_format($import_people)." คน";?>เรียบร้อยแล้ว
