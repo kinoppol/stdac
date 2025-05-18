@@ -10359,3 +10359,5 @@ COMMIT;
 
 INSERT INTO `sa_userdata` (`id`, `people_id`, `username`, `password`, `image_uri`, `name`, `surname`, `email`, `personal_id`, `active`, `user_type`, `last_login`) VALUES
 (1, NULL, 'admin', '81dc9bdb52d04dc20036dbd8313ed055', NULL, '', '', NULL, NULL, 'Y', 'admin', NULL);
+/*๊Update 20250517*/
+ALTER TABLE `sa_group` ADD `advisor_01` VARCHAR(13) NULL COMMENT 'รหัสประจำตัวประชาชนครูที่ปรึกษาหลัก' AFTER `level_name`, ADD `advisor_02` VARCHAR(13) NULL COMMENT 'รหัสประจำตัวประชาชนครูที่ปรึกษาร่วม ' AFTER `advisor_01`, ADD `advisor_03` VARCHAR(13) NULL COMMENT 'รหัสประจำตัวประชาชนครูที่ปรึกษาร่วม ' AFTER `advisor_02`;
