@@ -1277,7 +1277,7 @@ INSERT INTO `sa_site_config` (`config_name`, `detail`, `lastUpdate`) VALUES
 ('assembly_after_check', '60', '2020-11-29 19:26:23'),
 ('assembly_late_score', '80', '2020-11-29 19:25:37'),
 ('assembly_late_signin', '15', '2020-11-29 19:25:37'),
-('current_semester', '1/2565', '2022-05-17 00:44:27'),
+('current_semester', '1/2568', '2022-05-17 00:44:27'),
 ('morning_ceremony_absent_signin', '30', '2020-11-29 19:25:57'),
 ('morning_ceremony_after_check', '15', '2022-06-01 01:02:42'),
 ('morning_ceremony_early_signin', '10', '2020-11-29 19:25:57'),
