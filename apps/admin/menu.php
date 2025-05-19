@@ -27,7 +27,7 @@ $menu['admin']= array(
                             'cond' => current_user('user_type')=='admin',
                             ),
             'rmsTransfer' => array('bullet' => '',
-                        'title' => 'โอนข้อมูลระบบ RMS',
+                        'title' => 'โอนข้อมูลจากระบบ RMS',
                         'url' => 'main/admin/rmsTransfer/panel',
                         'cond' => current_user('user_type')=='admin',
                         ),

@@ -20,10 +20,10 @@ $html.=signUpFrom_06($std['student_id']);
 $pdf_data=array(
         			   'html'=>$html,
         			   'size'=>'A4',
-        			   'fontsize'=>12,
+        			   'fontsize'=>14,
         			   'marginL'=>20,
         			   'marginR'=>20,
-        			   'marginT'=>0,
+        			   'marginT'=>20,
         			   'marginB'=>0,
         			   //'wartermarkimage'=>'https://sas.bncc.ac.th/images/bg.jpg',
         			   );

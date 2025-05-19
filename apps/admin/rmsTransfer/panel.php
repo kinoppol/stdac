@@ -7,7 +7,7 @@
                         </div>
                         <div class="body">
                         <div id="ajaxResponseStudent"></div>
-                            <button class="btn btn-lg btn-primary btn-block" id="studentTransfer"><i class="material-icons">people</i>โอนข้อมูลผู้เรียน</button>
+                            <button class="btn btn-lg btn-primary btn-block" id="studentTransfer"><i class="material-icons">people</i> โอนข้อมูล</button>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                         </div>
                         <div class="body">
                         <div id="ajaxResponsePeople"></div>
-                            <button class="btn btn-lg btn-primary btn-block" id="peopleTransfer"><i class="material-icons">assignment_ind</i> โอนข้อมูลบุคลากร</button>
+                            <button class="btn btn-lg btn-primary btn-block" id="peopleTransfer"><i class="material-icons">assignment_ind</i> โอนข้อมูล</button>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="body">
                     <div id="ajaxResponseSemester"></div>
-                        <button class="btn btn-lg btn-primary btn-block" id="semesterTransfer"><i class="material-icons">schedule</i> โอนข้อมูลภาคเรียน</button>
+                        <button class="btn btn-lg btn-primary btn-block" id="semesterTransfer"><i class="material-icons">content_paste</i> โอนข้อมูล</button>
                     </div>
                 </div>
             </div>
@@ -42,11 +42,38 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                 <div class="card">
                     <div class="header">
-                        <h2>โอนข้อมูลวันหยุดจากระบบ RMS</h2>
+                        <h2>โอนข้อมูลวันหยุด</h2>
                     </div>
                     <div class="body">
                     <div id="ajaxResponseHoliday"></div>
-                        <button class="btn btn-lg btn-primary btn-block" id="holidayTransfer"><i class="material-icons">schedule</i> โอนข้อมูลวันหยุดจากระบบ RMS</button>
+                        <button class="btn btn-lg btn-primary btn-block" id="holidayTransfer"><i class="material-icons">today</i> โอนข้อมูล</button>
+                    </div>
+                </div>
+            </div>
+</div>
+<div class="row clearfix">
+            <!-- Task Info -->
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="header">
+                        <h2>โอนข้อมูลการเช็คชื่อกิจกรรมหน้าเสาธง</h2>
+                    </div>
+                    <div class="body">
+                    <div id="ajaxResponseMorningCheck"></div>
+                        <button class="btn btn-lg btn-primary btn-block" id="morningCheckTransfer"><i class="material-icons">check_circle</i> โอนข้อมูล</button>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Task Info -->
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <div class="header">
+                        <h2>โอนข้อมูลการเช็คชื่อคาบกิจกรรม</h2>
+                    </div>
+                    <div class="body">
+                    <div id="ajaxResponseAssemblyCheck"></div>
+                        <button class="btn btn-lg btn-primary btn-block" id="assemblyCheckTransfer"><i class="material-icons">check_circle</i> โอนข้อมูล</button>
                     </div>
                 </div>
             </div>
