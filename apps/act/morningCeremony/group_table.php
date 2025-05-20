@@ -2,7 +2,20 @@
 <?php
 load_fun('table');
 load_fun('datatable');
-$group_isCheckable=sSelectTb($systemDb,"checker",'*','morning_ceremony_checker like '.sQ('%'.current_user('people_id').'%').' AND semester = '.sQ(get_system_config('current_semester')));
+$checker_config=get_system_config("morning_ceremony_checker")!=''?get_system_config("morning_ceremony_checker"):'advisor';
+
+if($checker_config=='other'){
+$group_isCheckable=sSelectTb($systemDb,"checker",'group_id','morning_ceremony_checker like '.sQ('%'.current_user('people_id').'%').' AND semester = '.sQ(get_system_config('current_semester')));
+}else if($checker_config=='advisor'){
+$group_isCheckable=sSelectTb($systemDb,"group",'group_id','advisor_01 like '.sQ('%'.current_user('people_id').'%').' or advisor_02 like '.sQ('%'.current_user('people_id').'%').' or advisor_02 like '.sQ('%'.current_user('people_id').'%'));
+}else if($checker_config=='staff'){
+if(current_user('user_type')=='admin'){
+    $group_isCheckable=sSelectTb($systemDb,"group",'group_id');
+}else{
+    $group_isCheckable=array();
+}
+}
+
 $groups='';
 foreach($group_isCheckable as $row){
     if($groups!='')$groups.=',';

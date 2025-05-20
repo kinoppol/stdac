@@ -23,6 +23,23 @@ $checker_list=array();
 foreach($people_data as $row){
     $checker_list[$row['people_id']]=$row['name'].' '.$row['surname'];
 }
+$m_ext='';
+$a_ext='';
+
+$morning_ceremony_checker_config=get_system_config("morning_ceremony_checker")!=''?get_system_config("morning_ceremony_checker"):'advisor';
+$assembly_checker_config=get_system_config("assembly_checker")!=''?get_system_config("assembly_checker"):'advisor';
+
+if($morning_ceremony_checker_config=='staff'){
+$m_ext=' (ระบบมอบหมายให้งานกิจกรรมเป็นผู้เช็คชื่อ รายชื่อด้านล่างจะไม่มีผลใด ๆ)';
+}elseif($morning_ceremony_checker_config=='advisor'){
+$m_ext=' (ระบบมอบหมายให้ครูที่ปรึกษาเป็นผู้เช็คชื่อ รายชื่อด้านล่างจะไม่มีผลใด ๆ)';
+}
+
+if($assembly_checker_config=='staff'){
+$a_ext=' (ระบบมอบหมายให้งานกิจกรรมเป็นผู้เช็คชื่อ รายชื่อด้านล่างจะไม่มีผลใด ๆ)';
+}elseif($assembly_checker_config=='advisor'){
+$a_ext=' (ระบบมอบหมายให้ครูที่ปรึกษาเป็นผู้เช็คชื่อ รายชื่อด้านล่างจะไม่มีผลใด ๆ)';
+}
 
 $dow_arr=array("0"=>'อาทิตย์',"1"=>'จันทร์','2'=>'อังคาร','3'=>'พุธ','4'=>'พฤหัสบดี','5'=>'ศุกร์','6'=>'เสาร์');
 $dowa_arr=array(""=>'เลือกวัน',"0"=>'อาทิตย์',"1"=>'จันทร์','2'=>'อังคาร','3'=>'พุธ','4'=>'พฤหัสบดี','5'=>'ศุกร์','6'=>'เสาร์');
@@ -47,7 +64,7 @@ $inputDetail = array(
         'attr'=>array('readonly'),
     ),
     'morning_ceremony_checker' => array(
-        'label' => 'ผู้เช็คชื่อกิจกรรมเข้าแถว',
+        'label' => 'ผู้เช็คชื่อกิจกรรมเข้าแถว'.$m_ext,
         'type' => 'select',
         'tokenize'=>true,
         'multiple'=>true,
@@ -65,7 +82,7 @@ $inputDetail = array(
         'def' => explode(',',$checker_data['morning_ceremony_date']),
     ),
     'assembly_checker' => array(
-        'label' => 'ผู้เช็คชื่อคาบกิจกรรม',
+        'label' => 'ผู้เช็คชื่อคาบกิจกรรม'.$a_ext,
         'type' => 'select',
         'tokenize'=>true,
         'multiple'=>true,

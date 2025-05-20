@@ -116,6 +116,20 @@ if($_POST['signPosition']){
 
 }
 
+if($_POST['activity_checker']){
+    update_system_config('activity_checker',$_POST['activity_checker']);
+}
+
+
+if($_POST['morning_ceremony_checker']){
+    update_system_config('morning_ceremony_checker',$_POST['morning_ceremony_checker']);
+}
+
+
+if($_POST['assembly_checker']){
+    update_system_config('assembly_checker',$_POST['assembly_checker']);
+}
+
     $msg=" บันทึกข้อมูลเรียบร้อยแล้ว";
         
     $data['icon']='save';

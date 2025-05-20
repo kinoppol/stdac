@@ -30,9 +30,9 @@ $inputDetail = array(
         'label' => 'มอบหมายผู้เช็คชื่อ',
         'type' => 'select',
         'item'=>array(
-            'advisor'=>'ครูที่ปรึกษา',
+            //'advisor'=>'ครูที่ปรึกษา',
             'staff'=>'งานกิจกรรม',
-            'other'=>'อื่น ๆ (ต้องมอบหมายในระบบ)',
+            //'other'=>'อื่น ๆ (ต้องมอบหมายในเมนูกลุ่มผู้เรียน)',
         ),
         'def'=>get_system_config("activity_checker")!=''?get_system_config("activity_checker"):'staff',
     ),
@@ -87,7 +87,7 @@ if(get_system_config("active_morning_ceremony")=='active'){
         'item'=>array(
             'advisor'=>'ครูที่ปรึกษา',
             'staff'=>'งานกิจกรรม',
-            'other'=>'อื่น ๆ (ต้องมอบหมายในระบบ)',
+            'other'=>'อื่น ๆ (ต้องมอบหมายในเมนูกลุ่มผู้เรียน)',
         ),
         'def'=>get_system_config("morning_ceremony_checker")!=''?get_system_config("morning_ceremony_checker"):'advisor',
     );
@@ -154,15 +154,15 @@ if(get_system_config("active_assembly")=='active'){
         "type"=>"tab-pane",
         "class"=>""
     );
-    $inputDetail['massembly_checker'] = array(
+    $inputDetail['assembly_checker'] = array(
         'label' => 'มอบหมายผู้เช็คชื่อ',
         'type' => 'select',
         'item'=>array(
             'advisor'=>'ครูที่ปรึกษา',
             'staff'=>'งานกิจกรรม',
-            'other'=>'อื่น ๆ (ต้องมอบหมายในระบบ)',
+            'other'=>'อื่น ๆ (ต้องมอบหมายในเมนูกลุ่มผู้เรียน)',
         ),
-        'def'=>get_system_config("massembly_checker")!=''?get_system_config("massembly_checker"):'advisor',
+        'def'=>get_system_config("assembly_checker")!=''?get_system_config("assembly_checker"):'advisor',
     );
     $inputDetail['assembly_early_signin'] = array(
         'label' => 'สแกนบัตรเข้าคาบกิจจกรมได้ก่อนถึงเวลาที่กำหนด(นาที)',

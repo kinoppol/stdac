@@ -10,7 +10,7 @@ $menu['atc']= array(
         'list' => array('bullet' => '',
             'title' => 'รายชื่อกิจกรรมกลาง',
             'url' => 'main/act/view/list',
-            'cond' => true,
+            'cond' => current_user('user_type')=='admin',
             ),
         'listMorningCeremony' => array('bullet' => '',
             'title' => 'เช็คชื่อกิจกรรมหน้าเสาธง',
