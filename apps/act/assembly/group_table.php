@@ -10,7 +10,7 @@ $checker_config=get_system_config("assembly_checker")!=''?get_system_config("ass
 
 if($checker_config=='other'){
 $group_isCheckable=sSelectTb($systemDb,"checker",'*','assembly_checker like '.sQ('%'.current_user('people_id').'%').' AND semester ='.sQ($current_semester));}else if($checker_config=='advisor'){
-    print 'advisor';
+    //print 'advisor';
 $group_isCheckable=sSelectTb($systemDb,"group",'group_id','advisor_01 like '.sQ('%'.current_user('people_id').'%').' or advisor_02 like '.sQ('%'.current_user('people_id').'%').' or advisor_03 like '.sQ('%'.current_user('people_id').'%'));
 }else if($checker_config=='staff'){
 if(current_user('user_type')=='admin'){
