@@ -53,13 +53,14 @@ if(in_array($student_data['group_id'],$available_group)){
     $cond='student_id='.sQ($student_id,true);
 
     if(is_numeric($act_id)){
-        $cond=' AND act_id='.sQ($act_id);
+        $cond.=' AND act_id='.sQ($act_id);
     }else{
         $data['date_check']=sQ($date);
         $cond.=' AND date_check='.sQ($date); 
     }
     
     $check_record=sSelectTb($systemDb,$table,'count(*) as c',$cond);
+
 
 $data=array(
     'student_id'=>sQ($student_data['student_id']),
