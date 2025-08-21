@@ -16,7 +16,7 @@ foreach($student_data as $student){
         "stu_fname"=>sQ($student['stu_fname']),
         "stu_lname"=>sQ($student['stu_lname']),
         "birthday"=>sQ($student['birthday']),
-        "tele_number"=>sQ($student['tele_number']),
+        "tele_number"=>sQ($student['tele_number'],true),
         "fat_fname"=>sQ($student['fat_fname']),
         "fat_lname"=>sQ($student['fat_lname']),
         "mot_fname"=>sQ($student['mot_fname']),
