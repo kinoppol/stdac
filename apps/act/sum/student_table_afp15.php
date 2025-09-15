@@ -2,7 +2,13 @@
 error_reporting(0);
 load_fun('mpdf');
 
-$html='<div align="center">แบบสรุปการประเมินผลกิจกรรมชมรมวิชาชีพ<div>
+$html='
+<style>
+    table, th, td {
+        border: 1px solid;
+    }
+</style>
+<div align="center">แบบสรุปการประเมินผลกิจกรรมชมรมวิชาชีพ<div>
 <div class="table-responsive">';
 
 load_fun('table');
