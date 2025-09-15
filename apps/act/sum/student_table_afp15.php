@@ -207,7 +207,7 @@ $data=array("head"=>$head,
     'pagelength'=>10,
     'order'=>'[[ 0, "asc" ]]'
     );
-    $html.= datatable($data);
+    $html.= htmlTable($data);
 
     $html.='</div>';
 
