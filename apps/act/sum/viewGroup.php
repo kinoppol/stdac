@@ -16,6 +16,7 @@
                             </ul>
                         </div>
                         <div class="body">
+                            <a href="<?php print site_url('ajax/act/sum/student_table_afp15')."/group/".$hGET['group_id']; ?>" class="btn btn-danger" target="_blank"><i class="material-icons">picture_as_pdf</i> แบบ อวท. 15</a>
                             <div id="grouptable">
                             </div>
                         </div>

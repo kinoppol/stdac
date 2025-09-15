@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 load_fun('mpdf');
 $group_id=$hGET['gid'];
 //$stdDb=stdDb();\
