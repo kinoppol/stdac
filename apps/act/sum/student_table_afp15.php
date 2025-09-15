@@ -3,11 +3,6 @@ error_reporting(0);
 load_fun('mpdf');
 
 $html='
-<style>
-    table, th, td {
-        border: 1px solid;
-    }
-</style>
 <div align="center">แบบสรุปการประเมินผลกิจกรรมชมรมวิชาชีพ<div>
 <div class="table-responsive">';
 
