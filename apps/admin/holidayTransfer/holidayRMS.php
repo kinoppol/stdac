@@ -8,6 +8,7 @@ $data=array();
 $holidayTransfer=0;
 sDeleteTb($systemDb,'holiday','semester='.sQ($current_semester));
 foreach($holiday_data as $row){
+    print ">>>".$row['stopday_eduyear'];
     if($row['stopday_eduyear']!=$current_semester)continue;
     $data['holiday_date']=sQ($row['stopday_date']);
     $data['holiday_name']=sQ($row['stopday_name']);
