@@ -14,9 +14,9 @@ foreach($holiday_data as $row){
     $data['holiday_date']=sQ($row['stopday_date']);
     $data['holiday_name']=sQ($row['stopday_name']);
     $data['semester']=sQ($current_semester);
-    print count($data);
-    print_r($data);
-    $result=sInserttb($systemDb,'holiday',$data);
+    //print count($data);
+    //print_r($data);
+    $result=sInserttb($systemDb,'holiday',$data,true);
     if($result){
         $holidayTransfer++;
     }
