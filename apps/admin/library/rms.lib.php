@@ -12,9 +12,6 @@ $arrContextOptions=array(
     $rawdata=file_get_contents($target_url,false,stream_context_create($arrContextOptions));
 //-- END Debug
     $json=json_decode($rawdata,true);
-
-    $rawdata=file_get_contents($target_url);
-    $json=json_decode($rawdata,true);
     return $json;
 }
 
