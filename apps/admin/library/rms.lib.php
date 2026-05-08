@@ -2,6 +2,17 @@
 error_reporting(0);
 function rms_get_data($rmsurl,$app_name,$data,$limit=null,$count=null){
     $target_url=$rmsurl."/api_connection.php?data=".$data."&app_name=".$app_name."&limit=".$limit."&count=".$count;
+    //Debug SSL Error Disc on stdac.bncc.ac.th debug 2026-05-08 
+$arrContextOptions=array(
+    "ssl"=>array(
+        "verify_peer"=>false,
+        "verify_peer_name"=>false,
+    ),
+);
+    $rawdata=file_get_contents($target_url,false,stream_context_create($arrContextOptions));
+//-- END Debug
+    $json=json_decode($rawdata,true);
+
     $rawdata=file_get_contents($target_url);
     $json=json_decode($rawdata,true);
     return $json;
