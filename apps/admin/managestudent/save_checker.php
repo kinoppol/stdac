@@ -7,9 +7,9 @@ load_fun('system_alert');
 $data=array(
     'semester'=>sQ(get_system_config('current_semester')),
     'group_id'=>$_POST['group_id'],
-    'morning_ceremony_checker'=>sQ(implode(',',$_POST['morning_ceremony_checker']),true),
-    'morning_ceremony_date'=>sQ(implode(',',$_POST['morning_ceremony_date']),true),
-    'assembly_checker'=>sQ(implode(',',$_POST['assembly_checker']),true),
+    'morning_ceremony_checker'=>sQ(implode(',',(array)$_POST['morning_ceremony_checker']),true),
+    'morning_ceremony_date'=>sQ(implode(',',(array)$_POST['morning_ceremony_date']),true),
+    'assembly_checker'=>sQ(implode(',',(array)$_POST['assembly_checker']),true),
     'assembly_date'=>sQ($_POST['assembly_date'],true),
 );
 
