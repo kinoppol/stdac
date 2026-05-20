@@ -17,7 +17,7 @@ foreach($people_data as $people){
     if(($people['useradmin_activity']==1||$people['people_user']=='admin')){//1 Admin
 
         $user_type="admin";
-    }else if($people['useradmin_activity']==3){//1 Admin
+    }else if($people['useradmin_activity']==3){//3 Staff
 
         $user_type="staff";
     }else{
