@@ -14,17 +14,14 @@ $total_people=count($people_data);
 sDeleteTb($systemDb,"userdata");
 $import_people=0;
 foreach($people_data as $people){
-    if(($people['useradmin_activity']==1&&$people['people_user']=='admin')||$people['useradmin_activity']==2){//1 Admin
+    if(($people['useradmin_activity']==1 /*&&$people['people_user']=='admin')*/ ||$people['useradmin_activity']==2){//1 Admin
 
         $user_type="admin";
     }else if($people['useradmin_activity']==3){//3 Staff
 
         $user_type="staff";
     }else{
-        print $people['people_name'];
-        print ">>";
-        print $people['useradmin_activity'];
-        print "<br>";
+        
         $user_type="user";
 
         if((is_numeric($people['people_id'])&&//ยกเว้นชาวต่างชาติ
