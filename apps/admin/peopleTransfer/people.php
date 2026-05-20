@@ -21,6 +21,10 @@ foreach($people_data as $people){
 
         $user_type="staff";
     }else{
+        print $people['people_name'];
+        print ">>";
+        print $people['useradmin_activity'];
+        print "<br>";
         $user_type="user";
 
         if((is_numeric($people['people_id'])&&//ยกเว้นชาวต่างชาติ
